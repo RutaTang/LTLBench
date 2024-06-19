@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.core.query import generate_ltl_formulas, convert_ltl_formula_to_NuSMV, recursive_join, conver_ltl_formula_to_NL
+from src.generator.query import generate_ltl_formulas, convert_ltl_formula_to_NuSMV, recursive_join, conver_ltl_formula_to_NL
 
 
 class Test(TestCase):

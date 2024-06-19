@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.core.context import generate_random_graph, plot_graph, generate_context_from_graph, code_template
+from src.generator.context import generate_random_graph, plot_graph, generate_context_from_graph, code_template
 
 
 class Test(TestCase):

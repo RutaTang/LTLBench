@@ -2,8 +2,8 @@ import json
 
 import numpy as np
 
-from src.core.context import generate_random_graph, generate_nodes, generate_context_from_graph, code_template
-from src.core.query import generate_ltl_formulas, conver_ltl_formula_to_NL, convert_ltl_formula_to_NuSMV
+from src.generator.context import generate_random_graph, generate_nodes, generate_context_from_graph, code_template
+from src.generator.query import generate_ltl_formulas, conver_ltl_formula_to_NL, convert_ltl_formula_to_NuSMV
 from copy import deepcopy
 
 from src.utils.external import call_NuSMV
@@ -40,15 +40,12 @@ def generate_problem(number_of_events: int, formula_length: int) -> dict:
 
     # Prepare code
     context_code = code_template(state=list(nodes), init=init_state, transition=list(graph.edges))
-    print(formula)
     query_code = convert_ltl_formula_to_NuSMV(ltl_formula=deepcopy(formula))
     query_code = f'LTLSPEC {query_code}'
-    print(query_code)
     code = f'{context_code}\n{query_code}\n'
 
     # Prepare the answer
     answer = call_NuSMV(code)
-    print(answer)
 
     problem = {
         "context": context,

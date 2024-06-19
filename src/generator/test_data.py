@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.core.data import generate_problem
+from src.generator.data import generate_problem
 
 
 class Test(TestCase):
