@@ -1,7 +1,8 @@
-import random
+import numpy as np
+from numpy.random import Generator
 
 
-def generate_ltl_formulas(states: set, formula_length: int, count_of_formulas: int) -> list[list]:
+def generate_ltl_formulas(rng: Generator, states: list, formula_length: int, count_of_formulas: int) -> list[list]:
     """
     Generate LTL formulas
 
@@ -11,9 +12,9 @@ def generate_ltl_formulas(states: set, formula_length: int, count_of_formulas: i
     :return: a list of LTL formulas
     """
     # Define the logical operators
-    unary_operators = {'X', 'G', 'F', '!'}  # Next, Globally, Finally, Not
-    binary_operators = {'&', '|', '->'}  # And, Or
-    operators = unary_operators | binary_operators
+    unary_operators = ['X', 'G', 'F', '!']  # Next, Globally, Finally, Not
+    binary_operators = ['&', '|', '->']  # And, Or
+    operators = unary_operators + binary_operators
 
     # Initialize the list of lists to hold formulas of increasing lengths
     B = [[] for _ in range(formula_length + 1)]
@@ -24,22 +25,27 @@ def generate_ltl_formulas(states: set, formula_length: int, count_of_formulas: i
     for _ in range(count_of_formulas):
         for j in range(1, formula_length + 1):
             # Randomly select an operator
-            x = random.choice(list(operators))
+            x = rng.choice(list(operators))
 
             if x in unary_operators:
                 # Choose a formula from the previous set of formulas
-                y = random.choice(B[j - 1])
-                # y = f'({y})'
+                idx = rng.integers(0, len(B[j - 1]))
+                y = B[j - 1][idx]
                 new_formula = [x, y]
             else:
                 # Choose two formulas for binary operator
                 if j == 0:
                     # Only one previous formula available
-                    y1 = y2 = random.choice(B[j - 1])
+                    idx = rng.integers(0, len(B[j - 1]))
+                    y1 = y2 = B[j - 1][idx]
                 else:
-                    s = random.randint(0, j - 1)
-                    y1 = random.choice(B[random.randint(0, s)])
-                    y2 = random.choice(B[j - 1 - s])
+                    s = rng.integers(0, j)
+                    left = rng.integers(0, s + 1)
+                    idx = rng.integers(0, len(B[left]))
+                    y1 = B[left][idx]
+                    right = j - 1 - s
+                    idx = rng.integers(0, len(B[right]))
+                    y2 = B[right][idx]
 
                 new_formula = [y1, x, y2]
 
@@ -98,7 +104,7 @@ def recursive_join(l: list) -> str:
         return str(l)
 
 
-def conver_ltl_formula_to_NL(ltl_formula: list, base_states: set):
+def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list):
     """
     Convert LTL formula from `generate_ltl_formulas` to natural language
 

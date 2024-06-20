@@ -1,11 +1,9 @@
-from random import random
-
 import networkx as nx
-import numpy as np
 from matplotlib import pyplot as plt
+from numpy.random import Generator
 
 
-def generate_random_graph(nodes: list):
+def generate_random_graph(rng: Generator, nodes: list):
     """
     Generate a random graph from a set of nodes
 
@@ -16,9 +14,9 @@ def generate_random_graph(nodes: list):
     graph.add_nodes_from(nodes)
     for i in range(len(nodes)):
         for j in range(i + 1, len(nodes)):
-            if random() > 0.5:
+            if rng.random() > 0.5:
                 graph.add_edge(nodes[i], nodes[j])
-            if random() > 0.5:
+            if rng.random() > 0.5:
                 graph.add_edge(nodes[j], nodes[i])
 
     return graph
@@ -37,7 +35,7 @@ def plot_graph(graph: nx.Graph):
     plt.show()
 
 
-def generate_context_from_graph(graph: nx.Graph) -> (str, tuple):
+def generate_context_from_graph(rng: Generator, graph: nx.Graph) -> (str, tuple):
     """
     Generate a context from the given graph
 
@@ -45,10 +43,9 @@ def generate_context_from_graph(graph: nx.Graph) -> (str, tuple):
     :return: context and code
     """
     context = []
-    code = []
 
     nodes = list(graph.nodes)
-    node = np.random.choice(nodes)
+    node = rng.choice(nodes)
     visited = set()
     queue = [node]
     while len(queue) > 0:
@@ -56,7 +53,7 @@ def generate_context_from_graph(graph: nx.Graph) -> (str, tuple):
         visited.add(node)
 
         for neighbor in graph.neighbors(node):
-            str = f'After Event {node}, Event {neighbor} will happen.'
+            str = f'After {node}, {neighbor} will happen.'
             context.append(str)
             str = ""
             if neighbor not in visited:
@@ -107,7 +104,7 @@ ASSIGN
     return template
 
 
-def generate_nodes(n: int) -> set[str]:
+def generate_nodes(n: int) -> list[str]:
     """
     Generate a set of nodes
 
@@ -115,5 +112,4 @@ def generate_nodes(n: int) -> set[str]:
     :return: list of nodes
     """
     nodes = [f'event{i}' for i in range(1, n + 1)]
-    nodes = set(nodes)
     return nodes

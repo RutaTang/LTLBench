@@ -1,6 +1,4 @@
-import json
-
-import numpy as np
+from numpy.random import Generator
 
 from src.generator.context import generate_random_graph, generate_nodes, generate_context_from_graph, code_template
 from src.generator.query import generate_ltl_formulas, conver_ltl_formula_to_NL, convert_ltl_formula_to_NuSMV
@@ -9,7 +7,7 @@ from copy import deepcopy
 from src.utils.external import call_NuSMV
 
 
-def generate_problem(number_of_events: int, formula_length: int) -> dict:
+def generate_problem(rng: Generator, number_of_events: int, formula_length: int) -> dict:
     """
     Generate a problem:
     1. Question: A question that needs to be answered consisting of a context (premises) and a query (hypothesis).
@@ -22,21 +20,21 @@ def generate_problem(number_of_events: int, formula_length: int) -> dict:
     """
     # Generate a context
     nodes = generate_nodes(number_of_events)
-    graph = generate_random_graph(nodes=list(nodes))
-    context = generate_context_from_graph(graph=graph)
+    graph = generate_random_graph(rng=rng, nodes=nodes)
+    context = generate_context_from_graph(rng=rng, graph=graph)
 
     # Generate a query
-    formula = generate_ltl_formulas(states=nodes, formula_length=formula_length, count_of_formulas=1).pop()
+    formula = generate_ltl_formulas(rng=rng, states=nodes, formula_length=formula_length, count_of_formulas=1).pop()
     query = conver_ltl_formula_to_NL(ltl_formula=deepcopy(formula), base_states=nodes)
     query = query[0].upper() + query[1:] + "."
 
     # Initialize the init_state
-    init_state = np.random.choice(list(nodes))
+    init_state = rng.choice(nodes)
 
     # Prepare the question
     context = f'Initially, {init_state} is happened. {context}'
     query = (f'Determine whether the following statement is true or false (answering in "true" or "false" '
-             f'directly):\n {query}')
+             f'directly):\n{query}')
 
     # Prepare code
     context_code = code_template(state=list(nodes), init=init_state, transition=list(graph.edges))
