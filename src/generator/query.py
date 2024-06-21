@@ -37,7 +37,7 @@ def generate_ltl_formulas(rng: Generator, states: list, formula_length: int, cou
                 # Choose two formulas for binary operator
                 s = rng.integers(0, j)
                 y1 = B[s][rng.integers(0, len(B[s]))]
-                y2 = B[j-1-s][rng.integers(0, len(B[j-1-s]))]
+                y2 = B[j - 1 - s][rng.integers(0, len(B[j - 1 - s]))]
 
                 new_formula = [y1, x, y2]
 
@@ -125,11 +125,12 @@ def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: Refere
             nl = f'{operand} will happen eventually'
         elif operator == "!":
             if operand in base_states:
-                nl = f'the case of that {operand} happens is not true'
+                nl = f'{operand} does not happen'
             else:
-                nl = f'{operand} is not true'
+                nl = f'{operand} does not hold'
         else:
             raise ValueError(f'Unknown operator: {operator}')
+        nl = nl[0].upper() + nl[1:]
         nl = f'C{h_idx.get()}: {nl}.'
         result.update(f'{result.get()}\n{nl}')
         return f'C{h_idx.get()}'
@@ -138,17 +139,22 @@ def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: Refere
         operator = ltl_formula[1]
         right_operand = ltl_formula[2]
         if left_operand in base_states:
-            left_operand = f'that {left_operand} happens'
+            left_operand = f'{left_operand} happens'
+        else:
+            left_operand = f'{left_operand} holds'
         if right_operand in base_states:
-            right_operand = f'that {right_operand} happens'
+            right_operand = f'{right_operand} happens'
+        else:
+            right_operand = f'{right_operand} holds'
         if operator == "&":
-            nl = f'The case of {left_operand} and the case of {right_operand}, is true'
+            nl = f'{left_operand} and {right_operand}'
         elif operator == "|":
-            nl = f'The case of {left_operand} or the case of {right_operand}, is true'
+            nl = f'{left_operand} or {right_operand}'
         elif operator == "->":
-            nl = f'The case of {left_operand} implies the case of {right_operand}, is true'
+            nl = f'That {left_operand} implies that {right_operand}'
         else:
             raise ValueError(f'Unknown operator: {operator}')
+        nl = nl[0].upper() + nl[1:]
         nl = f'C{h_idx.get()}: {nl}.'
         result.update(f'{result.get()}\n{nl}')
         return f'C{h_idx.get()}'
