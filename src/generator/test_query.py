@@ -30,4 +30,3 @@ class Test(TestCase):
         # converted = conver_ltl_formula_to_NL(['!', ['b', '&', ['!', 'a']]], ['a', 'b'], h_idx, result)
         converted = conver_ltl_formula_to_NL(['!', ['b', '->', ['!', 'a']]], ['a', 'b'], h_idx, result)
         print(result.get())
-        print(converted)

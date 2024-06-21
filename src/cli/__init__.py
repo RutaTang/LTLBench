@@ -60,12 +60,14 @@ def evaluate(count_of_problem: int, number_of_events: int,
             'max_tokens': 5,
         })
         for index, row in tqdm.tqdm(data.iterrows(), total=len(data)):
-            context = row['context']
-            query = row['query']
-            question = f'{context}\n\n{query}'
+            question = row['question']
             message = llm.chat(message=question)
             pattern = r'(true|false)'
-            result = re.search(pattern, message, flags=re.IGNORECASE).group(0)
+            result = re.search(pattern, message, flags=re.IGNORECASE)
+            if result is None:
+                result = True
+            else:
+                result = result.group(0)
             result = result.lower()
             result = True if result == 'true' else False
             data.at[index, 'prediction'] = result

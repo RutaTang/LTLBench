@@ -1,9 +1,9 @@
 context,query,code,answer,prediction
-"Initially, event1 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event2 happened, is ture.
+"Initially, event1 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen.","C1: The case of that event1 happened or the case of that event2 happened, is ture.
 C2: The case of C1 or the case of that event3 happened, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -15,12 +15,12 @@ ASSIGN
     esac;
 LTLSPEC (((state=event1) | (state=event2)) | (state=event3))
 ",True,True
-"Initially, event2 is happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will always happen at any future time.
+"Initially, event2 is happened. After event2, no other events will happen. After event1, event2 will happen. After event3, no other events will happen.","C1: event1 will always happen at any future time.
 C2: The case of that event1 happened or the case of C1, is ture.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -32,12 +32,12 @@ ASSIGN
     esac;
 LTLSPEC (! ((state=event1) | (G (state=event1))))
 ",True,False
-"Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event2 happened implies the case of that event2 happened, is true.
+"Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event1 will happen.","C1: The case of that event2 happened implies the case of that event2 happened, is true.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -50,12 +50,12 @@ ASSIGN
     esac;
 LTLSPEC (X (F ((state=event2) -> (state=event2))))
 ",True,False
-"Initially, event2 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will happen eventually.
+"Initially, event2 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","C1: event1 will happen eventually.
 C2: C1 is not true.
-C3: the case of C2 and the case of that event1 happened, is true.
-C3 is true.","MODULE main
+C3: The case of C2 and the case of that event1 happened, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -69,12 +69,12 @@ ASSIGN
     esac;
 LTLSPEC ((! (F (state=event1))) & (state=event1))
 ",False,False
-"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event3 happened, is ture.
+"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","C1: The case of that event1 happened or the case of that event3 happened, is ture.
 C2: The case of C1 or the case of that event1 happened, is ture.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -87,11 +87,11 @@ ASSIGN
     esac;
 LTLSPEC (! (((state=event1) | (state=event3)) | (state=event1)))
 ",False,False
-"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
+"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.","C1: event3 will always happen at any future time.
 C2: The case of that event3 happened or the case of C1, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -103,11 +103,11 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | (G (state=event3)))
 ",False,True
-"Initially, event2 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will happen at next time.
+"Initially, event2 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event3 will happen.","C1: event2 will happen at next time.
 C2: The case of C1 implies the case of that event2 happened, is true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -119,11 +119,11 @@ ASSIGN
     esac;
 LTLSPEC ((X (state=event2)) -> (state=event2))
 ",True,True
-"Initially, event1 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event3 happened, is ture.
+"Initially, event1 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: The case of that event3 happened or the case of that event3 happened, is ture.
 C2: C1 will happen eventually.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -137,12 +137,12 @@ ASSIGN
     esac;
 LTLSPEC (F ((state=event3) | (state=event3)))
 ",True,True
-"Initially, event2 is happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will happen eventually.
+"Initially, event2 is happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.","C1: event2 will happen eventually.
 C2: C1 will happen at next time.
-C3: the case of that event2 happened and the case of C2, is true.
-C3 is true.","MODULE main
+C3: The case of that event2 happened and the case of C2, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -153,13 +153,13 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) & (X (F (state=event2))))
-",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened implies the case of that event2 happened, is true.
+",False,True
+"Initially, event3 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: The case of that event1 happened implies the case of that event2 happened, is true.
 C2: C1 will happen at next time.
 C3: The case of that event2 happened or the case of C2, is ture.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -172,28 +172,28 @@ ASSIGN
     esac;
 LTLSPEC ((state=event2) | (X ((state=event1) -> (state=event2))))
 ",False,True
-"Initially, event2 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened and the case of that event2 happened, is true.
+"Initially, event2 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.","C1: The case of that event1 happened and the case of that event2 happened, is true.
 C2: C1 will happen at next time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
     init(state) := event2;
     next(state) := case
         state = event2 : event1;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC (X ((state=event1) & (state=event2)))
 ",False,False
-"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event2 happened is not true.
+"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","C1: the case of that event2 happened is not true.
 C2: C1 will happen eventually.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -206,12 +206,12 @@ ASSIGN
     esac;
 LTLSPEC (G (F (! (state=event2))))
 ",True,False
-"Initially, event3 is happened. After event3, event2 will happen. After event2, event3 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event3 happened, is ture.
-C2: the case of C1 and the case of that event2 happened, is true.
+"Initially, event3 is happened. After event3, event2 will happen. After event2, event3 will happen. After event1, no other events will happen.","C1: The case of that event1 happened or the case of that event3 happened, is ture.
+C2: The case of C1 and the case of that event2 happened, is true.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -222,13 +222,13 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (F (((state=event1) | (state=event3)) & (state=event2)))
-",False,False
-"Initially, event1 is happened. After event3, no other events will happen. After event2, event1 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened is not true.
+",False,True
+"Initially, event1 is happened. After event3, no other events will happen. After event2, event1 will happen. After event1, event2 will happen.","C1: the case of that event1 happened is not true.
 C2: the case of that event1 happened is not true.
 C3: The case of C1 or the case of C2, is ture.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -239,13 +239,13 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((! (state=event1)) | (! (state=event1)))
-",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
+",False,True
+"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, no other events will happen. After event2, no other events will happen.","C1: event3 will always happen at any future time.
 C2: C1 will happen eventually.
 C3: The case of that event1 happened implies the case of C2, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -258,11 +258,11 @@ ASSIGN
     esac;
 LTLSPEC ((state=event1) -> (F (G (state=event3))))
 ",True,True
-"Initially, event3 is happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+"Initially, event3 is happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: The case of that event1 happened implies the case of that event3 happened, is true.
+C2: The case of C1 and the case of that event2 happened, is true.
+C2 is true.
 
-C1: The case of that event1 happened implies the case of that event3 happened, is true.
-C2: the case of C1 and the case of that event2 happened, is true.
-C2 is true.","MODULE main
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -275,11 +275,11 @@ ASSIGN
     esac;
 LTLSPEC (((state=event1) -> (state=event3)) & (state=event2))
 ",False,True
-"Initially, event3 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event1 happened, is ture.
+"Initially, event3 is happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event2 will happen.","C1: The case of that event3 happened or the case of that event1 happened, is ture.
 C2: C1 is not true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -291,12 +291,12 @@ ASSIGN
     esac;
 LTLSPEC (! ((state=event3) | (state=event1)))
 ",False,False
-"Initially, event3 is happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event2 happened, is ture.
+"Initially, event3 is happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event3 will happen.","C1: The case of that event3 happened or the case of that event2 happened, is ture.
 C2: C1 will happen eventually.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -308,28 +308,28 @@ ASSIGN
     esac;
 LTLSPEC (F (F ((state=event3) | (state=event2))))
 ",True,True
-"Initially, event3 is happened. After event3, no other events will happen. After event2, no other events will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will always happen at any future time.
+"Initially, event3 is happened. After event3, no other events will happen. After event2, no other events will happen. After event1, no other events will happen.","C1: event2 will always happen at any future time.
 C2: C1 will happen at next time.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
     init(state) := event3;
     next(state) := case
         state = event2 : event2;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC (F (X (G (state=event2))))
-",False,False
-"Initially, event2 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event2 happened, is ture.
+",False,True
+"Initially, event2 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event1 will happen.","C1: The case of that event1 happened or the case of that event2 happened, is ture.
 C2: The case of C1 implies the case of that event2 happened, is true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -342,12 +342,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (((state=event1) | (state=event2)) -> (state=event2))
-",True,False
-"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event2 happened, is true.
+",True,True
+"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","C1: The case of that event3 happened implies the case of that event2 happened, is true.
 C2: The case of that event3 happened or the case of C1, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -360,12 +360,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | ((state=event3) -> (state=event2)))
 ",True,True
-"Initially, event3 is happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event3 happened is not true.
+"Initially, event3 is happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event2 will happen.","C1: the case of that event3 happened is not true.
 C2: The case of that event3 happened implies the case of C1, is true.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -377,12 +377,12 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event3) -> (! (state=event3))))
 ",False,False
-"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.","C1: event3 will happen at next time.
+C2: The case of that event1 happened and the case of C1, is true.
+C3: The case of that event3 happened and the case of C2, is true.
+C3 is true.
 
-C1: event3 will happen at next time.
-C2: the case of that event1 happened and the case of C1, is true.
-C3: the case of that event3 happened and the case of C2, is true.
-C3 is true.","MODULE main
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -395,12 +395,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) & ((state=event1) & (X (state=event3))))
 ",False,False
-"Initially, event1 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened and the case of that event1 happened, is true.
+"Initially, event1 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.","C1: The case of that event1 happened and the case of that event1 happened, is true.
 C2: C1 will always happen at any future time.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -412,26 +412,26 @@ ASSIGN
     esac;
 LTLSPEC (F (G ((state=event1) & (state=event1))))
 ",False,True
-"Initially, event3 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event1 happened, is ture.
+"Initially, event3 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: The case of that event1 happened or the case of that event1 happened, is ture.
 C2: C1 is not true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
     init(state) := event3;
     next(state) := case
         state = event2 : event3;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC (! ((state=event1) | (state=event1)))
 ",True,False
-"Initially, event1 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+"Initially, event1 is happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event2 will happen.","C1: The case of that event2 happened implies the case of that event3 happened, is true.
+C1 is true.
 
-C1: The case of that event2 happened implies the case of that event3 happened, is true.
-C1 is true.","MODULE main
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -442,13 +442,13 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (state=event3))
-",True,False
-"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event3 happened, is ture.
+",True,True
+"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, no other events will happen.","C1: The case of that event3 happened or the case of that event3 happened, is ture.
 C2: C1 is not true.
 C3: The case of that event3 happened implies the case of C2, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -460,11 +460,11 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) -> (! ((state=event3) | (state=event3))))
 ",True,False
-"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened implies the case of that event2 happened, is true.
+"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","C1: The case of that event1 happened implies the case of that event2 happened, is true.
 C2: C1 will always happen at any future time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -477,12 +477,12 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event1) -> (state=event2)))
 ",False,False
-"Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will always happen at any future time.
+"Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","C1: event2 will always happen at any future time.
 C2: The case of C1 implies the case of that event1 happened, is true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -495,12 +495,12 @@ ASSIGN
     esac;
 LTLSPEC (! ((G (state=event2)) -> (state=event1)))
 ",False,True
-"Initially, event3 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened and the case of that event1 happened, is true.
+"Initially, event3 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","C1: The case of that event1 happened and the case of that event1 happened, is true.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -513,12 +513,12 @@ ASSIGN
     esac;
 LTLSPEC (X (G ((state=event1) & (state=event1))))
 ",False,False
-"Initially, event1 is happened. After event1, no other events will happen. After event2, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will happen at next time.
+"Initially, event1 is happened. After event1, no other events will happen. After event2, event1 will happen. After event3, event2 will happen.","C1: event1 will happen at next time.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -529,13 +529,13 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X (F (X (state=event1))))
-",True,False
-"Initially, event3 is happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will happen eventually.
+",True,True
+"Initially, event3 is happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen.","C1: event3 will happen eventually.
 C2: event3 will happen eventually.
 C3: The case of C1 or the case of C2, is ture.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -547,10 +547,10 @@ ASSIGN
     esac;
 LTLSPEC ((F (state=event3)) | (F (state=event3)))
 ",True,True
-"Initially, event1 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+"Initially, event1 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: The case of that event3 happened or the case of that event3 happened, is ture.
+C1 is true.
 
-C1: The case of that event3 happened or the case of that event3 happened, is ture.
-C1 is true.","MODULE main
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -562,26 +562,26 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | (state=event3))
 ",False,True
-"Initially, event3 is happened. After event2, event3 will happen. After event3, no other events will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will always happen at any future time.
+"Initially, event3 is happened. After event2, event3 will happen. After event3, no other events will happen. After event1, no other events will happen.","C1: event1 will always happen at any future time.
 C2: The case of that event1 happened or the case of C1, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
     init(state) := event3;
     next(state) := case
         state = event2 : event3;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) | (G (state=event1)))
-",False,False
-"Initially, event3 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",False,True
+"Initially, event3 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.","C1: The case of that event1 happened and the case of that event2 happened, is true.
+C1 is true.
 
-C1: the case of that event1 happened and the case of that event2 happened, is true.
-C1 is true.","MODULE main
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -594,11 +594,11 @@ ASSIGN
     esac;
 LTLSPEC ((state=event1) & (state=event2))
 ",False,True
-"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event3 happened and the case of that event2 happened, is true.
+"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.","C1: The case of that event3 happened and the case of that event2 happened, is true.
 C2: C1 will always happen at any future time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -610,11 +610,11 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event3) & (state=event2)))
 ",False,False
-"Initially, event3 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event2 happened implies the case of that event1 happened, is true.
+"Initially, event3 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event2 will happen.","C1: The case of that event2 happened implies the case of that event1 happened, is true.
 C2: C1 will happen at next time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -625,12 +625,12 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X ((state=event2) -> (state=event1)))
-",False,False
-"Initially, event1 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will always happen at any future time.
+",False,True
+"Initially, event1 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","C1: event1 will always happen at any future time.
 C2: The case of that event2 happened implies the case of C1, is true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -642,13 +642,13 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) -> (G (state=event1)))
-",True,False
-"Initially, event3 is happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event2 happened, is ture.
+",True,True
+"Initially, event3 is happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen.","C1: The case of that event3 happened or the case of that event2 happened, is ture.
 C2: The case of that event3 happened or the case of C1, is ture.
-C3: the case of that event2 happened and the case of C2, is true.
-C3 is true.","MODULE main
+C3: The case of that event2 happened and the case of C2, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -660,13 +660,13 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) & ((state=event3) | ((state=event3) | (state=event2))))
-",False,False
-"Initially, event1 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will happen eventually.
+",False,True
+"Initially, event1 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","C1: event2 will happen eventually.
 C2: C1 is not true.
 C3: The case of that event1 happened or the case of C2, is ture.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -678,12 +678,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event1) | (! (F (state=event2))))
 ",True,True
-"Initially, event2 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will always happen at any future time.
+"Initially, event2 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event3 will happen.","C1: event1 will always happen at any future time.
 C2: C1 will happen at next time.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -695,13 +695,13 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (X (G (state=event1))))
-",False,False
-"Initially, event1 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will happen eventually.
+",False,True
+"Initially, event1 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","C1: event3 will happen eventually.
 C2: The case of C1 implies the case of that event3 happened, is true.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -713,13 +713,13 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (G ((F (state=event3)) -> (state=event3)))
-",False,False
-"Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will happen eventually.
-C2: the case of that event3 happened and the case of C1, is true.
+",False,True
+"Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event2 will happen.","C1: event3 will happen eventually.
+C2: The case of that event3 happened and the case of C1, is true.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -732,11 +732,11 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event3) & (F (state=event3))))
 ",False,False
-"Initially, event2 is happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will happen at next time.
+"Initially, event2 is happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event3 will happen.","C1: event3 will happen at next time.
 C2: The case of C1 or the case of that event1 happened, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -748,11 +748,11 @@ ASSIGN
     esac;
 LTLSPEC ((X (state=event3)) | (state=event1))
 ",True,True
-"Initially, event1 is happened. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened implies the case of that event1 happened, is true.
+"Initially, event1 is happened. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen.","C1: The case of that event1 happened implies the case of that event1 happened, is true.
 C2: C1 will always happen at any future time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -764,11 +764,11 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((state=event1) -> (state=event1)))
-",True,False
-"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",True,True
+"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, no other events will happen.","C1: The case of that event3 happened or the case of that event3 happened, is ture.
+C1 is true.
 
-C1: The case of that event3 happened or the case of that event3 happened, is ture.
-C1 is true.","MODULE main
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -780,12 +780,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | (state=event3))
 ",True,True
-"Initially, event3 is happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event1 happened, is ture.
+"Initially, event3 is happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event1 will happen.","C1: The case of that event1 happened or the case of that event1 happened, is ture.
 C2: The case of that event3 happened implies the case of C1, is true.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -796,29 +796,29 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event3) -> ((state=event1) | (state=event1))))
-",False,False
-"Initially, event2 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event1 happened, is ture.
+",False,True
+"Initially, event2 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, no other events will happen.","C1: The case of that event3 happened or the case of that event1 happened, is ture.
 C2: C1 is not true.
 C3: The case of C2 implies the case of that event3 happened, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
     init(state) := event2;
     next(state) := case
         state = event2 : event3;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC ((! ((state=event3) | (state=event1))) -> (state=event3))
-",False,False
-"Initially, event2 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",False,True
+"Initially, event2 is happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event2 will happen.","C1: event2 will always happen at any future time.
+C2: The case of that event1 happened and the case of C1, is true.
+C2 is true.
 
-C1: event2 will always happen at any future time.
-C2: the case of that event1 happened and the case of C1, is true.
-C2 is true.","MODULE main
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -829,13 +829,13 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event1) & (G (state=event2)))
-",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened implies the case of that event3 happened, is true.
-C2: the case of C1 and the case of that event1 happened, is true.
+",False,True
+"Initially, event3 is happened. After event3, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.","C1: The case of that event1 happened implies the case of that event3 happened, is true.
+C2: The case of C1 and the case of that event1 happened, is true.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -847,13 +847,13 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (F (((state=event1) -> (state=event3)) & (state=event1)))
-",False,False
-"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event2 happened, is ture.
+",False,True
+"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: The case of that event1 happened or the case of that event2 happened, is ture.
 C2: The case of that event3 happened implies the case of C1, is true.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -867,13 +867,13 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X ((state=event3) -> ((state=event1) | (state=event2))))
-",True,False
-"Initially, event1 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event2 happened, is ture.
+",True,True
+"Initially, event1 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: The case of that event1 happened or the case of that event2 happened, is ture.
 C2: C1 will always happen at any future time.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -886,12 +886,12 @@ ASSIGN
     esac;
 LTLSPEC (F (G ((state=event1) | (state=event2))))
 ",False,True
-"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event2 happened is not true.
+"Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, no other events will happen.","C1: the case of that event2 happened is not true.
 C2: C1 is not true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -903,12 +903,12 @@ ASSIGN
     esac;
 LTLSPEC (! (! (! (state=event2))))
 ",False,False
-"Initially, event3 is happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
+"Initially, event3 is happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event3 will happen.","C1: event3 will always happen at any future time.
 C2: The case of that event2 happened or the case of C1, is ture.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -920,11 +920,11 @@ ASSIGN
     esac;
 LTLSPEC (! ((state=event2) | (G (state=event3))))
 ",True,False
-"Initially, event2 is happened. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event3 happened and the case of that event2 happened, is true.
+"Initially, event2 is happened. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: The case of that event3 happened and the case of that event2 happened, is true.
 C2: C1 will always happen at any future time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -938,12 +938,12 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event3) & (state=event2)))
 ",False,False
-"Initially, event2 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened implies the case of that event1 happened, is true.
+"Initially, event2 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, no other events will happen.","C1: The case of that event1 happened implies the case of that event1 happened, is true.
 C2: C1 will happen eventually.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -955,13 +955,13 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G (F ((state=event1) -> (state=event1))))
-",True,False
-"Initially, event2 is happened. After event1, event3 will happen. After event3, event1 will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will happen eventually.
+",True,True
+"Initially, event2 is happened. After event1, event3 will happen. After event3, event1 will happen. After event2, no other events will happen.","C1: event1 will happen eventually.
 C2: C1 will happen at next time.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -973,12 +973,12 @@ ASSIGN
     esac;
 LTLSPEC (! (X (F (state=event1))))
 ",True,True
-"Initially, event1 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event2 happened and the case of that event2 happened, is true.
+"Initially, event1 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: The case of that event2 happened and the case of that event2 happened, is true.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -992,12 +992,12 @@ ASSIGN
     esac;
 LTLSPEC (X (G ((state=event2) & (state=event2))))
 ",False,False
-"Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event2 happened, is ture.
+"Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.","C1: The case of that event1 happened or the case of that event2 happened, is ture.
 C2: C1 will always happen at any future time.
-C3: the case of that event1 happened and the case of C2, is true.
-C3 is true.","MODULE main
+C3: The case of that event1 happened and the case of C2, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1008,13 +1008,13 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event1) & (G ((state=event1) | (state=event2))))
-",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event1 happened, is ture.
+",False,True
+"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event2, no other events will happen.","C1: The case of that event3 happened or the case of that event1 happened, is ture.
 C2: C1 is not true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1028,12 +1028,12 @@ ASSIGN
     esac;
 LTLSPEC (! (! ((state=event3) | (state=event1))))
 ",True,True
-"Initially, event3 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+"Initially, event3 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event2 will happen.","C1: The case of that event2 happened and the case of that event3 happened, is true.
+C2: The case of that event2 happened and the case of that event3 happened, is true.
+C3: The case of C1 and the case of C2, is true.
+C3 is true.
 
-C1: the case of that event2 happened and the case of that event3 happened, is true.
-C2: the case of that event2 happened and the case of that event3 happened, is true.
-C3: the case of C1 and the case of C2, is true.
-C3 is true.","MODULE main
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1046,12 +1046,12 @@ ASSIGN
     esac;
 LTLSPEC (((state=event2) & (state=event3)) & ((state=event2) & (state=event3)))
 ",False,True
-"Initially, event1 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened or the case of that event1 happened, is ture.
+"Initially, event1 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, no other events will happen.","C1: The case of that event1 happened or the case of that event1 happened, is ture.
 C2: The case of C1 implies the case of that event3 happened, is true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1063,12 +1063,12 @@ ASSIGN
     esac;
 LTLSPEC (! (((state=event1) | (state=event1)) -> (state=event3)))
 ",True,False
-"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
+"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: event3 will always happen at any future time.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1081,12 +1081,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (F (G (state=event3))))
-",False,False
-"Initially, event3 is happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened is not true.
+",False,True
+"Initially, event3 is happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.","C1: the case of that event1 happened is not true.
 C2: The case of that event3 happened or the case of C1, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1098,11 +1098,11 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | (! (state=event1)))
 ",True,True
-"Initially, event3 is happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event2 happened, is true.
+"Initially, event3 is happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: The case of that event3 happened implies the case of that event2 happened, is true.
 C2: The case of C1 implies the case of that event3 happened, is true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1114,13 +1114,13 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (((state=event3) -> (state=event2)) -> (state=event3))
-",True,False
-"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event2 happened, is true.
+",True,True
+"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, no other events will happen.","C1: The case of that event3 happened implies the case of that event2 happened, is true.
 C2: C1 will happen at next time.
 C3: The case of that event3 happened implies the case of C2, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1132,11 +1132,11 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) -> (X ((state=event3) -> (state=event2))))
 ",True,True
-"Initially, event1 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event2 happened or the case of that event1 happened, is ture.
+"Initially, event1 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, no other events will happen.","C1: The case of that event2 happened or the case of that event1 happened, is ture.
 C2: The case of that event3 happened or the case of C1, is ture.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1148,12 +1148,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | ((state=event2) | (state=event1)))
 ",True,True
-"Initially, event2 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event3 happened and the case of that event3 happened, is true.
+"Initially, event2 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.","C1: The case of that event3 happened and the case of that event3 happened, is true.
 C2: C1 will always happen at any future time.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1165,12 +1165,12 @@ ASSIGN
     esac;
 LTLSPEC (F (G ((state=event3) & (state=event3))))
 ",False,True
-"Initially, event2 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event3 happened and the case of that event3 happened, is true.
+"Initially, event2 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.","C1: The case of that event3 happened and the case of that event3 happened, is true.
 C2: The case of that event1 happened or the case of C1, is ture.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1182,12 +1182,12 @@ ASSIGN
     esac;
 LTLSPEC (! ((state=event1) | ((state=event3) & (state=event3))))
 ",True,False
-"Initially, event3 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will happen at next time.
-C2: the case of C1 and the case of that event2 happened, is true.
+"Initially, event3 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","C1: event3 will happen at next time.
+C2: The case of C1 and the case of that event2 happened, is true.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1200,12 +1200,12 @@ ASSIGN
     esac;
 LTLSPEC (X ((X (state=event3)) & (state=event2)))
 ",False,False
-"Initially, event1 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will always happen at any future time.
+"Initially, event1 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: event1 will always happen at any future time.
 C2: C1 will always happen at any future time.
-C3: the case of that event3 happened and the case of C2, is true.
-C3 is true.","MODULE main
+C3: The case of that event3 happened and the case of C2, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1218,12 +1218,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event3) & (G (G (state=event1))))
-",False,False
-"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will always happen at any future time.
+",False,True
+"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","C1: event2 will always happen at any future time.
 C2: The case of that event1 happened implies the case of C1, is true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1235,13 +1235,13 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((state=event1) -> (G (state=event2)))
-",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event1 happened implies the case of that event1 happened, is true.
-C2: the case of that event1 happened and the case of C1, is true.
+",False,True
+"Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event1 will happen.","C1: The case of that event1 happened implies the case of that event1 happened, is true.
+C2: The case of that event1 happened and the case of C1, is true.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1253,12 +1253,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (F ((state=event1) & ((state=event1) -> (state=event1))))
-",True,False
-"Initially, event3 is happened. After event3, no other events will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event2 happened and the case of that event3 happened, is true.
+",True,True
+"Initially, event3 is happened. After event3, no other events will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: The case of that event2 happened and the case of that event3 happened, is true.
 C2: C1 will always happen at any future time.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1271,12 +1271,12 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event2) & (state=event3)))
 ",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event1 happened, is true.
-C2: the case of that event1 happened and the case of C1, is true.
+"Initially, event3 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.","C1: The case of that event3 happened implies the case of that event1 happened, is true.
+C2: The case of that event1 happened and the case of C1, is true.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1287,13 +1287,13 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event1) & ((state=event3) -> (state=event1))))
-",False,False
-"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened is not true.
+",False,True
+"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.","C1: the case of that event1 happened is not true.
 C2: C1 will happen at next time.
 C3: C2 will happen at next time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1306,12 +1306,12 @@ ASSIGN
     esac;
 LTLSPEC (X (X (! (state=event1))))
 ",False,False
-"Initially, event1 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event3 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will happen at next time.
+"Initially, event1 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event3 will happen. After event2, event3 will happen.","C1: event1 will happen at next time.
 C2: C1 is not true.
-C3: the case of that event2 happened and the case of C2, is true.
-C3 is true.","MODULE main
+C3: The case of that event2 happened and the case of C2, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1324,12 +1324,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event2) & (! (X (state=event1))))
 ",False,False
-"Initially, event3 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
-C2: the case of that event1 happened and the case of C1, is true.
+"Initially, event3 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event2 will happen.","C1: event3 will always happen at any future time.
+C2: The case of that event1 happened and the case of C1, is true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1341,12 +1341,12 @@ ASSIGN
     esac;
 LTLSPEC (! ((state=event1) & (G (state=event3))))
 ",True,True
-"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event3 happened, is true.
+"Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: The case of that event3 happened implies the case of that event3 happened, is true.
 C2: The case of C1 implies the case of that event2 happened, is true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1360,29 +1360,29 @@ ASSIGN
     esac;
 LTLSPEC (! (((state=event3) -> (state=event3)) -> (state=event2)))
 ",True,False
-"Initially, event1 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
+"Initially, event1 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: event3 will always happen at any future time.
 C2: The case of C1 or the case of that event1 happened, is ture.
 C3: The case of that event2 happened implies the case of C2, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
     init(state) := event1;
     next(state) := case
         state = event2 : event3;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) -> ((G (state=event3)) | (state=event1)))
 ",True,True
-"Initially, event1 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event2 happened implies the case of that event3 happened, is true.
+"Initially, event1 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, no other events will happen.","C1: The case of that event2 happened implies the case of that event3 happened, is true.
 C2: The case of that event2 happened implies the case of that event3 happened, is true.
-C3: the case of C1 and the case of C2, is true.
-C3 is true.","MODULE main
+C3: The case of C1 and the case of C2, is true.
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1394,12 +1394,12 @@ ASSIGN
     esac;
 LTLSPEC (((state=event2) -> (state=event3)) & ((state=event2) -> (state=event3)))
 ",True,True
-"Initially, event1 is happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will happen eventually.
+"Initially, event1 is happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event2 will happen.","C1: event3 will happen eventually.
 C2: The case of that event3 happened implies the case of C1, is true.
 C3: The case of that event3 happened or the case of C2, is ture.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1411,12 +1411,12 @@ ASSIGN
     esac;
 LTLSPEC ((state=event3) | ((state=event3) -> (F (state=event3))))
 ",True,True
-"Initially, event1 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event3 happened is not true.
-C2: the case of that event3 happened and the case of C1, is true.
+"Initially, event1 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.","C1: the case of that event3 happened is not true.
+C2: The case of that event3 happened and the case of C1, is true.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1428,11 +1428,11 @@ ASSIGN
     esac;
 LTLSPEC (G ((state=event3) & (! (state=event3))))
 ",False,False
-"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event3 happened, is ture.
+"Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: The case of that event3 happened or the case of that event3 happened, is ture.
 C2: C1 will happen eventually.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1445,12 +1445,12 @@ ASSIGN
     esac;
 LTLSPEC (F ((state=event3) | (state=event3)))
 ",True,True
-"Initially, event2 is happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event1 happened and the case of that event3 happened, is true.
+"Initially, event2 is happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: The case of that event1 happened and the case of that event3 happened, is true.
 C2: C1 will happen at next time.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1464,12 +1464,12 @@ ASSIGN
     esac;
 LTLSPEC (G (X ((state=event1) & (state=event3))))
 ",False,False
-"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event3 happened, is true.
+"Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event2 will happen.","C1: The case of that event3 happened implies the case of that event3 happened, is true.
 C2: The case of that event1 happened or the case of C1, is ture.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1481,11 +1481,11 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event1) | ((state=event3) -> (state=event3))))
-",True,False
-"Initially, event2 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",True,True
+"Initially, event2 is happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event2 will happen.","C1: The case of that event2 happened implies the case of that event1 happened, is true.
+C1 is true.
 
-C1: The case of that event2 happened implies the case of that event1 happened, is true.
-C1 is true.","MODULE main
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1496,13 +1496,13 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (state=event1))
-",False,False
-"Initially, event3 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened implies the case of that event3 happened, is true.
+",False,True
+"Initially, event3 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","C1: The case of that event3 happened implies the case of that event3 happened, is true.
 C2: C1 will always happen at any future time.
 C3: The case of C2 implies the case of that event2 happened, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1514,12 +1514,12 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((G ((state=event3) -> (state=event3))) -> (state=event2))
-",False,False
-"Initially, event1 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",False,True
+"Initially, event1 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event1 will happen.","C1: The case of that event3 happened or the case of that event2 happened, is ture.
+C2: The case of that event3 happened and the case of C1, is true.
+C2 is true.
 
-C1: The case of that event3 happened or the case of that event2 happened, is ture.
-C2: the case of that event3 happened and the case of C1, is true.
-C2 is true.","MODULE main
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1530,12 +1530,12 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) & ((state=event3) | (state=event2)))
-",False,False
-"Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",False,True
+"Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: The case of that event3 happened or the case of that event1 happened, is ture.
+C2: The case of C1 and the case of that event2 happened, is true.
+C2 is true.
 
-C1: The case of that event3 happened or the case of that event1 happened, is ture.
-C2: the case of C1 and the case of that event2 happened, is true.
-C2 is true.","MODULE main
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1549,12 +1549,12 @@ ASSIGN
     esac;
 LTLSPEC (((state=event3) | (state=event1)) & (state=event2))
 ",False,True
-"Initially, event2 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event2 happened implies the case of that event1 happened, is true.
-C2: the case of that event1 happened and the case of C1, is true.
+"Initially, event2 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","C1: The case of that event2 happened implies the case of that event1 happened, is true.
+C2: The case of that event1 happened and the case of C1, is true.
 C3: The case of that event1 happened implies the case of C2, is true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1565,12 +1565,12 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) -> ((state=event1) & ((state=event2) -> (state=event1))))
-",True,False
-"Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will happen at next time.
+",True,True
+"Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","C1: event1 will happen at next time.
 C2: The case of that event1 happened implies the case of C1, is true.
-C2 is true.","MODULE main
+C2 is true.
+
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1583,13 +1583,13 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) -> (X (state=event1)))
-",True,False
-"Initially, event2 is happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: The case of that event3 happened or the case of that event2 happened, is ture.
+",True,True
+"Initially, event2 is happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: The case of that event3 happened or the case of that event2 happened, is ture.
 C2: C1 will happen eventually.
 C3: C2 will always happen at any future time.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1601,13 +1601,13 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (G (F ((state=event3) | (state=event2))))
-",True,False
-"Initially, event2 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event1 will happen at next time.
+",True,True
+"Initially, event2 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event2 will happen.","C1: event1 will happen at next time.
 C2: The case of C1 implies the case of that event2 happened, is true.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1619,12 +1619,12 @@ ASSIGN
     esac;
 LTLSPEC (! ((X (state=event1)) -> (state=event2)))
 ",False,False
-"Initially, event2 is happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event3 will always happen at any future time.
+"Initially, event2 is happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","C1: event3 will always happen at any future time.
 C2: C1 will always happen at any future time.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1637,11 +1637,11 @@ ASSIGN
     esac;
 LTLSPEC (! (G (G (state=event3))))
 ",True,True
-"Initially, event2 is happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+"Initially, event2 is happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event2 will happen.","C1: event2 will happen eventually.
+C2: The case of that event3 happened and the case of C1, is true.
+C2 is true.
 
-C1: event2 will happen eventually.
-C2: the case of that event3 happened and the case of C1, is true.
-C2 is true.","MODULE main
+Determine whether the case C2 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1652,11 +1652,11 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event3) & (F (state=event2)))
-",False,False
-"Initially, event2 is happened. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
+",False,True
+"Initially, event2 is happened. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: The case of that event1 happened implies the case of that event3 happened, is true.
+C1 is true.
 
-C1: The case of that event1 happened implies the case of that event3 happened, is true.
-C1 is true.","MODULE main
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1664,17 +1664,17 @@ ASSIGN
     next(state) := case
         state = event2 : event1;
 		state = event2 : event3;
-		state = event3 : event3;
 		state = event1 : event1;
+		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) -> (state=event3))
-",True,False
-"Initially, event1 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will always happen at any future time.
+",True,True
+"Initially, event1 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event1 will happen.","C1: event2 will always happen at any future time.
 C2: C1 will happen eventually.
 C3: C2 will happen eventually.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1685,13 +1685,13 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (F (F (G (state=event2))))
-",False,False
-"Initially, event3 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: event2 will happen at next time.
+",False,True
+"Initially, event3 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.","C1: event2 will happen at next time.
 C2: C1 is not true.
 C3: The case of C2 or the case of that event1 happened, is ture.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN
@@ -1703,12 +1703,12 @@ ASSIGN
     esac;
 LTLSPEC ((! (X (state=event2))) | (state=event1))
 ",True,True
-"Initially, event2 is happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
-
-C1: the case of that event2 happened and the case of that event1 happened, is true.
+"Initially, event2 is happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event1 will happen.","C1: The case of that event2 happened and the case of that event1 happened, is true.
 C2: C1 will happen eventually.
 C3: C2 is not true.
-C3 is true.","MODULE main
+C3 is true.
+
+Determine whether the case C3 is true or false (answering in ""true"" or ""false"" directly):","MODULE main
 VAR
     state : {event1, event2, event3};
 ASSIGN

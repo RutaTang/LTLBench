@@ -28,7 +28,7 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
     formula = generate_ltl_formulas(rng=rng, states=nodes, formula_length=formula_length, count_of_formulas=1).pop()
     h_idx = ReferenceValue(0)
     query = ReferenceValue("")
-    last_case = conver_ltl_formula_to_NL(ltl_formula=deepcopy(formula), base_states=nodes,h_idx=h_idx, result=query)
+    last_case = conver_ltl_formula_to_NL(ltl_formula=deepcopy(formula), base_states=nodes, h_idx=h_idx, result=query)
     query = query.get()
     query = f'{query}\n{last_case} is true.'
 
@@ -37,8 +37,7 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
 
     # Prepare the question
     context = f'Initially, {init_state} is happened. {context}'
-    query = (f'Determine whether the following statement is true or false (answering in "true" or "false" '
-             f'directly):\n{query}')
+    query = f'{query}'.strip()
 
     # Prepare code
     context_code = code_template(state=list(nodes), init=init_state, transition=list(graph.edges))
@@ -52,6 +51,15 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
     problem = {
         "context": context,
         "query": query,
+        "question": f'''\
+=== Context ===\n
+{context}\n
+=== Hypothesis ===\n
+{query}
+
+Determine whether the case {last_case} is true or false (answering in "true" or "false" '
+             f'directly):
+''',
         "code": code,
         "answer": answer
     }
