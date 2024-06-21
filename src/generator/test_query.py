@@ -1,6 +1,8 @@
 from unittest import TestCase
 
-from src.generator.query import generate_ltl_formulas, convert_ltl_formula_to_NuSMV, recursive_join, conver_ltl_formula_to_NL
+from src.generator.query import generate_ltl_formulas, convert_ltl_formula_to_NuSMV, recursive_join, \
+    conver_ltl_formula_to_NL
+from src.utils.types import ReferenceValue
 
 
 class Test(TestCase):
@@ -21,7 +23,11 @@ class Test(TestCase):
         print(s)
 
     def test_conver_ltl_formula_to_NL(self):
-        converted = conver_ltl_formula_to_NL(['!', ['F', ['!', 'a']]], {'a'})
-        print(converted)
-        converted = conver_ltl_formula_to_NL(['!', ['b', '&', ['!', 'a']]], {'a', 'b'})
+        h_idx = ReferenceValue(0)
+        result = ReferenceValue('')
+        # converted = conver_ltl_formula_to_NL(['!', ['F', ['!', 'a']]], ['a'], h_idx, result)
+        # print(converted)
+        # converted = conver_ltl_formula_to_NL(['!', ['b', '&', ['!', 'a']]], ['a', 'b'], h_idx, result)
+        converted = conver_ltl_formula_to_NL(['!', ['b', '->', ['!', 'a']]], ['a', 'b'], h_idx, result)
+        print(result.get())
         print(converted)

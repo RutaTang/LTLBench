@@ -5,6 +5,7 @@ from src.generator.query import generate_ltl_formulas, conver_ltl_formula_to_NL,
 from copy import deepcopy
 
 from src.utils.external import call_NuSMV
+from src.utils.types import ReferenceValue
 
 
 def generate_problem(rng: Generator, number_of_events: int, formula_length: int) -> dict:
@@ -25,8 +26,11 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
 
     # Generate a query
     formula = generate_ltl_formulas(rng=rng, states=nodes, formula_length=formula_length, count_of_formulas=1).pop()
-    query = conver_ltl_formula_to_NL(ltl_formula=deepcopy(formula), base_states=nodes)
-    query = query[0].upper() + query[1:] + "."
+    h_idx = ReferenceValue(0)
+    query = ReferenceValue("")
+    last_case = conver_ltl_formula_to_NL(ltl_formula=deepcopy(formula), base_states=nodes,h_idx=h_idx, result=query)
+    query = query.get()
+    query = f'{query}\n{last_case} is true.'
 
     # Initialize the init_state
     init_state = rng.choice(nodes)

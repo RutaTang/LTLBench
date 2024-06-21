@@ -46,7 +46,7 @@ def generate(count_of_problem: int, number_of_events: int,
 @click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=100)
 @click.option('--number_of_events', '-e', help='Number of events', type=int, default=3)
 @click.option('--formula_length', '-l', help='Length of the formula', type=int, default=3)
-@click.option('--models', '-m', help='List of models', multiple=True, default=['gpt-4'])
+@click.option('--models', '-m', help='List of models', multiple=True, default=['qwen:32b-chat'])
 def evaluate(count_of_problem: int, number_of_events: int,
              formula_length: int, models: tuple[str]):
     '''

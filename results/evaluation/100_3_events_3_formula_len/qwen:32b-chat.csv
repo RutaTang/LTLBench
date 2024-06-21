@@ -1,4 +1,4 @@
-context,query,code,answer
+context,query,code,answer,prediction
 "Initially, event1 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event2 happened, is ture.
@@ -14,7 +14,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (((state=event1) | (state=event2)) | (state=event3))
-",True
+",True,True
 "Initially, event2 is happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will always happen at any future time.
@@ -31,7 +31,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (! ((state=event1) | (G (state=event1))))
-",True
+",True,False
 "Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened implies the case of that event2 happened, is true.
@@ -49,7 +49,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (X (F ((state=event2) -> (state=event2))))
-",True
+",True,False
 "Initially, event2 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will happen eventually.
@@ -68,7 +68,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((! (F (state=event1))) & (state=event1))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event3 happened, is ture.
@@ -86,7 +86,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (! (((state=event1) | (state=event3)) | (state=event1)))
-",False
+",False,False
 "Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -102,7 +102,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((state=event3) | (G (state=event3)))
-",False
+",False,True
 "Initially, event2 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will happen at next time.
@@ -118,7 +118,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((X (state=event2)) -> (state=event2))
-",True
+",True,True
 "Initially, event1 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event3 happened, is ture.
@@ -136,7 +136,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (F ((state=event3) | (state=event3)))
-",True
+",True,True
 "Initially, event2 is happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will happen eventually.
@@ -153,7 +153,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) & (X (F (state=event2))))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event2 happened, is true.
@@ -171,7 +171,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) | (X ((state=event1) -> (state=event2))))
-",False
+",False,True
 "Initially, event2 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened and the case of that event2 happened, is true.
@@ -187,7 +187,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X ((state=event1) & (state=event2)))
-",False
+",False,False
 "Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event2 happened is not true.
@@ -205,7 +205,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G (F (! (state=event2))))
-",True
+",True,False
 "Initially, event3 is happened. After event3, event2 will happen. After event2, event3 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event3 happened, is ture.
@@ -222,7 +222,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (F (((state=event1) | (state=event3)) & (state=event2)))
-",False
+",False,False
 "Initially, event1 is happened. After event3, no other events will happen. After event2, event1 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened is not true.
@@ -239,7 +239,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((! (state=event1)) | (! (state=event1)))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -257,7 +257,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event1) -> (F (G (state=event3))))
-",True
+",True,True
 "Initially, event3 is happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event3 happened, is true.
@@ -274,7 +274,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (((state=event1) -> (state=event3)) & (state=event2))
-",False
+",False,True
 "Initially, event3 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event1 happened, is ture.
@@ -290,7 +290,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (! ((state=event3) | (state=event1)))
-",False
+",False,False
 "Initially, event3 is happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event2 happened, is ture.
@@ -307,7 +307,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (F (F ((state=event3) | (state=event2))))
-",True
+",True,True
 "Initially, event3 is happened. After event3, no other events will happen. After event2, no other events will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will always happen at any future time.
@@ -324,7 +324,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (F (X (G (state=event2))))
-",False
+",False,False
 "Initially, event2 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event2 happened, is ture.
@@ -342,7 +342,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (((state=event1) | (state=event2)) -> (state=event2))
-",True
+",True,False
 "Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event2 happened, is true.
@@ -359,7 +359,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event3) | ((state=event3) -> (state=event2)))
-",True
+",True,True
 "Initially, event3 is happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event3 happened is not true.
@@ -376,7 +376,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event3) -> (! (state=event3))))
-",False
+",False,False
 "Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen at next time.
@@ -394,7 +394,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event3) & ((state=event1) & (X (state=event3))))
-",False
+",False,False
 "Initially, event1 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened and the case of that event1 happened, is true.
@@ -411,7 +411,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (F (G ((state=event1) & (state=event1))))
-",False
+",False,True
 "Initially, event3 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event1 happened, is ture.
@@ -427,7 +427,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (! ((state=event1) | (state=event1)))
-",True
+",True,False
 "Initially, event1 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened implies the case of that event3 happened, is true.
@@ -442,7 +442,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (state=event3))
-",True
+",True,False
 "Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event3 happened, is ture.
@@ -459,7 +459,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) -> (! ((state=event3) | (state=event3))))
-",True
+",True,False
 "Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event2 happened, is true.
@@ -476,7 +476,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event1) -> (state=event2)))
-",False
+",False,False
 "Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will always happen at any future time.
@@ -494,7 +494,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! ((G (state=event2)) -> (state=event1)))
-",False
+",False,True
 "Initially, event3 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened and the case of that event1 happened, is true.
@@ -512,7 +512,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (G ((state=event1) & (state=event1))))
-",False
+",False,False
 "Initially, event1 is happened. After event1, no other events will happen. After event2, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will happen at next time.
@@ -529,7 +529,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X (F (X (state=event1))))
-",True
+",True,False
 "Initially, event3 is happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen eventually.
@@ -546,7 +546,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((F (state=event3)) | (F (state=event3)))
-",True
+",True,True
 "Initially, event1 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event3 happened, is ture.
@@ -561,7 +561,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event3) | (state=event3))
-",False
+",False,True
 "Initially, event3 is happened. After event2, event3 will happen. After event3, no other events will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will always happen at any future time.
@@ -577,7 +577,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event1) | (G (state=event1)))
-",False
+",False,False
 "Initially, event3 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened and the case of that event2 happened, is true.
@@ -593,7 +593,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) & (state=event2))
-",False
+",False,True
 "Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event3 happened and the case of that event2 happened, is true.
@@ -609,7 +609,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((state=event3) & (state=event2)))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened implies the case of that event1 happened, is true.
@@ -625,7 +625,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X ((state=event2) -> (state=event1)))
-",False
+",False,False
 "Initially, event1 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will always happen at any future time.
@@ -642,7 +642,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) -> (G (state=event1)))
-",True
+",True,False
 "Initially, event3 is happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event2 happened, is ture.
@@ -660,7 +660,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) & ((state=event3) | ((state=event3) | (state=event2))))
-",False
+",False,False
 "Initially, event1 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will happen eventually.
@@ -677,7 +677,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) | (! (F (state=event2))))
-",True
+",True,True
 "Initially, event2 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will always happen at any future time.
@@ -695,7 +695,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (X (G (state=event1))))
-",False
+",False,False
 "Initially, event1 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen eventually.
@@ -713,7 +713,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (G ((F (state=event3)) -> (state=event3)))
-",False
+",False,False
 "Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen eventually.
@@ -731,7 +731,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (G ((state=event3) & (F (state=event3))))
-",False
+",False,False
 "Initially, event2 is happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen at next time.
@@ -747,7 +747,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((X (state=event3)) | (state=event1))
-",True
+",True,True
 "Initially, event1 is happened. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event1 happened, is true.
@@ -764,7 +764,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((state=event1) -> (state=event1)))
-",True
+",True,False
 "Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event3 happened, is ture.
@@ -779,7 +779,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) | (state=event3))
-",True
+",True,True
 "Initially, event3 is happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event1 happened, is ture.
@@ -796,7 +796,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event3) -> ((state=event1) | (state=event1))))
-",False
+",False,False
 "Initially, event2 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event1 happened, is ture.
@@ -813,7 +813,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((! ((state=event3) | (state=event1))) -> (state=event3))
-",False
+",False,False
 "Initially, event2 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will always happen at any future time.
@@ -829,7 +829,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event1) & (G (state=event2)))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event3 happened, is true.
@@ -847,7 +847,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (F (((state=event1) -> (state=event3)) & (state=event1)))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event2 happened, is ture.
@@ -867,7 +867,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X ((state=event3) -> ((state=event1) | (state=event2))))
-",True
+",True,False
 "Initially, event1 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event2 happened, is ture.
@@ -885,7 +885,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (F (G ((state=event1) | (state=event2))))
-",False
+",False,True
 "Initially, event2 is happened. After event2, event3 will happen. After event3, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event2 happened is not true.
@@ -902,7 +902,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (! (! (! (state=event2))))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -919,7 +919,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! ((state=event2) | (G (state=event3))))
-",True
+",True,False
 "Initially, event2 is happened. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event3 happened and the case of that event2 happened, is true.
@@ -937,7 +937,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event3) & (state=event2)))
-",False
+",False,False
 "Initially, event2 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event1 happened, is true.
@@ -955,7 +955,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G (F ((state=event1) -> (state=event1))))
-",True
+",True,False
 "Initially, event2 is happened. After event1, event3 will happen. After event3, event1 will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will happen eventually.
@@ -972,7 +972,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (! (X (F (state=event1))))
-",True
+",True,True
 "Initially, event1 is happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event2 happened and the case of that event2 happened, is true.
@@ -991,7 +991,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (G ((state=event2) & (state=event2))))
-",False
+",False,False
 "Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event2 happened, is ture.
@@ -1008,7 +1008,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event1) & (G ((state=event1) | (state=event2))))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event1 happened, is ture.
@@ -1027,7 +1027,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (! (! ((state=event3) | (state=event1))))
-",True
+",True,True
 "Initially, event3 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event2 happened and the case of that event3 happened, is true.
@@ -1045,7 +1045,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (((state=event2) & (state=event3)) & ((state=event2) & (state=event3)))
-",False
+",False,True
 "Initially, event1 is happened. After event1, event2 will happen. After event2, event1 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened or the case of that event1 happened, is ture.
@@ -1062,7 +1062,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (! (((state=event1) | (state=event1)) -> (state=event3)))
-",True
+",True,False
 "Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -1081,7 +1081,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (F (G (state=event3))))
-",False
+",False,False
 "Initially, event3 is happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened is not true.
@@ -1097,7 +1097,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event3) | (! (state=event1)))
-",True
+",True,True
 "Initially, event3 is happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event2 happened, is true.
@@ -1114,7 +1114,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (((state=event3) -> (state=event2)) -> (state=event3))
-",True
+",True,False
 "Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event2 happened, is true.
@@ -1131,7 +1131,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) -> (X ((state=event3) -> (state=event2))))
-",True
+",True,True
 "Initially, event1 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened or the case of that event1 happened, is ture.
@@ -1147,7 +1147,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) | ((state=event2) | (state=event1)))
-",True
+",True,True
 "Initially, event2 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event3 happened and the case of that event3 happened, is true.
@@ -1164,7 +1164,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (F (G ((state=event3) & (state=event3))))
-",False
+",False,True
 "Initially, event2 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event3 happened and the case of that event3 happened, is true.
@@ -1181,7 +1181,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (! ((state=event1) | ((state=event3) & (state=event3))))
-",True
+",True,False
 "Initially, event3 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen at next time.
@@ -1199,7 +1199,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X ((X (state=event3)) & (state=event2)))
-",False
+",False,False
 "Initially, event1 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will always happen at any future time.
@@ -1218,7 +1218,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event3) & (G (G (state=event1))))
-",False
+",False,False
 "Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will always happen at any future time.
@@ -1235,7 +1235,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((state=event1) -> (G (state=event2)))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event1 happened, is true.
@@ -1253,7 +1253,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (F ((state=event1) & ((state=event1) -> (state=event1))))
-",True
+",True,False
 "Initially, event3 is happened. After event3, no other events will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event2 happened and the case of that event3 happened, is true.
@@ -1270,7 +1270,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event2) & (state=event3)))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event1 happened, is true.
@@ -1287,7 +1287,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event1) & ((state=event3) -> (state=event1))))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened is not true.
@@ -1305,7 +1305,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (X (! (state=event1))))
-",False
+",False,False
 "Initially, event1 is happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event3 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will happen at next time.
@@ -1323,7 +1323,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event2) & (! (X (state=event1))))
-",False
+",False,False
 "Initially, event3 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -1340,7 +1340,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! ((state=event1) & (G (state=event3))))
-",True
+",True,True
 "Initially, event1 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event3 happened, is true.
@@ -1359,7 +1359,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! (((state=event3) -> (state=event3)) -> (state=event2)))
-",True
+",True,False
 "Initially, event1 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -1376,7 +1376,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) -> ((G (state=event3)) | (state=event1)))
-",True
+",True,True
 "Initially, event1 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened implies the case of that event3 happened, is true.
@@ -1393,7 +1393,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (((state=event2) -> (state=event3)) & ((state=event2) -> (state=event3)))
-",True
+",True,True
 "Initially, event1 is happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will happen eventually.
@@ -1410,7 +1410,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) | ((state=event3) -> (F (state=event3))))
-",True
+",True,True
 "Initially, event1 is happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event3 happened is not true.
@@ -1427,7 +1427,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((state=event3) & (! (state=event3))))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event2 will happen. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event3 happened, is ture.
@@ -1444,7 +1444,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (F ((state=event3) | (state=event3)))
-",True
+",True,True
 "Initially, event2 is happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event1 happened and the case of that event3 happened, is true.
@@ -1463,7 +1463,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G (X ((state=event1) & (state=event3))))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event3 happened, is true.
@@ -1481,7 +1481,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event1) | ((state=event3) -> (state=event3))))
-",True
+",True,False
 "Initially, event2 is happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened implies the case of that event1 happened, is true.
@@ -1496,7 +1496,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (state=event1))
-",False
+",False,False
 "Initially, event3 is happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened implies the case of that event3 happened, is true.
@@ -1514,7 +1514,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((G ((state=event3) -> (state=event3))) -> (state=event2))
-",False
+",False,False
 "Initially, event1 is happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event2 happened, is ture.
@@ -1530,7 +1530,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) & ((state=event3) | (state=event2)))
-",False
+",False,False
 "Initially, event2 is happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event1 happened, is ture.
@@ -1548,7 +1548,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (((state=event3) | (state=event1)) & (state=event2))
-",False
+",False,True
 "Initially, event2 is happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event2 happened implies the case of that event1 happened, is true.
@@ -1565,7 +1565,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) -> ((state=event1) & ((state=event2) -> (state=event1))))
-",True
+",True,False
 "Initially, event2 is happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will happen at next time.
@@ -1583,7 +1583,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) -> (X (state=event1)))
-",True
+",True,False
 "Initially, event2 is happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event3 happened or the case of that event2 happened, is ture.
@@ -1601,7 +1601,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (G (F ((state=event3) | (state=event2))))
-",True
+",True,False
 "Initially, event2 is happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event1 will happen at next time.
@@ -1618,7 +1618,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! ((X (state=event1)) -> (state=event2)))
-",False
+",False,False
 "Initially, event2 is happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event3 will always happen at any future time.
@@ -1636,7 +1636,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (! (G (G (state=event3))))
-",True
+",True,True
 "Initially, event2 is happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event2 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will happen eventually.
@@ -1652,7 +1652,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event3) & (F (state=event2)))
-",False
+",False,False
 "Initially, event2 is happened. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: The case of that event1 happened implies the case of that event3 happened, is true.
@@ -1668,7 +1668,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event1) -> (state=event3))
-",True
+",True,False
 "Initially, event1 is happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will always happen at any future time.
@@ -1685,7 +1685,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (F (F (G (state=event2))))
-",False
+",False,False
 "Initially, event3 is happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: event2 will happen at next time.
@@ -1702,7 +1702,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((! (X (state=event2))) | (state=event1))
-",True
+",True,True
 "Initially, event2 is happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event1 will happen.","Determine whether the following statement is true or false (answering in ""true"" or ""false"" directly):
 
 C1: the case of that event2 happened and the case of that event1 happened, is true.
@@ -1719,4 +1719,4 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (! (F ((state=event2) & (state=event1))))
-",True
+",True,False

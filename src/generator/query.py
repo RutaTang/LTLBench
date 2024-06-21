@@ -1,6 +1,8 @@
 import numpy as np
 from numpy.random import Generator
 
+from src.utils.types import ReferenceValue
+
 
 def generate_ltl_formulas(rng: Generator, states: list, formula_length: int, count_of_formulas: int) -> list[list]:
     """
@@ -104,61 +106,59 @@ def recursive_join(l: list) -> str:
         return str(l)
 
 
-def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list):
+def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: ReferenceValue[int],
+                             result: ReferenceValue[str] = None) -> str:
     """
     Convert LTL formula from `generate_ltl_formulas` to natural language
 
     :param ltl_formula: LTL formula
-    :return: natural language of the LTL formula
+    :param base_states:
+    :param h_idx:
+    :param result:
+    :return: the last H index
     """
     # reversely traverse the formula
     for i in range(len(ltl_formula)):
         if isinstance(ltl_formula[i], list):
-            ltl_formula[i] = conver_ltl_formula_to_NL(ltl_formula[i], base_states)
+            ltl_formula[i] = conver_ltl_formula_to_NL(ltl_formula[i], base_states, h_idx, result)
 
+    h_idx.update(h_idx.get() + 1)
     # convert the formula to natural language
     if len(ltl_formula) == 2:  # unary
         operator = ltl_formula[0]
         operand = ltl_formula[1]
         if operator == "X":
-            if operand in base_states:
-                nl = f'{operand} will happen at next time'
-            else:
-                nl = f'it is the case that {operand} will happen at next time'
+            nl = f'{operand} will happen at next time'
         elif operator == "G":
-            if operand in base_states:
-                nl = f'{operand} will always happen at any future time'
-            else:
-                nl = f'it is the case that {operand} will always happen at any future time'
+            nl = f'{operand} will always happen at any future time'
         elif operator == "F":
-            if operand in base_states:
-                nl = f'{operand} will happen eventually'
-            else:
-                nl = f'it is the case that {operand} will happen eventually'
+            nl = f'{operand} will happen eventually'
         elif operator == "!":
             if operand in base_states:
-                nl = f'the case of that it is the case that {operand} is happened is not true'
+                nl = f'the case of that {operand} happened is not true'
             else:
-                nl = f'the case of that {operand} is not true'
+                nl = f'{operand} is not true'
         else:
             raise ValueError(f'Unknown operator: {operator}')
-        return nl
+        nl = f'C{h_idx.get()}: {nl}.'
+        result.update(f'{result.get()}\n{nl}')
+        return f'C{h_idx.get()}'
     elif len(ltl_formula) == 3:  # binary
         left_operand = ltl_formula[0]
         operator = ltl_formula[1]
         right_operand = ltl_formula[2]
         if left_operand in base_states:
-            left_operand = f'that it is the case that {left_operand} is happened'
+            left_operand = f'that {left_operand} happened'
         if right_operand in base_states:
-            right_operand = f'that it is the case that {right_operand} is happened'
+            right_operand = f'that {right_operand} happened'
         if operator == "&":
-            nl = f'the case of {left_operand} and {right_operand}'
+            nl = f'the case of {left_operand} and the case of {right_operand}, is true'
         elif operator == "|":
-            nl = f'the case of {left_operand} or {right_operand}'
+            nl = f'The case of {left_operand} or the case of {right_operand}, is ture'
         elif operator == "->":
-            nl = f'the case of {left_operand} implies {right_operand}'
+            nl = f'The case of {left_operand} implies the case of {right_operand}, is true'
         else:
             raise ValueError(f'Unknown operator: {operator}')
-        return nl
-    else:
-        return ltl_formula
+        nl = f'C{h_idx.get()}: {nl}.'
+        result.update(f'{result.get()}\n{nl}')
+        return f'C{h_idx.get()}'

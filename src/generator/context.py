@@ -60,7 +60,7 @@ def generate_context_from_graph(rng: Generator, graph: nx.Graph) -> (str, tuple)
                 queue.append(neighbor)
 
         if len(list(graph.neighbors(node))) == 0:
-            context.append(f'After Event {node}, no other events will happen.')
+            context.append(f'After {node}, no other events will happen.')
 
         if len(queue) == 0 and len(visited) != len(nodes):
             node = list(set(nodes) - visited)[0]
