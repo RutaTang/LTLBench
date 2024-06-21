@@ -30,13 +30,13 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
     query = ReferenceValue("")
     last_case = conver_ltl_formula_to_NL(ltl_formula=deepcopy(formula), base_states=nodes, h_idx=h_idx, result=query)
     query = query.get()
-    query = f'{query}\n{last_case} is true.'
+    query = f'{query}'
 
     # Initialize the init_state
     init_state = rng.choice(nodes)
 
     # Prepare the question
-    context = f'Initially, {init_state} is happened. {context}'
+    context = f'Initially, {init_state} happened. {context}'
     query = f'{query}'.strip()
 
     # Prepare code
@@ -57,8 +57,7 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
 === Hypothesis ===\n
 {query}
 
-Determine whether the case {last_case} is true or false (answering in "true" or "false" '
-             f'directly):
+Determine whether the case {last_case} is true or false (answering in "true" or "false" directly):
 ''',
         "code": code,
         "answer": answer

@@ -154,7 +154,7 @@ def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: Refere
         if operator == "&":
             nl = f'The case of {left_operand} and the case of {right_operand}, is true'
         elif operator == "|":
-            nl = f'The case of {left_operand} or the case of {right_operand}, is ture'
+            nl = f'The case of {left_operand} or the case of {right_operand}, is true'
         elif operator == "->":
             nl = f'The case of {left_operand} implies the case of {right_operand}, is true'
         else:
