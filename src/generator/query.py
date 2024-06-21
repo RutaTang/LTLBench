@@ -20,7 +20,7 @@ def generate_ltl_formulas(rng: Generator, states: list, formula_length: int, cou
 
     # Initialize the list of lists to hold formulas of increasing lengths
     B = [[] for _ in range(formula_length + 1)]
-    B[0] = list(states)
+    B[0] = states
 
     # Generate m formulas
     formulas = []
@@ -31,23 +31,13 @@ def generate_ltl_formulas(rng: Generator, states: list, formula_length: int, cou
 
             if x in unary_operators:
                 # Choose a formula from the previous set of formulas
-                idx = rng.integers(0, len(B[j - 1]))
-                y = B[j - 1][idx]
+                y = B[j - 1][rng.integers(0, len(B[j - 1]))]
                 new_formula = [x, y]
             else:
                 # Choose two formulas for binary operator
-                if j == 0:
-                    # Only one previous formula available
-                    idx = rng.integers(0, len(B[j - 1]))
-                    y1 = y2 = B[j - 1][idx]
-                else:
-                    s = rng.integers(0, j)
-                    left = rng.integers(0, s + 1)
-                    idx = rng.integers(0, len(B[left]))
-                    y1 = B[left][idx]
-                    right = j - 1 - s
-                    idx = rng.integers(0, len(B[right]))
-                    y2 = B[right][idx]
+                s = rng.integers(0, j)
+                y1 = B[s][rng.integers(0, len(B[s]))]
+                y2 = B[j-1-s][rng.integers(0, len(B[j-1-s]))]
 
                 new_formula = [y1, x, y2]
 
@@ -135,7 +125,7 @@ def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: Refere
             nl = f'{operand} will happen eventually'
         elif operator == "!":
             if operand in base_states:
-                nl = f'the case of that {operand} happened is not true'
+                nl = f'the case of that {operand} happens is not true'
             else:
                 nl = f'{operand} is not true'
         else:
@@ -148,9 +138,9 @@ def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: Refere
         operator = ltl_formula[1]
         right_operand = ltl_formula[2]
         if left_operand in base_states:
-            left_operand = f'that {left_operand} happened'
+            left_operand = f'that {left_operand} happens'
         if right_operand in base_states:
-            right_operand = f'that {right_operand} happened'
+            right_operand = f'that {right_operand} happens'
         if operator == "&":
             nl = f'The case of {left_operand} and the case of {right_operand}, is true'
         elif operator == "|":

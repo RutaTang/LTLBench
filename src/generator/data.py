@@ -60,6 +60,7 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
 Determine whether the case {last_case} is true or false (answering in "true" or "false" directly):
 ''',
         "code": code,
+        "formula": formula,
         "answer": answer
     }
     return problem
