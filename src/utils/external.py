@@ -3,7 +3,12 @@ import subprocess
 import tempfile
 
 
-def call_NuSMV(code: str) -> bool:
+def call_nusmv(code: str) -> bool:
+    """
+    Call the NuSMV binary with the given code and return the result
+    :param code: NuSMV code
+    :return: LTL specification result
+    """
     with tempfile.NamedTemporaryFile() as temp:
         temp.write(code.encode())
         temp.seek(0)

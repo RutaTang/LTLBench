@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from src.utils.external import call_NuSMV
+from src.utils.external import call_nusmv
 
 
 class Test(TestCase):
-    def test_call_NuSMV_true(self):
+    def test_call_nusmv_true(self):
         code = """
 MODULE main
 VAR
@@ -20,10 +20,10 @@ ASSIGN
     esac;
 LTLSPEC (G (G (state=event3 | state=event3)))
         """
-        output = call_NuSMV(code)
+        output = call_nusmv(code)
         self.assertTrue(output)
 
-    def test_call_NuSMV_false(self):
+    def test_call_nusmv_false(self):
         code = """
 MODULE main
 VAR
@@ -39,5 +39,5 @@ ASSIGN
     esac;
 LTLSPEC state = event3
         """
-        output = call_NuSMV(code)
+        output = call_nusmv(code)
         self.assertFalse(output)

@@ -1,21 +1,27 @@
 import networkx as nx
 from matplotlib import pyplot as plt
+from networkx import DiGraph
 from numpy.random import Generator
 
 
-def generate_random_graph(rng: Generator, nodes: list):
+def generate_random_directed_graph(rng: Generator, nodes: list) -> DiGraph:
     """
-    Generate a random graph from a set of nodes
+    Generate a random directed graph from a list of nodes
 
+    :param rng: a np.random.Generator
     :param nodes: list of nodes
-    :return: a random graph
+    :return: a random directed graph
     """
+    if len(nodes) != len(set(nodes)):
+        raise ValueError('Nodes must be unique')
     graph = nx.DiGraph()
     graph.add_nodes_from(nodes)
     for i in range(len(nodes)):
         for j in range(i + 1, len(nodes)):
+            # Add an edge from i to j with 50% probability
             if rng.random() > 0.5:
                 graph.add_edge(nodes[i], nodes[j])
+            # Add an edge from j to i with 50% probability
             if rng.random() > 0.5:
                 graph.add_edge(nodes[j], nodes[i])
 
@@ -35,12 +41,13 @@ def plot_graph(graph: nx.Graph):
     plt.show()
 
 
-def generate_context_from_graph(rng: Generator, graph: nx.Graph) -> (str, tuple):
+def generate_context_from_graph(rng: Generator, graph: nx.DiGraph) -> str:
     """
-    Generate a context from the given graph
+    Generate a context from the given directed graph
 
-    :param graph: a graph
-    :return: context and code
+    :param rng: a np.random.Generator
+    :param graph: a directed graph
+    :return: context
     """
     context = []
 
@@ -53,9 +60,8 @@ def generate_context_from_graph(rng: Generator, graph: nx.Graph) -> (str, tuple)
         visited.add(node)
 
         for neighbor in graph.neighbors(node):
-            str = f'After {node}, {neighbor} will happen.'
-            context.append(str)
-            str = ""
+            transition = f'After {node}, {neighbor} will happen.'
+            context.append(transition)
             if neighbor not in visited:
                 queue.append(neighbor)
 

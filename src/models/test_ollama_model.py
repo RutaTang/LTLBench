@@ -8,5 +8,4 @@ class TestOllama(TestCase):
         model = OllamaModel()
         message = "Hello"
         content = model.chat(message)
-        print(content)
         self.assertTrue(len(content) > 0)
