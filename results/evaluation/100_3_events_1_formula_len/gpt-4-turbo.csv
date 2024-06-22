@@ -1,0 +1,3074 @@
+context,query,question,code,formula,answer,graph,prediction
+"Initially, event2 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen.",C1: Event1 happens or event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens or event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event3 : event1;
+    esac;
+LTLSPEC ((state=event1) | (state=event2))
+",(event1 | event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event1 will happen.",C1: Event3 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event3 : event1;
+		state = event1 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC (X (state=event3))
+",(X event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: That event3 happens implies that event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: That event3 happens implies that event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event3) -> (state=event1))
+",(event3 -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.",C1: Event2 happens or event3 happens.,"=== Context ===
+
+Initially, event3 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens or event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event2) | (state=event3))
+",(event2 | event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen.",C1: Event3 will happen eventually.,"=== Context ===
+
+Initially, event3 happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event1;
+    esac;
+LTLSPEC (F (state=event3))
+",(F event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event1 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.",C1: Event2 will always happen at any future time.,"=== Context ===
+
+Initially, event3 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (G (state=event2))
+",(G event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, no other events will happen.",C1: Event1 happens and event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event1) & (state=event2))
+",(event1 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event1 happens or event2 happens.,"=== Context ===
+
+Initially, event3 happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens or event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) | (state=event2))
+",(event1 | event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.",C1: That event3 happens implies that event1 happens.,"=== Context ===
+
+Initially, event3 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: That event3 happens implies that event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event1;
+		state = event1 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event3) -> (state=event1))
+",(event3 -> event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event3 happens or event3 happens.,"=== Context ===
+
+Initially, event2 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens or event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event3) | (state=event3))
+",(event3 | event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, no other events will happen.",C1: Event1 happens or event3 happens.,"=== Context ===
+
+Initially, event2 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens or event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event1;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event1) | (state=event3))
+",(event1 | event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event2 happens and event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event2) & (state=event2))
+",(event2 & event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event1 will happen.",C1: That event3 happens implies that event3 happens.,"=== Context ===
+
+Initially, event2 happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: That event3 happens implies that event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event2 : event3;
+		state = event3 : event1;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event3) -> (state=event3))
+",(event3 -> event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event3, no other events will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event3 happens or event1 happens.,"=== Context ===
+
+Initially, event3 happened. After event3, no other events will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens or event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event1 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event3) | (state=event1))
+",(event3 | event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event2 happens and event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event2) & (state=event2))
+",(event2 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event2 happens and event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event2) & (state=event2))
+",(event2 & event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: That event2 happens implies that event3 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: That event2 happens implies that event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event2) -> (state=event3))
+",(event2 -> event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event1 happens and event3 happens.,"=== Context ===
+
+Initially, event3 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event1) & (state=event3))
+",(event1 & event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.",C1: Event1 happens or event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens or event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event2 : event1;
+		state = event1 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event1) | (state=event2))
+",(event1 | event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event1 happens and event1 happens.,"=== Context ===
+
+Initially, event2 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) & (state=event1))
+",(event1 & event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen. After event2, event3 will happen.",C1: Event2 happens or event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens or event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event2) | (state=event2))
+",(event2 | event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, no other events will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event1 happened. After event3, no other events will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, no other events will happen.",C1: Event1 does not happen.,"=== Context ===
+
+Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC (! (state=event1))
+",(! event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.",C1: Event3 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event3))
+",(X event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, no other events will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event3;
+		state = event1 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event1, event3 will happen. After event3, event1 will happen. After event2, no other events will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event1, event3 will happen. After event3, event1 will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event1 will happen.",C1: Event3 will happen at next time.,"=== Context ===
+
+Initially, event2 happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event1;
+    esac;
+LTLSPEC (X (state=event3))
+",(X event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.",C1: That event1 happens implies that event3 happens.,"=== Context ===
+
+Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: That event1 happens implies that event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) -> (state=event3))
+",(event1 -> event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event3 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event3;
+		state = event3 : event1;
+		state = event1 : event1;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event2 will happen.",C1: Event2 happens and event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event2) & (state=event2))
+",(event2 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.",C1: Event3 will always happen at any future time.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event1;
+    esac;
+LTLSPEC (G (state=event3))
+",(G event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event1 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event2 will happen.",C1: Event3 happens or event1 happens.,"=== Context ===
+
+Initially, event3 happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens or event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event3) | (state=event1))
+",(event3 | event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event1 happened. After event3, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.",C1: Event1 happens and event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) & (state=event1))
+",(event1 & event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event2 will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.",C1: Event3 happens and event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event3) & (state=event2))
+",(event3 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event3 will happen.",C1: Event3 will happen at next time.,"=== Context ===
+
+Initially, event2 happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC (X (state=event3))
+",(X event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.",C1: Event2 happens or event1 happens.,"=== Context ===
+
+Initially, event2 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens or event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event1;
+    esac;
+LTLSPEC ((state=event2) | (state=event1))
+",(event2 | event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, no other events will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event2 will happen.",C1: Event3 happens and event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event3) & (state=event1))
+",(event3 & event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event3 will happen.",C1: That event1 happens implies that event3 happens.,"=== Context ===
+
+Initially, event2 happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: That event1 happens implies that event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event1) -> (state=event3))
+",(event1 -> event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, no other events will happen. After event1, event3 will happen. After event2, event3 will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event3, no other events will happen. After event1, event3 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event2 will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event3 happened. After event1, no other events will happen. After event2, event3 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event3;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, no other events will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event3;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event1 will happen.",C1: That event2 happens implies that event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: That event2 happens implies that event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event3 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event2) -> (state=event1))
+",(event2 -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, no other events will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event3 happens and event2 happens.,"=== Context ===
+
+Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event3) & (state=event2))
+",(event3 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.",C1: That event3 happens implies that event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: That event3 happens implies that event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event3) -> (state=event1))
+",(event3 -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.",C1: Event3 happens and event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event2 : event1;
+		state = event1 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event3) & (state=event1))
+",(event3 & event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event3 will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event3 happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event2 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event2 happens or event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens or event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event2) | (state=event2))
+",(event2 | event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, no other events will happen.",C1: Event2 will happen at next time.,"=== Context ===
+
+Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event1 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC (X (state=event2))
+",(X event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event1 will happen.",C1: Event1 happens and event3 happens.,"=== Context ===
+
+Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event1) & (state=event3))
+",(event1 & event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event1 happens or event3 happens.,"=== Context ===
+
+Initially, event3 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens or event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) | (state=event3))
+",(event1 | event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event3, event2 will happen. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event2 happened. After event3, event2 will happen. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, no other events will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, no other events will happen.",C1: Event2 does not happen.,"=== Context ===
+
+Initially, event2 happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC (! (state=event2))
+",(! event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event3 will happen.",C1: Event1 happens and event3 happens.,"=== Context ===
+
+Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) & (state=event3))
+",(event1 & event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event1 will happen.",C1: That event1 happens implies that event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event1 will happen.
+
+=== Hypothesis ===
+
+C1: That event1 happens implies that event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event2 : event1;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+    esac;
+LTLSPEC ((state=event1) -> (state=event2))
+",(event1 -> event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event3, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event2 happens or event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event3, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 happens or event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event2) | (state=event1))
+",(event2 | event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen.",C1: Event3 will always happen at any future time.,"=== Context ===
+
+Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC (G (state=event3))
+",(G event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event1 will happen. After event1, event2 will happen. After event3, no other events will happen.",C1: Event3 happens and event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event1, event2 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event3 : event3;
+    esac;
+LTLSPEC ((state=event3) & (state=event2))
+",(event3 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event1 will always happen at any future time.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (G (state=event1))
+",(G event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.",C1: Event1 happens or event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens or event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) | (state=event2))
+",(event1 | event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen.",C1: Event1 does not happen.,"=== Context ===
+
+Initially, event2 happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC (! (state=event1))
+",(! event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event2 will happen.",C1: That event1 happens implies that event2 happens.,"=== Context ===
+
+Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event2 will happen.
+
+=== Hypothesis ===
+
+C1: That event1 happens implies that event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event1) -> (state=event2))
+",(event1 -> event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event3 will happen at next time.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (X (state=event3))
+",(X event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: That event3 happens implies that event2 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: That event3 happens implies that event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event3 : event1;
+		state = event3 : event2;
+		state = event1 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event3) -> (state=event2))
+",(event3 -> event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event1 happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.",C1: Event3 will always happen at any future time.,"=== Context ===
+
+Initially, event1 happened. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC (G (state=event3))
+",(G event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, no other events will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event2;
+		state = event3 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.",C1: Event3 will always happen at any future time.,"=== Context ===
+
+Initially, event3 happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event1;
+    esac;
+LTLSPEC (G (state=event3))
+",(G event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event1 will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event3 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event3 : event1;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, event1 will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event3 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event3, no other events will happen. After event1, event3 will happen. After event2, event3 will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event3, no other events will happen. After event1, event3 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event3;
+		state = event3 : event3;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event3"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.",C1: That event1 happens implies that event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen. After event2, no other events will happen.
+
+=== Hypothesis ===
+
+C1: That event1 happens implies that event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event1) -> (state=event2))
+",(event1 -> event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.",C1: Event3 happens and event3 happens.,"=== Context ===
+
+Initially, event3 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event3 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event3;
+		state = event3 : event1;
+    esac;
+LTLSPEC ((state=event3) & (state=event3))
+",(event3 & event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event2 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event2 will happen.",C1: Event1 happens and event2 happens.,"=== Context ===
+
+Initially, event2 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 happens and event2 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event3 : event2;
+		state = event1 : event1;
+		state = event2 : event2;
+    esac;
+LTLSPEC ((state=event1) & (state=event2))
+",(event1 & event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen.",C1: Event3 does not happen.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+    esac;
+LTLSPEC (! (state=event3))
+",(! event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event3 will always happen at any future time.,"=== Context ===
+
+Initially, event1 happened. After event3, event1 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event1;
+    esac;
+LTLSPEC (G (state=event3))
+",(G event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event2 will happen.",C1: Event1 does not happen.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (! (state=event1))
+",(! event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event3 happens and event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event3 happens and event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event3 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event3) & (state=event1))
+",(event3 & event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event2 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.",C1: Event1 will happen eventually.,"=== Context ===
+
+Initially, event2 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event2;
+    next(state) := case
+        state = event1 : event3;
+		state = event3 : event1;
+		state = event3 : event2;
+		state = event2 : event2;
+    esac;
+LTLSPEC (F (state=event1))
+",(F event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event3"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event2 will happen.",C1: Event2 will happen eventually.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event2 will happen eventually.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event3 : event2;
+    esac;
+LTLSPEC (F (state=event2))
+",(F event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",True
+"Initially, event3 happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.",C1: Event1 will happen at next time.,"=== Context ===
+
+Initially, event3 happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 will happen at next time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC (X (state=event1))
+",(X event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.",C1: Event1 does not happen.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: Event1 does not happen.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC (! (state=event1))
+",(! event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.",C1: That event3 happens implies that event1 happens.,"=== Context ===
+
+Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.
+
+=== Hypothesis ===
+
+C1: That event3 happens implies that event1 happens.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event1;
+    next(state) := case
+        state = event1 : event2;
+		state = event2 : event1;
+		state = event2 : event3;
+		state = event3 : event2;
+    esac;
+LTLSPEC ((state=event3) -> (state=event1))
+",(event3 -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event2"" />
+    <edge source=""event2"" target=""event1"" />
+    <edge source=""event2"" target=""event3"" />
+    <edge source=""event3"" target=""event2"" />
+  </graph>
+</graphml>",False
+"Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.",C1: Event3 will always happen at any future time.,"=== Context ===
+
+Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.
+
+=== Hypothesis ===
+
+C1: Event3 will always happen at any future time.
+
+Determine whether the case C1 is true or false (answering in ""true"" or ""false"" directly):
+","MODULE main
+VAR
+    state : {event1, event2, event3};
+ASSIGN
+    init(state) := event3;
+    next(state) := case
+        state = event1 : event3;
+		state = event2 : event2;
+		state = event3 : event3;
+    esac;
+LTLSPEC (G (state=event3))
+",(G event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
+  <graph edgedefault=""directed"">
+    <node id=""event1"" />
+    <node id=""event2"" />
+    <node id=""event3"" />
+    <edge source=""event1"" target=""event3"" />
+  </graph>
+</graphml>",False
