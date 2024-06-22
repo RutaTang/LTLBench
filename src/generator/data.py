@@ -6,6 +6,7 @@ from src.generator.query import generate_ltl_formulas, conver_ltl_formula_to_NL,
 from copy import deepcopy
 
 from src.utils.external import call_NuSMV
+from src.utils.figure import save_graph_to_string
 from src.utils.types import ReferenceValue
 
 
@@ -62,6 +63,7 @@ Determine whether the case {last_case} is true or false (answering in "true" or 
 ''',
         "code": code,
         "formula": covert_ltl_formula_to_str(formula),
-        "answer": answer
+        "answer": answer,
+        "graph": save_graph_to_string(graph),
     }
     return problem
