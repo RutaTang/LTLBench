@@ -25,7 +25,7 @@ def app():
 
 
 @app.command()
-@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=100)
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=1000)
 @click.option('--number_of_events', '-e', help='Number of events', type=int, default=3)
 @click.option('--formula_length', '-l', help='Length of the formula', type=int, default=3)
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
@@ -36,9 +36,19 @@ def generate(count_of_problem: int, number_of_events: int,
     """
     rng = np.random.default_rng(random_seed)
     problems = []
-    for i in range(count_of_problem):
+    problems_true = []
+    problems_false = []
+
+    # Generate problems while ensuring that there are equal number of true and false problems
+    while (len(problems_false) + len(problems_true)) < count_of_problem:
         problem = generate_problem(rng=rng, number_of_events=number_of_events, formula_length=formula_length)
-        problems.append(problem)
+        if problem['answer'] and len(problems_true) < count_of_problem // 2:
+            problems_true.append(problem)
+        elif (not problem['answer']) and len(problems_false) < count_of_problem // 2:
+            problems_false.append(problem)
+
+    problems.extend(problems_true)
+    problems.extend(problems_false)
 
     path = get_data_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem)
     pd.DataFrame(problems).to_csv(path, index=False)
