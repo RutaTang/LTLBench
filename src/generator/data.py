@@ -1,7 +1,8 @@
 from numpy.random import Generator
 
 from src.generator.context import generate_random_graph, generate_nodes, generate_context_from_graph, code_template
-from src.generator.query import generate_ltl_formulas, conver_ltl_formula_to_NL, convert_ltl_formula_to_NuSMV
+from src.generator.query import generate_ltl_formulas, conver_ltl_formula_to_NL, convert_ltl_formula_to_NuSMV, \
+    covert_ltl_formula_to_str
 from copy import deepcopy
 
 from src.utils.external import call_NuSMV
@@ -60,7 +61,7 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
 Determine whether the case {last_case} is true or false (answering in "true" or "false" directly):
 ''',
         "code": code,
-        "formula": formula,
+        "formula": covert_ltl_formula_to_str(formula),
         "answer": answer
     }
     return problem

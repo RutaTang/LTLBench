@@ -96,6 +96,16 @@ def recursive_join(l: list) -> str:
         return str(l)
 
 
+def covert_ltl_formula_to_str(ltl_formula: list) -> str:
+    """
+    Convert LTL formula from `generate_ltl_formulas` to string
+
+    :param ltl_formula: LTL formula
+    :return: string format of the LTL formula
+    """
+    return recursive_join(ltl_formula)
+
+
 def conver_ltl_formula_to_NL(ltl_formula: list, base_states: list, h_idx: ReferenceValue[int],
                              result: ReferenceValue[str] = None) -> str:
     """

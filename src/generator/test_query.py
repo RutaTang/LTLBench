@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from src.generator.query import generate_ltl_formulas, convert_ltl_formula_to_NuSMV, recursive_join, \
-    conver_ltl_formula_to_NL
+    conver_ltl_formula_to_NL, covert_ltl_formula_to_str
 from src.utils.types import ReferenceValue
 
 
@@ -21,6 +21,11 @@ class Test(TestCase):
     def test_recursive_join(self):
         s = recursive_join(['a', ['b', 'c']])
         print(s)
+
+    def test_covert_ltl_formula_to_str(self):
+        converted = covert_ltl_formula_to_str(['F', ['G', ['!', "event2"]]])
+        print(converted)
+
 
     def test_conver_ltl_formula_to_NL(self):
         h_idx = ReferenceValue(0)

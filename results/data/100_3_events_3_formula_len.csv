@@ -23,7 +23,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (X (((state=event1) | (state=event2)) & (state=event1)))
-","[np.str_('X'), [['event1', np.str_('|'), 'event2'], np.str_('&'), 'event1']]",True
+",(X ((event1 | event2) & event1)),True
 "Initially, event1 happened. After event3, no other events will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event2 will happen eventually.
 C2: That event2 happens implies that C1 holds.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -49,7 +49,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event2) -> (F (state=event2))))
-","[np.str_('G'), ['event2', np.str_('->'), [np.str_('F'), 'event2']]]",True
+",(G (event2 -> (F event2))),True
 "Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen. After event2, event3 will happen.","C1: That event1 happens implies that event3 happens.
 C2: C1 will always happen at any future time.
 C3: C2 will happen eventually.","=== Context ===
@@ -75,7 +75,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (F (G ((state=event1) -> (state=event3))))
-","[np.str_('F'), [np.str_('G'), ['event1', np.str_('->'), 'event3']]]",False
+",(F (G (event1 -> event3))),False
 "Initially, event2 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event3 will happen at next time.
 C2: Event3 will happen at next time.
 C3: That C1 holds implies that C2 holds.","=== Context ===
@@ -102,7 +102,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((X (state=event3)) -> (X (state=event3)))
-","[[np.str_('X'), 'event3'], np.str_('->'), [np.str_('X'), 'event3']]",True
+",((X event3) -> (X event3)),True
 "Initially, event3 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","C1: Event2 happens and event3 happens.
 C2: Event1 happens or C1 holds.
 C3: C2 does not hold.","=== Context ===
@@ -129,7 +129,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! ((state=event1) | ((state=event2) & (state=event3))))
-","[np.str_('!'), ['event1', np.str_('|'), ['event2', np.str_('&'), 'event3']]]",True
+",(! (event1 | (event2 & event3))),True
 "Initially, event2 happened. After event1, event2 will happen. After event2, event1 will happen. After event3, event1 will happen.","C1: Event3 happens or event3 happens.
 C2: C1 holds or event1 happens.
 C3: C2 does not hold.","=== Context ===
@@ -154,7 +154,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (! (((state=event3) | (state=event3)) | (state=event1)))
-","[np.str_('!'), [['event3', np.str_('|'), 'event3'], np.str_('|'), 'event1']]",True
+",(! ((event3 | event3) | event1)),True
 "Initially, event2 happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen.","C1: Event2 happens and event3 happens.
 C2: C1 holds or event3 happens.
 C3: That event1 happens implies that C2 holds.","=== Context ===
@@ -179,7 +179,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((state=event1) -> (((state=event2) & (state=event3)) | (state=event3)))
-","['event1', np.str_('->'), [['event2', np.str_('&'), 'event3'], np.str_('|'), 'event3']]",True
+",(event1 -> ((event2 & event3) | event3)),True
 "Initially, event3 happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event2 happens or event3 happens.
 C2: C1 will happen at next time.
 C3: Event1 happens and C2 holds.","=== Context ===
@@ -205,7 +205,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event1) & (X ((state=event2) | (state=event3))))
-","['event1', np.str_('&'), [np.str_('X'), ['event2', np.str_('|'), 'event3']]]",False
+",(event1 & (X (event2 | event3))),False
 "Initially, event2 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen.","C1: Event1 happens or event1 happens.
 C2: C1 holds and event1 happens.
 C3: C2 does not hold.","=== Context ===
@@ -230,7 +230,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (! (((state=event1) | (state=event1)) & (state=event1)))
-","[np.str_('!'), [['event1', np.str_('|'), 'event1'], np.str_('&'), 'event1']]",True
+",(! ((event1 | event1) & event1)),True
 "Initially, event3 happened. After event1, no other events will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: Event2 happens or event2 happens.
 C2: C1 will always happen at any future time.
 C3: C2 does not hold.","=== Context ===
@@ -251,11 +251,11 @@ ASSIGN
     init(state) := event3;
     next(state) := case
         state = event2 : event3;
-		state = event1 : event1;
 		state = event3 : event3;
+		state = event1 : event1;
     esac;
 LTLSPEC (! (G ((state=event2) | (state=event2))))
-","[np.str_('!'), [np.str_('G'), ['event2', np.str_('|'), 'event2']]]",True
+",(! (G (event2 | event2))),True
 "Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event1 will happen.","C1: Event1 will happen at next time.
 C2: C1 will always happen at any future time.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -281,7 +281,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (G (G (X (state=event1))))
-","[np.str_('G'), [np.str_('G'), [np.str_('X'), 'event1']]]",False
+",(G (G (X event1))),False
 "Initially, event3 happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event1 will happen.","C1: Event2 does not happen.
 C2: Event2 does not happen.
 C3: C1 holds and C2 holds.","=== Context ===
@@ -306,12 +306,12 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((! (state=event2)) & (! (state=event2)))
-","[[np.str_('!'), 'event2'], np.str_('&'), [np.str_('!'), 'event2']]",True
-"Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, no other events will happen.","C1: Event1 will always happen at any future time.
+",((! event2) & (! event2)),True
+"Initially, event2 happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event2 will happen.","C1: Event1 will always happen at any future time.
 C2: C1 will happen eventually.
 C3: Event3 happens or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, no other events will happen.
+Initially, event2 happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event2 will happen.
 
 === Hypothesis ===
 
@@ -331,7 +331,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event3) | (F (G (state=event1))))
-","['event3', np.str_('|'), [np.str_('F'), [np.str_('G'), 'event1']]]",False
+",(event3 | (F (G event1))),False
 "Initially, event1 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: Event2 happens and event2 happens.
 C2: C1 does not hold.
 C3: C2 will happen at next time.","=== Context ===
@@ -359,12 +359,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (! ((state=event2) & (state=event2))))
-","[np.str_('X'), [np.str_('!'), ['event2', np.str_('&'), 'event2']]]",False
-"Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event2 happens or event3 happens.
+",(X (! (event2 & event2))),False
+"Initially, event3 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen.","C1: Event2 happens or event3 happens.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.","=== Context ===
 
-Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.
+Initially, event3 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen.
 
 === Hypothesis ===
 
@@ -385,7 +385,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (X (G ((state=event2) | (state=event3))))
-","[np.str_('X'), [np.str_('G'), ['event2', np.str_('|'), 'event3']]]",False
+",(X (G (event2 | event3))),False
 "Initially, event3 happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","C1: Event3 will happen eventually.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.","=== Context ===
@@ -410,7 +410,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (X (G (F (state=event3))))
-","[np.str_('X'), [np.str_('G'), [np.str_('F'), 'event3']]]",True
+",(X (G (F event3))),True
 "Initially, event3 happened. After event1, event3 will happen. After event3, event1 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: Event3 will happen eventually.
 C2: That C1 holds implies that event1 happens.
 C3: C2 will happen at next time.","=== Context ===
@@ -436,7 +436,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (X ((F (state=event3)) -> (state=event1)))
-","[np.str_('X'), [[np.str_('F'), 'event3'], np.str_('->'), 'event1']]",True
+",(X ((F event3) -> event1)),True
 "Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event2 will happen.","C1: Event1 will happen at next time.
 C2: C1 does not hold.
 C3: C2 holds and event3 happens.","=== Context ===
@@ -462,12 +462,12 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((! (X (state=event1))) & (state=event3))
-","[[np.str_('!'), [np.str_('X'), 'event1']], np.str_('&'), 'event3']",False
-"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen.","C1: That event2 happens implies that event1 happens.
+",((! (X event1)) & event3),False
+"Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event1, event2 will happen.","C1: That event2 happens implies that event1 happens.
 C2: C1 will always happen at any future time.
 C3: Event2 happens or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen.
+Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event1, event2 will happen.
 
 === Hypothesis ===
 
@@ -487,7 +487,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) | (G ((state=event2) -> (state=event1))))
-","['event2', np.str_('|'), [np.str_('G'), ['event2', np.str_('->'), 'event1']]]",False
+",(event2 | (G (event2 -> event1))),False
 "Initially, event1 happened. After event3, no other events will happen. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: That event2 happens implies that event3 happens.
 C2: C1 will happen at next time.
 C3: C2 will happen eventually.","=== Context ===
@@ -513,7 +513,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (F (X ((state=event2) -> (state=event3))))
-","[np.str_('F'), [np.str_('X'), ['event2', np.str_('->'), 'event3']]]",False
+",(F (X (event2 -> event3))),False
 "Initially, event2 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event1 happens and event1 happens.
 C2: C1 will happen eventually.
 C3: C2 holds or event1 happens.","=== Context ===
@@ -540,7 +540,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((F ((state=event1) & (state=event1))) | (state=event1))
-","[[np.str_('F'), ['event1', np.str_('&'), 'event1']], np.str_('|'), 'event1']",True
+",((F (event1 & event1)) | event1),True
 "Initially, event3 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event1 will happen.","C1: That event1 happens implies that event2 happens.
 C2: Event2 happens and C1 holds.
 C3: Event1 happens and C2 holds.","=== Context ===
@@ -567,7 +567,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((state=event1) & ((state=event2) & ((state=event1) -> (state=event2))))
-","['event1', np.str_('&'), ['event2', np.str_('&'), ['event1', np.str_('->'), 'event2']]]",False
+",(event1 & (event2 & (event1 -> event2))),False
 "Initially, event2 happened. After event1, no other events will happen. After event2, event1 will happen. After event3, event1 will happen.","C1: Event2 will happen at next time.
 C2: C1 will always happen at any future time.
 C3: Event2 happens or C2 holds.","=== Context ===
@@ -592,7 +592,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) | (G (X (state=event2))))
-","['event2', np.str_('|'), [np.str_('G'), [np.str_('X'), 'event2']]]",True
+",(event2 | (G (X event2))),True
 "Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: That event3 happens implies that event1 happens.
 C2: C1 will happen at next time.
 C3: C2 will happen at next time.","=== Context ===
@@ -619,7 +619,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (X ((state=event3) -> (state=event1))))
-","[np.str_('X'), [np.str_('X'), ['event3', np.str_('->'), 'event1']]]",False
+",(X (X (event3 -> event1))),False
 "Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.","C1: Event3 happens or event2 happens.
 C2: Event2 happens and C1 holds.
 C3: C2 does not hold.","=== Context ===
@@ -640,11 +640,11 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event2 : event1;
-		state = event1 : event1;
 		state = event3 : event3;
+		state = event1 : event1;
     esac;
 LTLSPEC (! ((state=event2) & ((state=event3) | (state=event2))))
-","[np.str_('!'), ['event2', np.str_('&'), ['event3', np.str_('|'), 'event2']]]",True
+",(! (event2 & (event3 | event2))),True
 "Initially, event2 happened. After event1, no other events will happen. After event2, event1 will happen. After event3, no other events will happen.","C1: Event2 will always happen at any future time.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.","=== Context ===
@@ -665,16 +665,16 @@ ASSIGN
     init(state) := event2;
     next(state) := case
         state = event2 : event1;
-		state = event1 : event1;
 		state = event3 : event3;
+		state = event1 : event1;
     esac;
 LTLSPEC (X (F (G (state=event2))))
-","[np.str_('X'), [np.str_('F'), [np.str_('G'), 'event2']]]",False
-"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen.","C1: That event3 happens implies that event3 happens.
+",(X (F (G event2))),False
+"Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event1, event2 will happen.","C1: That event3 happens implies that event3 happens.
 C2: Event3 happens or C1 holds.
 C3: C2 will happen at next time.","=== Context ===
 
-Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen.
+Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event1, event2 will happen.
 
 === Hypothesis ===
 
@@ -694,7 +694,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (X ((state=event3) | ((state=event3) -> (state=event3))))
-","[np.str_('X'), ['event3', np.str_('|'), ['event3', np.str_('->'), 'event3']]]",True
+",(X (event3 | (event3 -> event3))),True
 "Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event2 will happen.","C1: That event1 happens implies that event1 happens.
 C2: That event1 happens implies that event1 happens.
 C3: That C1 holds implies that C2 holds.","=== Context ===
@@ -720,7 +720,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (((state=event1) -> (state=event1)) -> ((state=event1) -> (state=event1)))
-","[['event1', np.str_('->'), 'event1'], np.str_('->'), ['event1', np.str_('->'), 'event1']]",True
+",((event1 -> event1) -> (event1 -> event1)),True
 "Initially, event3 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event3 will happen at next time.
 C2: C1 does not hold.
 C3: C2 holds and event1 happens.","=== Context ===
@@ -747,7 +747,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((! (X (state=event3))) & (state=event1))
-","[[np.str_('!'), [np.str_('X'), 'event3']], np.str_('&'), 'event1']",False
+",((! (X event3)) & event1),False
 "Initially, event2 happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen.","C1: Event1 will happen eventually.
 C2: Event3 happens and C1 holds.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -773,7 +773,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (G ((state=event3) & (F (state=event1))))
-","[np.str_('G'), ['event3', np.str_('&'), [np.str_('F'), 'event1']]]",False
+",(G (event3 & (F event1))),False
 "Initially, event2 happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event2 will happen.","C1: That event3 happens implies that event2 happens.
 C2: C1 will happen at next time.
 C3: C2 does not hold.","=== Context ===
@@ -798,7 +798,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (! (X ((state=event3) -> (state=event2))))
-","[np.str_('!'), [np.str_('X'), ['event3', np.str_('->'), 'event2']]]",True
+",(! (X (event3 -> event2))),True
 "Initially, event3 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen.","C1: Event1 happens and event1 happens.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.","=== Context ===
@@ -824,7 +824,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (G ((state=event1) & (state=event1))))
-","[np.str_('X'), [np.str_('G'), ['event1', np.str_('&'), 'event1']]]",False
+",(X (G (event1 & event1))),False
 "Initially, event1 happened. After event1, no other events will happen. After event2, event1 will happen. After event3, event2 will happen.","C1: Event1 will happen at next time.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.","=== Context ===
@@ -849,7 +849,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X (F (X (state=event1))))
-","[np.str_('X'), [np.str_('F'), [np.str_('X'), 'event1']]]",True
+",(X (F (X event1))),True
 "Initially, event3 happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen.","C1: Event3 will happen eventually.
 C2: Event3 will happen eventually.
 C3: C1 holds or C2 holds.","=== Context ===
@@ -874,7 +874,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((F (state=event3)) | (F (state=event3)))
-","[[np.str_('F'), 'event3'], np.str_('|'), [np.str_('F'), 'event3']]",True
+",((F event3) | (F event3)),True
 "Initially, event3 happened. After event1, no other events will happen. After event2, event1 will happen. After event3, event2 will happen.","C1: Event2 does not happen.
 C2: C1 does not hold.
 C3: That event2 happens implies that C2 holds.","=== Context ===
@@ -899,7 +899,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) -> (! (! (state=event2))))
-","['event2', np.str_('->'), [np.str_('!'), [np.str_('!'), 'event2']]]",True
+",(event2 -> (! (! event2))),True
 "Initially, event1 happened. After event3, no other events will happen. After event2, event1 will happen. After event1, event3 will happen.","C1: Event2 will happen eventually.
 C2: C1 holds and event2 happens.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -924,7 +924,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G ((F (state=event2)) & (state=event2)))
-","[np.str_('G'), [[np.str_('F'), 'event2'], np.str_('&'), 'event2']]",False
+",(G ((F event2) & event2)),False
 "Initially, event2 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event2 will always happen at any future time.
 C2: C1 does not hold.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -951,7 +951,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (G (! (G (state=event2))))
-","[np.str_('G'), [np.str_('!'), [np.str_('G'), 'event2']]]",True
+",(G (! (G event2))),True
 "Initially, event3 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event2 will happen.","C1: Event3 will happen eventually.
 C2: C1 will happen at next time.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -977,7 +977,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (G (X (F (state=event3))))
-","[np.str_('G'), [np.str_('X'), [np.str_('F'), 'event3']]]",False
+",(G (X (F event3))),False
 "Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event2 will always happen at any future time.
 C2: Event2 will always happen at any future time.
 C3: C1 holds or C2 holds.","=== Context ===
@@ -1004,12 +1004,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((G (state=event2)) | (G (state=event2)))
-","[[np.str_('G'), 'event2'], np.str_('|'), [np.str_('G'), 'event2']]",False
-"Initially, event3 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: That event2 happens implies that event2 happens.
+",((G event2) | (G event2)),False
+"Initially, event3 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.","C1: That event2 happens implies that event2 happens.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.","=== Context ===
 
-Initially, event3 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen.
+Initially, event3 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen.
 
 === Hypothesis ===
 
@@ -1030,7 +1030,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X (F ((state=event2) -> (state=event2))))
-","[np.str_('X'), [np.str_('F'), ['event2', np.str_('->'), 'event2']]]",True
+",(X (F (event2 -> event2))),True
 "Initially, event2 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event3 will happen.","C1: Event1 will always happen at any future time.
 C2: C1 holds and event1 happens.
 C3: That event3 happens implies that C2 holds.","=== Context ===
@@ -1056,7 +1056,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event3) -> ((G (state=event1)) & (state=event1)))
-","['event3', np.str_('->'), [[np.str_('G'), 'event1'], np.str_('&'), 'event1']]",True
+",(event3 -> ((G event1) & event1)),True
 "Initially, event3 happened. After event2, event3 will happen. After event3, no other events will happen. After event1, event3 will happen.","C1: Event3 will happen at next time.
 C2: C1 will always happen at any future time.
 C3: C2 holds or event2 happens.","=== Context ===
@@ -1081,7 +1081,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((G (X (state=event3))) | (state=event2))
-","[[np.str_('G'), [np.str_('X'), 'event3']], np.str_('|'), 'event2']",True
+",((G (X event3)) | event2),True
 "Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, no other events will happen. After event3, event2 will happen.","C1: Event2 will happen eventually.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
@@ -1107,7 +1107,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (! (! (F (state=event2))))
-","[np.str_('!'), [np.str_('!'), [np.str_('F'), 'event2']]]",True
+",(! (! (F event2))),True
 "Initially, event3 happened. After event1, no other events will happen. After event2, event1 will happen. After event3, no other events will happen.","C1: Event1 happens or event2 happens.
 C2: C1 will happen at next time.
 C3: C2 does not hold.","=== Context ===
@@ -1128,11 +1128,11 @@ ASSIGN
     init(state) := event3;
     next(state) := case
         state = event2 : event1;
-		state = event1 : event1;
 		state = event3 : event3;
+		state = event1 : event1;
     esac;
 LTLSPEC (! (X ((state=event1) | (state=event2))))
-","[np.str_('!'), [np.str_('X'), ['event1', np.str_('|'), 'event2']]]",True
+",(! (X (event1 | event2))),True
 "Initially, event2 happened. After event3, event2 will happen. After event2, event3 will happen. After event1, no other events will happen.","C1: Event1 does not happen.
 C2: C1 will happen eventually.
 C3: Event2 happens or C2 holds.","=== Context ===
@@ -1157,7 +1157,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) | (F (! (state=event1))))
-","['event2', np.str_('|'), [np.str_('F'), [np.str_('!'), 'event1']]]",True
+",(event2 | (F (! event1))),True
 "Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, no other events will happen.","C1: Event3 will happen eventually.
 C2: C1 will happen eventually.
 C3: C2 will happen eventually.","=== Context ===
@@ -1183,7 +1183,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (F (F (F (state=event3))))
-","[np.str_('F'), [np.str_('F'), [np.str_('F'), 'event3']]]",False
+",(F (F (F event3))),False
 "Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, no other events will happen.","C1: That event1 happens implies that event1 happens.
 C2: That event1 happens implies that C1 holds.
 C3: That C2 holds implies that event3 happens.","=== Context ===
@@ -1209,7 +1209,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (((state=event1) -> ((state=event1) -> (state=event1))) -> (state=event3))
-","[['event1', np.str_('->'), ['event1', np.str_('->'), 'event1']], np.str_('->'), 'event3']",True
+",((event1 -> (event1 -> event1)) -> event3),True
 "Initially, event1 happened. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event3 happens or event3 happens.
 C2: C1 holds and event2 happens.
 C3: That C2 holds implies that event1 happens.","=== Context ===
@@ -1236,7 +1236,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((((state=event3) | (state=event3)) & (state=event2)) -> (state=event1))
-","[[['event3', np.str_('|'), 'event3'], np.str_('&'), 'event2'], np.str_('->'), 'event1']",True
+",(((event3 | event3) & event2) -> event1),True
 "Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, no other events will happen.","C1: Event3 happens and event1 happens.
 C2: C1 will happen at next time.
 C3: Event2 happens and C2 holds.","=== Context ===
@@ -1257,11 +1257,11 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event2 : event1;
-		state = event1 : event1;
 		state = event3 : event3;
+		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) & (X ((state=event3) & (state=event1))))
-","['event2', np.str_('&'), [np.str_('X'), ['event3', np.str_('&'), 'event1']]]",False
+",(event2 & (X (event3 & event1))),False
 "Initially, event3 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","C1: That event3 happens implies that event3 happens.
 C2: That event1 happens implies that C1 holds.
 C3: C2 holds or event3 happens.","=== Context ===
@@ -1287,12 +1287,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (((state=event1) -> ((state=event3) -> (state=event3))) | (state=event3))
-","[['event1', np.str_('->'), ['event3', np.str_('->'), 'event3']], np.str_('|'), 'event3']",True
-"Initially, event2 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.","C1: Event3 happens and event2 happens.
+",((event1 -> (event3 -> event3)) | event3),True
+"Initially, event2 happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event3 will happen.","C1: Event3 happens and event2 happens.
 C2: C1 will happen eventually.
 C3: Event2 happens and C2 holds.","=== Context ===
 
-Initially, event2 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, no other events will happen.
+Initially, event2 happened. After event2, no other events will happen. After event3, no other events will happen. After event1, event3 will happen.
 
 === Hypothesis ===
 
@@ -1312,7 +1312,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) & (F ((state=event3) & (state=event2))))
-","['event2', np.str_('&'), [np.str_('F'), ['event3', np.str_('&'), 'event2']]]",False
+",(event2 & (F (event3 & event2))),False
 "Initially, event2 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: Event2 happens or event2 happens.
 C2: C1 will always happen at any future time.
 C3: C2 does not hold.","=== Context ===
@@ -1339,12 +1339,12 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (! (G ((state=event2) | (state=event2))))
-","[np.str_('!'), [np.str_('G'), ['event2', np.str_('|'), 'event2']]]",True
-"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event2 happens and event1 happens.
+",(! (G (event2 | event2))),True
+"Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen.","C1: Event2 happens and event1 happens.
 C2: C1 will happen eventually.
 C3: C2 holds or event1 happens.","=== Context ===
 
-Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.
+Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen.
 
 === Hypothesis ===
 
@@ -1365,7 +1365,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((F ((state=event2) & (state=event1))) | (state=event1))
-","[[np.str_('F'), ['event2', np.str_('&'), 'event1']], np.str_('|'), 'event1']",True
+",((F (event2 & event1)) | event1),True
 "Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.","C1: That event3 happens implies that event1 happens.
 C2: C1 will happen eventually.
 C3: C2 holds or event3 happens.","=== Context ===
@@ -1391,7 +1391,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((F ((state=event3) -> (state=event1))) | (state=event3))
-","[[np.str_('F'), ['event3', np.str_('->'), 'event1']], np.str_('|'), 'event3']",True
+",((F (event3 -> event1)) | event3),True
 "Initially, event3 happened. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: That event1 happens implies that event3 happens.
 C2: C1 will happen at next time.
 C3: That C2 holds implies that event2 happens.","=== Context ===
@@ -1419,7 +1419,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((X ((state=event1) -> (state=event3))) -> (state=event2))
-","[[np.str_('X'), ['event1', np.str_('->'), 'event3']], np.str_('->'), 'event2']",True
+",((X (event1 -> event3)) -> event2),True
 "Initially, event1 happened. After event2, event1 will happen. After event1, no other events will happen. After event3, event1 will happen.","C1: Event1 will always happen at any future time.
 C2: C1 will happen at next time.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -1444,12 +1444,12 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G (X (G (state=event1))))
-","[np.str_('G'), [np.str_('X'), [np.str_('G'), 'event1']]]",True
-"Initially, event1 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event2 does not happen.
+",(G (X (G event1))),True
+"Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen.","C1: Event2 does not happen.
 C2: C1 does not hold.
 C3: C2 will happen at next time.","=== Context ===
 
-Initially, event1 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.
+Initially, event1 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen.
 
 === Hypothesis ===
 
@@ -1470,7 +1470,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (X (! (! (state=event2))))
-","[np.str_('X'), [np.str_('!'), [np.str_('!'), 'event2']]]",False
+",(X (! (! event2))),False
 "Initially, event2 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: Event1 happens or event2 happens.
 C2: Event1 happens or event2 happens.
 C3: C1 holds or C2 holds.","=== Context ===
@@ -1496,7 +1496,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (((state=event1) | (state=event2)) | ((state=event1) | (state=event2)))
-","[['event1', np.str_('|'), 'event2'], np.str_('|'), ['event1', np.str_('|'), 'event2']]",True
+",((event1 | event2) | (event1 | event2)),True
 "Initially, event1 happened. After event2, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event2 happens or event3 happens.
 C2: Event2 happens or event3 happens.
 C3: That C1 holds implies that C2 holds.","=== Context ===
@@ -1523,7 +1523,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (((state=event2) | (state=event3)) -> ((state=event2) | (state=event3)))
-","[['event2', np.str_('|'), 'event3'], np.str_('->'), ['event2', np.str_('|'), 'event3']]",True
+",((event2 | event3) -> (event2 | event3)),True
 "Initially, event1 happened. After event1, event2 will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: Event3 happens and event1 happens.
 C2: C1 will happen at next time.
 C3: C2 will happen eventually.","=== Context ===
@@ -1548,12 +1548,12 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (F (X ((state=event3) & (state=event1))))
-","[np.str_('F'), [np.str_('X'), ['event3', np.str_('&'), 'event1']]]",False
-"Initially, event2 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen.","C1: Event2 will happen at next time.
+",(F (X (event3 & event1))),False
+"Initially, event2 happened. After event2, no other events will happen. After event3, event1 will happen. After event1, event3 will happen.","C1: Event2 will happen at next time.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.","=== Context ===
 
-Initially, event2 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen.
+Initially, event2 happened. After event2, no other events will happen. After event3, event1 will happen. After event1, event3 will happen.
 
 === Hypothesis ===
 
@@ -1573,7 +1573,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (X (G (X (state=event2))))
-","[np.str_('X'), [np.str_('G'), [np.str_('X'), 'event2']]]",True
+",(X (G (X event2))),True
 "Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event2 will happen at next time.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
@@ -1600,7 +1600,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (! (! (X (state=event2))))
-","[np.str_('!'), [np.str_('!'), [np.str_('X'), 'event2']]]",False
+",(! (! (X event2))),False
 "Initially, event2 happened. After event1, event3 will happen. After event3, no other events will happen. After event2, event1 will happen.","C1: Event3 will always happen at any future time.
 C2: Event2 happens or C1 holds.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -1625,7 +1625,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event2) | (G (state=event3))))
-","[np.str_('G'), ['event2', np.str_('|'), [np.str_('G'), 'event3']]]",False
+",(G (event2 | (G event3))),False
 "Initially, event2 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event1 will happen.","C1: Event2 will happen at next time.
 C2: C1 holds or event3 happens.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -1651,7 +1651,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((X (state=event2)) | (state=event3)))
-","[np.str_('G'), [[np.str_('X'), 'event2'], np.str_('|'), 'event3']]",False
+",(G ((X event2) | event3)),False
 "Initially, event3 happened. After event2, event1 will happen. After event1, event3 will happen. After event3, event1 will happen.","C1: Event2 will always happen at any future time.
 C2: Event3 happens and C1 holds.
 C3: C2 will happen at next time.","=== Context ===
@@ -1676,7 +1676,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (X ((state=event3) & (G (state=event2))))
-","[np.str_('X'), ['event3', np.str_('&'), [np.str_('G'), 'event2']]]",False
+",(X (event3 & (G event2))),False
 "Initially, event3 happened. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, no other events will happen.","C1: Event2 will always happen at any future time.
 C2: C1 will always happen at any future time.
 C3: Event1 happens or C2 holds.","=== Context ===
@@ -1702,7 +1702,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) | (G (G (state=event2))))
-","['event1', np.str_('|'), [np.str_('G'), [np.str_('G'), 'event2']]]",False
+",(event1 | (G (G event2))),False
 "Initially, event3 happened. After event3, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen.","C1: Event3 does not happen.
 C2: That C1 holds implies that event3 happens.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -1728,7 +1728,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((! (state=event3)) -> (state=event3)))
-","[np.str_('G'), [[np.str_('!'), 'event3'], np.str_('->'), 'event3']]",False
+",(G ((! event3) -> event3)),False
 "Initially, event2 happened. After event1, event2 will happen. After event2, no other events will happen. After event3, event1 will happen.","C1: Event2 happens or event2 happens.
 C2: C1 does not hold.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -1753,7 +1753,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (G (! ((state=event2) | (state=event2))))
-","[np.str_('G'), [np.str_('!'), ['event2', np.str_('|'), 'event2']]]",False
+",(G (! (event2 | event2))),False
 "Initially, event1 happened. After event3, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event2, event3 will happen.","C1: Event3 happens or event2 happens.
 C2: C1 will happen eventually.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -1779,7 +1779,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G (F ((state=event3) | (state=event2))))
-","[np.str_('G'), [np.str_('F'), ['event3', np.str_('|'), 'event2']]]",True
+",(G (F (event3 | event2))),True
 "Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event2 will happen.","C1: That event3 happens implies that event2 happens.
 C2: C1 will always happen at any future time.
 C3: That C2 holds implies that event2 happens.","=== Context ===
@@ -1805,7 +1805,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((G ((state=event3) -> (state=event2))) -> (state=event2))
-","[[np.str_('G'), ['event3', np.str_('->'), 'event2']], np.str_('->'), 'event2']",True
+",((G (event3 -> event2)) -> event2),True
 "Initially, event1 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, no other events will happen.","C1: Event3 happens or event1 happens.
 C2: That event1 happens implies that C1 holds.
 C3: C2 will happen at next time.","=== Context ===
@@ -1830,7 +1830,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (X ((state=event1) -> ((state=event3) | (state=event1))))
-","[np.str_('X'), ['event1', np.str_('->'), ['event3', np.str_('|'), 'event1']]]",True
+",(X (event1 -> (event3 | event1))),True
 "Initially, event1 happened. After event3, no other events will happen. After event2, event3 will happen. After event1, event3 will happen.","C1: That event1 happens implies that event1 happens.
 C2: C1 will happen eventually.
 C3: C2 does not hold.","=== Context ===
@@ -1855,7 +1855,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (! (F ((state=event1) -> (state=event1))))
-","[np.str_('!'), [np.str_('F'), ['event1', np.str_('->'), 'event1']]]",False
+",(! (F (event1 -> event1))),False
 "Initially, event1 happened. After event1, event3 will happen. After event3, event2 will happen. After event2, event1 will happen. After event2, event3 will happen.","C1: Event2 will happen eventually.
 C2: C1 holds and event3 happens.
 C3: Event2 happens or C2 holds.","=== Context ===
@@ -1881,7 +1881,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event2) | ((F (state=event2)) & (state=event3)))
-","['event2', np.str_('|'), [[np.str_('F'), 'event2'], np.str_('&'), 'event3']]",False
+",(event2 | ((F event2) & event3)),False
 "Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event1 will happen.","C1: Event1 will happen eventually.
 C2: Event1 will happen eventually.
 C3: C1 holds or C2 holds.","=== Context ===
@@ -1907,7 +1907,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((F (state=event1)) | (F (state=event1)))
-","[[np.str_('F'), 'event1'], np.str_('|'), [np.str_('F'), 'event1']]",True
+",((F event1) | (F event1)),True
 "Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","C1: Event1 will happen eventually.
 C2: Event1 will happen eventually.
 C3: C1 holds or C2 holds.","=== Context ===
@@ -1934,7 +1934,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((F (state=event1)) | (F (state=event1)))
-","[[np.str_('F'), 'event1'], np.str_('|'), [np.str_('F'), 'event1']]",True
+",((F event1) | (F event1)),True
 "Initially, event1 happened. After event1, event2 will happen. After event1, event3 will happen. After event2, event1 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: That event1 happens implies that event1 happens.
 C2: C1 will always happen at any future time.
 C3: Event1 happens or C2 holds.","=== Context ===
@@ -1961,7 +1961,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((state=event1) | (G ((state=event1) -> (state=event1))))
-","['event1', np.str_('|'), [np.str_('G'), ['event1', np.str_('->'), 'event1']]]",True
+",(event1 | (G (event1 -> event1))),True
 "Initially, event1 happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen.","C1: Event1 will always happen at any future time.
 C2: C1 holds and event1 happens.
 C3: That C2 holds implies that event1 happens.","=== Context ===
@@ -1987,7 +1987,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (((G (state=event1)) & (state=event1)) -> (state=event1))
-","[[[np.str_('G'), 'event1'], np.str_('&'), 'event1'], np.str_('->'), 'event1']",True
+",(((G event1) & event1) -> event1),True
 "Initially, event1 happened. After event3, no other events will happen. After event2, event1 will happen. After event1, event3 will happen.","C1: That event3 happens implies that event2 happens.
 C2: C1 holds or event2 happens.
 C3: That C2 holds implies that event2 happens.","=== Context ===
@@ -2012,7 +2012,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((((state=event3) -> (state=event2)) | (state=event2)) -> (state=event2))
-","[[['event3', np.str_('->'), 'event2'], np.str_('|'), 'event2'], np.str_('->'), 'event2']",False
+",(((event3 -> event2) | event2) -> event2),False
 "Initially, event1 happened. After event3, event1 will happen. After event1, event3 will happen. After event2, no other events will happen.","C1: That event2 happens implies that event2 happens.
 C2: C1 does not hold.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -2037,7 +2037,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (G (! ((state=event2) -> (state=event2))))
-","[np.str_('G'), [np.str_('!'), ['event2', np.str_('->'), 'event2']]]",False
+",(G (! (event2 -> event2))),False
 "Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, event1 will happen.","C1: Event3 will always happen at any future time.
 C2: Event3 will always happen at any future time.
 C3: C1 holds or C2 holds.","=== Context ===
@@ -2063,7 +2063,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC ((G (state=event3)) | (G (state=event3)))
-","[[np.str_('G'), 'event3'], np.str_('|'), [np.str_('G'), 'event3']]",False
+",((G event3) | (G event3)),False
 "Initially, event3 happened. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event2, event1 will happen.","C1: That event1 happens implies that event2 happens.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.","=== Context ===
@@ -2089,7 +2089,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (F ((state=event1) -> (state=event2))))
-","[np.str_('X'), [np.str_('F'), ['event1', np.str_('->'), 'event2']]]",True
+",(X (F (event1 -> event2))),True
 "Initially, event1 happened. After event3, no other events will happen. After event2, event1 will happen. After event1, event2 will happen.","C1: Event3 happens and event3 happens.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.","=== Context ===
@@ -2114,7 +2114,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (X (F ((state=event3) & (state=event3))))
-","[np.str_('X'), [np.str_('F'), ['event3', np.str_('&'), 'event3']]]",False
+",(X (F (event3 & event3))),False
 "Initially, event1 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, no other events will happen. After event3, no other events will happen.","C1: Event2 happens and event2 happens.
 C2: C1 will always happen at any future time.
 C3: C2 will happen at next time.","=== Context ===
@@ -2140,7 +2140,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (X (G ((state=event2) & (state=event2))))
-","[np.str_('X'), [np.str_('G'), ['event2', np.str_('&'), 'event2']]]",False
+",(X (G (event2 & event2))),False
 "Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event2 does not happen.
 C2: C1 does not hold.
 C3: C2 will happen at next time.","=== Context ===
@@ -2168,7 +2168,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (X (! (! (state=event2))))
-","[np.str_('X'), [np.str_('!'), [np.str_('!'), 'event2']]]",False
+",(X (! (! event2))),False
 "Initially, event2 happened. After event1, no other events will happen. After event2, no other events will happen. After event3, event1 will happen.","C1: Event3 happens or event3 happens.
 C2: Event3 happens or C1 holds.
 C3: C2 will happen at next time.","=== Context ===
@@ -2193,7 +2193,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (X ((state=event3) | ((state=event3) | (state=event3))))
-","[np.str_('X'), ['event3', np.str_('|'), ['event3', np.str_('|'), 'event3']]]",False
+",(X (event3 | (event3 | event3))),False
 "Initially, event2 happened. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event3, no other events will happen.","C1: Event3 will always happen at any future time.
 C2: C1 will happen eventually.
 C3: That event2 happens implies that C2 holds.","=== Context ===
@@ -2219,12 +2219,12 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC ((state=event2) -> (F (G (state=event3))))
-","['event2', np.str_('->'), [np.str_('F'), [np.str_('G'), 'event3']]]",False
-"Initially, event3 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, no other events will happen.","C1: Event1 happens and event2 happens.
+",(event2 -> (F (G event3))),False
+"Initially, event3 happened. After event2, no other events will happen. After event3, no other events will happen. After event1, no other events will happen.","C1: Event1 happens and event2 happens.
 C2: C1 holds or event1 happens.
 C3: That C2 holds implies that event1 happens.","=== Context ===
 
-Initially, event3 happened. After event2, no other events will happen. After event1, no other events will happen. After event3, no other events will happen.
+Initially, event3 happened. After event2, no other events will happen. After event3, no other events will happen. After event1, no other events will happen.
 
 === Hypothesis ===
 
@@ -2240,11 +2240,11 @@ ASSIGN
     init(state) := event3;
     next(state) := case
         state = event2 : event2;
-		state = event1 : event1;
 		state = event3 : event3;
+		state = event1 : event1;
     esac;
 LTLSPEC ((((state=event1) & (state=event2)) | (state=event1)) -> (state=event1))
-","[[['event1', np.str_('&'), 'event2'], np.str_('|'), 'event1'], np.str_('->'), 'event1']",True
+",(((event1 & event2) | event1) -> event1),True
 "Initially, event1 happened. After event1, event2 will happen. After event2, event3 will happen. After event3, event1 will happen.","C1: That event2 happens implies that event3 happens.
 C2: Event3 happens and C1 holds.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -2269,7 +2269,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (G ((state=event3) & ((state=event2) -> (state=event3))))
-","[np.str_('G'), ['event3', np.str_('&'), ['event2', np.str_('->'), 'event3']]]",False
+",(G (event3 & (event2 -> event3))),False
 "Initially, event3 happened. After event3, event2 will happen. After event2, event1 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event3 happens or event3 happens.
 C2: C1 holds or event1 happens.
 C3: That C2 holds implies that event2 happens.","=== Context ===
@@ -2295,7 +2295,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((((state=event3) | (state=event3)) | (state=event1)) -> (state=event2))
-","[[['event3', np.str_('|'), 'event3'], np.str_('|'), 'event1'], np.str_('->'), 'event2']",False
+",(((event3 | event3) | event1) -> event2),False
 "Initially, event2 happened. After event3, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event1, event3 will happen.","C1: Event1 happens and event3 happens.
 C2: C1 will happen at next time.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -2322,7 +2322,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (G (X ((state=event1) & (state=event3))))
-","[np.str_('G'), [np.str_('X'), ['event1', np.str_('&'), 'event3']]]",False
+",(G (X (event1 & event3))),False
 "Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, no other events will happen. After event3, event2 will happen.","C1: That event3 happens implies that event3 happens.
 C2: Event1 happens or C1 holds.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -2348,12 +2348,12 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event1) | ((state=event3) -> (state=event3))))
-","[np.str_('G'), ['event1', np.str_('|'), ['event3', np.str_('->'), 'event3']]]",True
-"Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event2 will happen.","C1: Event1 happens or event2 happens.
+",(G (event1 | (event3 -> event3))),True
+"Initially, event2 happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event2 will happen.","C1: Event1 happens or event2 happens.
 C2: C1 will always happen at any future time.
 C3: That C2 holds implies that event1 happens.","=== Context ===
 
-Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event3, event2 will happen.
+Initially, event2 happened. After event2, no other events will happen. After event3, event2 will happen. After event1, event2 will happen.
 
 === Hypothesis ===
 
@@ -2373,7 +2373,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC ((G ((state=event1) | (state=event2))) -> (state=event1))
-","[[np.str_('G'), ['event1', np.str_('|'), 'event2']], np.str_('->'), 'event1']",False
+",((G (event1 | event2)) -> event1),False
 "Initially, event2 happened. After event3, event2 will happen. After event2, event3 will happen. After event1, event2 will happen.","C1: Event2 happens and event3 happens.
 C2: That C1 holds implies that event1 happens.
 C3: That C2 holds implies that event3 happens.","=== Context ===
@@ -2398,7 +2398,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((((state=event2) & (state=event3)) -> (state=event1)) -> (state=event3))
-","[[['event2', np.str_('&'), 'event3'], np.str_('->'), 'event1'], np.str_('->'), 'event3']",False
+",(((event2 & event3) -> event1) -> event3),False
 "Initially, event1 happened. After event3, event1 will happen. After event1, no other events will happen. After event2, event1 will happen.","C1: Event3 will happen eventually.
 C2: Event3 will happen eventually.
 C3: C1 holds and C2 holds.","=== Context ===
@@ -2423,7 +2423,7 @@ ASSIGN
 		state = event1 : event1;
     esac;
 LTLSPEC ((F (state=event3)) & (F (state=event3)))
-","[[np.str_('F'), 'event3'], np.str_('&'), [np.str_('F'), 'event3']]",False
+",((F event3) & (F event3)),False
 "Initially, event2 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event3 will happen. After event3, event2 will happen. After event3, event2 will happen.","C1: Event1 happens or event3 happens.
 C2: That event2 happens implies that C1 holds.
 C3: C2 will always happen at any future time.","=== Context ===
@@ -2449,7 +2449,7 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC (G ((state=event2) -> ((state=event1) | (state=event3))))
-","[np.str_('G'), ['event2', np.str_('->'), ['event1', np.str_('|'), 'event3']]]",False
+",(G (event2 -> (event1 | event3))),False
 "Initially, event3 happened. After event2, event1 will happen. After event2, event3 will happen. After event1, event2 will happen. After event3, no other events will happen.","C1: Event3 will happen at next time.
 C2: C1 will happen eventually.
 C3: C2 will happen at next time.","=== Context ===
@@ -2475,7 +2475,7 @@ ASSIGN
 		state = event3 : event3;
     esac;
 LTLSPEC (X (F (X (state=event3))))
-","[np.str_('X'), [np.str_('F'), [np.str_('X'), 'event3']]]",True
+",(X (F (X event3))),True
 "Initially, event1 happened. After event3, event2 will happen. After event2, no other events will happen. After event1, event3 will happen.","C1: Event3 happens or event2 happens.
 C2: C1 does not hold.
 C3: C2 will happen eventually.","=== Context ===
@@ -2500,7 +2500,7 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (F (! ((state=event3) | (state=event2))))
-","[np.str_('F'), [np.str_('!'), ['event3', np.str_('|'), 'event2']]]",True
+",(F (! (event3 | event2))),True
 "Initially, event3 happened. After event2, event3 will happen. After event3, event1 will happen. After event1, event2 will happen.","C1: Event2 will happen at next time.
 C2: C1 will happen eventually.
 C3: C2 does not hold.","=== Context ===
@@ -2525,7 +2525,7 @@ ASSIGN
 		state = event3 : event1;
     esac;
 LTLSPEC (! (F (X (state=event2))))
-","[np.str_('!'), [np.str_('F'), [np.str_('X'), 'event2']]]",False
+",(! (F (X event2))),False
 "Initially, event3 happened. After event2, event3 will happen. After event3, event2 will happen. After event1, event3 will happen.","C1: Event1 will happen eventually.
 C2: Event1 will happen eventually.
 C3: C1 holds and C2 holds.","=== Context ===
@@ -2550,12 +2550,12 @@ ASSIGN
 		state = event3 : event2;
     esac;
 LTLSPEC ((F (state=event1)) & (F (state=event1)))
-","[[np.str_('F'), 'event1'], np.str_('&'), [np.str_('F'), 'event1']]",False
-"Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.","C1: Event3 happens or event2 happens.
+",((F event1) & (F event1)),False
+"Initially, event3 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen.","C1: Event3 happens or event2 happens.
 C2: C1 does not hold.
 C3: C2 will happen eventually.","=== Context ===
 
-Initially, event3 happened. After event2, no other events will happen. After event1, event3 will happen. After event3, event1 will happen. After event3, event2 will happen.
+Initially, event3 happened. After event2, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event1, event3 will happen.
 
 === Hypothesis ===
 
@@ -2576,4 +2576,4 @@ ASSIGN
 		state = event2 : event2;
     esac;
 LTLSPEC (F (! ((state=event3) | (state=event2))))
-","[np.str_('F'), [np.str_('!'), ['event3', np.str_('|'), 'event2']]]",True
+",(F (! (event3 | event2))),True
