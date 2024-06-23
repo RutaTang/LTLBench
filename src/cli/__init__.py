@@ -1,5 +1,6 @@
 import os
 import re
+from threading import Thread
 
 import click
 import numpy as np
@@ -31,6 +32,11 @@ def app():
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
 def generate(count_of_problem: int, number_of_events: int,
              formula_length: int, random_seed: int):
+    _generate(count_of_problem, number_of_events, formula_length, random_seed)
+
+
+def _generate(count_of_problem: int, number_of_events: int,
+              formula_length: int, random_seed: int):
     """
     Generate LTL problems
     """
@@ -60,11 +66,38 @@ def generate(count_of_problem: int, number_of_events: int,
 
 @app.command()
 @click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
+@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=int, multiple=True,
+              default=(2, 3, 4, 5, 6))
+@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=int, multiple=True,
+              default=(2, 3, 4, 5, 6))
+@click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
+def batch_generate(count_of_problem: int, list_of_number_of_events: list[int],
+                   list_of_formula_length: list[int], random_seed: int):
+    threads = []
+    for number_of_events in list_of_number_of_events:
+        for formula_length in list_of_formula_length:
+            thread = Thread(target=_generate, args=(count_of_problem, number_of_events, formula_length, random_seed))
+            threads.append(thread)
+            thread.start()
+
+    print("Batch generation started (it should take time).")
+    for thread in threads:
+        thread.join()
+    print("Batch generation completed.")
+
+
+@app.command()
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
 @click.option('--number_of_events', '-e', help='Number of events', type=int, default=3)
 @click.option('--formula_length', '-l', help='Length of the formula', type=int, default=3)
-@click.option('--model', '-m', help='Model name', default='qwen:32b-chat')
+@click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
 def evaluate(count_of_problem: int, number_of_events: int,
              formula_length: int, model: str):
+    _evaluate(count_of_problem, number_of_events, formula_length, model)
+
+
+def _evaluate(count_of_problem: int, number_of_events: int,
+              formula_length: int, model: str):
     """
     Evaluate models
     """
@@ -92,3 +125,25 @@ def evaluate(count_of_problem: int, number_of_events: int,
                                     model=model)
     data.to_csv(path, index=False)
     print(f'Evaluation result of {model} saved to {path}.')
+
+
+@app.command()
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
+@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=int, multiple=True,
+              default=(2,))
+@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=int, multiple=True,
+              default=(2, 3, 4, 5, 6))
+@click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
+def batch_evaluate(count_of_problem: int, list_of_number_of_events: list[int],
+                   list_of_formula_length: list[int], model: str):
+    threads = []
+    for number_of_events in list_of_number_of_events:
+        for formula_length in list_of_formula_length:
+            thread = Thread(target=_evaluate, args=(count_of_problem, number_of_events, formula_length, model))
+            threads.append(thread)
+            thread.start()
+
+    print("Batch evaluation started (it should take time).")
+    for thread in threads:
+        thread.join()
+    print("Batch evaluation completed.")
