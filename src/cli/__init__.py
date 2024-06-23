@@ -62,34 +62,33 @@ def generate(count_of_problem: int, number_of_events: int,
 @click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
 @click.option('--number_of_events', '-e', help='Number of events', type=int, default=3)
 @click.option('--formula_length', '-l', help='Length of the formula', type=int, default=3)
-@click.option('--models', '-m', help='List of models', multiple=True, default=['qwen:32b-chat'])
+@click.option('--model', '-m', help='Model name', default='qwen:32b-chat')
 def evaluate(count_of_problem: int, number_of_events: int,
-             formula_length: int, models: tuple[str]):
+             formula_length: int, model: str):
     """
     Evaluate models
     """
-    for model in models:
-        path = get_data_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem)
-        data = pd.read_csv(path)
-        llm = choose_model(model)
-        llm.reconfig({
-            'max_tokens': 5,
-        })
-        for index, row in tqdm.tqdm(data.iterrows(), total=len(data)):
-            question = row['question']
-            message = llm.chat(message=question)
-            pattern = r'(true|false)'
-            result = re.search(pattern, message, flags=re.IGNORECASE)
-            if result is None:
-                result = -1
-            else:
-                result = result.group(0)
-                result = result.lower()
-                result = 1 if result == 'true' else 0
-            data.at[index, 'prediction'] = result
-            data.at[index, 'prediction_raw'] = message
+    path = get_data_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem)
+    data = pd.read_csv(path)
+    llm = choose_model(model)
+    llm.reconfig({
+        'max_tokens': 5,
+    })
+    for index, row in tqdm.tqdm(data.iterrows(), total=len(data)):
+        question = row['question']
+        message = llm.chat(message=question)
+        pattern = r'(true|false)'
+        result = re.search(pattern, message, flags=re.IGNORECASE)
+        if result is None:
+            result = -1
+        else:
+            result = result.group(0)
+            result = result.lower()
+            result = 1 if result == 'true' else 0
+        data.at[index, 'prediction'] = result
+        data.at[index, 'prediction_raw'] = str(message)
 
-        path = get_evaluation_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem,
-                                        model=model)
-        data.to_csv(path, index=False)
-        print(f'Evaluation result of {model} saved to {path}.')
+    path = get_evaluation_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem,
+                                    model=model)
+    data.to_csv(path, index=False)
+    print(f'Evaluation result of {model} saved to {path}.')
