@@ -2,6 +2,8 @@ import copy
 import os
 from typing import Dict
 
+import backoff
+import openai
 from dotenv import find_dotenv, load_dotenv
 from openai import OpenAI
 
@@ -23,6 +25,7 @@ class OpenAIModel(BaseModel):
     def reconfig(self, config: Dict[str, any]):
         self.config.update(config)
 
+    @backoff.on_exception(backoff.expo, openai.RateLimitError, max_time=10)
     def chat(self, message: str) -> str:
         chat_completion = self.client.chat.completions.create(
             messages=[{
