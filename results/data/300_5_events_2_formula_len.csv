@@ -825,10 +825,10 @@ LTLSPEC ((G (state=event2)) -> (state=event5))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event2, no other events will happen. After event5, event2 will happen. After event5, event4 will happen. After event4, event5 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event1, event3 will happen. After event1, event4 will happen.","C1: Event1 will happen at next time.
+"Initially, event4 happened. After event2, no other events will happen. After event1, event3 will happen. After event1, event4 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event5 will happen. After event4, event5 will happen. After event5, event2 will happen. After event5, event4 will happen. After event5, event2 will happen. After event5, event4 will happen. After event5, event2 will happen. After event5, event4 will happen.","C1: Event1 will happen at next time.
 C2: C1 does not hold.","=== Context ===
 
-Initially, event4 happened. After event2, no other events will happen. After event5, event2 will happen. After event5, event4 will happen. After event4, event5 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event1, event3 will happen. After event1, event4 will happen.
+Initially, event4 happened. After event2, no other events will happen. After event1, event3 will happen. After event1, event4 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event5 will happen. After event4, event5 will happen. After event5, event2 will happen. After event5, event4 will happen. After event5, event2 will happen. After event5, event4 will happen. After event5, event2 will happen. After event5, event4 will happen.
 
 === Hypothesis ===
 
@@ -1300,10 +1300,10 @@ LTLSPEC ((state=event1) & ((state=event1) | (state=event2)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event2, no other events will happen. After event5, event1 will happen. After event5, event2 will happen. After event5, event3 will happen. After event5, event4 will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen.","C1: Event2 happens or event1 happens.
+"Initially, event3 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event1 will happen. After event4, event3 will happen. After event5, event1 will happen. After event5, event2 will happen. After event5, event3 will happen. After event5, event4 will happen. After event3, event2 will happen. After event3, event5 will happen. After event3, event2 will happen. After event3, event5 will happen.","C1: Event2 happens or event1 happens.
 C2: That C1 holds implies that event5 happens.","=== Context ===
 
-Initially, event3 happened. After event2, no other events will happen. After event5, event1 will happen. After event5, event2 will happen. After event5, event3 will happen. After event5, event4 will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen.
+Initially, event3 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event1 will happen. After event4, event3 will happen. After event5, event1 will happen. After event5, event2 will happen. After event5, event3 will happen. After event5, event4 will happen. After event3, event2 will happen. After event3, event5 will happen. After event3, event2 will happen. After event3, event5 will happen.
 
 === Hypothesis ===
 
@@ -1578,10 +1578,10 @@ LTLSPEC (F (X (state=event2)))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event4 will happen. After event1, event3 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event5 will happen.","C1: Event4 does not happen.
+"Initially, event5 happened. After event5, no other events will happen. After event1, event3 will happen. After event1, event4 will happen. After event1, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event5 will happen. After event2, event1 will happen. After event2, event4 will happen. After event2, event1 will happen. After event2, event4 will happen.","C1: Event4 does not happen.
 C2: That event1 happens implies that C1 holds.","=== Context ===
 
-Initially, event5 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event4 will happen. After event1, event3 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event5 will happen.
+Initially, event5 happened. After event5, no other events will happen. After event1, event3 will happen. After event1, event4 will happen. After event1, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event5 will happen. After event2, event1 will happen. After event2, event4 will happen. After event2, event1 will happen. After event2, event4 will happen.
 
 === Hypothesis ===
 
@@ -2204,10 +2204,10 @@ LTLSPEC ((state=event2) | ((state=event3) -> (state=event5)))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event2, event5 will happen. After event5, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen. After event1, no other events will happen.","C1: Event5 does not happen.
+"Initially, event3 happened. After event2, event5 will happen. After event5, event2 will happen. After event1, no other events will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.","C1: Event5 does not happen.
 C2: C1 will happen at next time.","=== Context ===
 
-Initially, event3 happened. After event2, event5 will happen. After event5, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen. After event1, no other events will happen.
+Initially, event3 happened. After event2, event5 will happen. After event5, event2 will happen. After event1, no other events will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.
 
 === Hypothesis ===
 
@@ -4360,10 +4360,10 @@ LTLSPEC (G (! (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event4 will happen. After event2, event5 will happen. After event1, event4 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen.","C1: Event5 will happen eventually.
+"Initially, event4 happened. After event5, no other events will happen. After event1, event4 will happen. After event4, event1 will happen. After event4, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event5 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event4 will happen. After event2, event5 will happen.","C1: Event5 will happen eventually.
 C2: That C1 holds implies that event4 happens.","=== Context ===
 
-Initially, event4 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event4 will happen. After event2, event5 will happen. After event1, event4 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen.
+Initially, event4 happened. After event5, no other events will happen. After event1, event4 will happen. After event4, event1 will happen. After event4, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event5 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event4 will happen. After event2, event5 will happen.
 
 === Hypothesis ===
 
@@ -7264,10 +7264,10 @@ LTLSPEC (F ((state=event1) | (state=event1)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event1, event4 will happen. After event4, no other events will happen. After event5, event2 will happen. After event2, event1 will happen. After event2, event5 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen.","C1: Event2 happens and event1 happens.
+"Initially, event5 happened. After event1, event4 will happen. After event4, no other events will happen. After event2, event1 will happen. After event2, event5 will happen. After event5, event2 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen.","C1: Event2 happens and event1 happens.
 C2: That C1 holds implies that event2 happens.","=== Context ===
 
-Initially, event5 happened. After event1, event4 will happen. After event4, no other events will happen. After event5, event2 will happen. After event2, event1 will happen. After event2, event5 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen.
+Initially, event5 happened. After event1, event4 will happen. After event4, no other events will happen. After event2, event1 will happen. After event2, event5 will happen. After event5, event2 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen.
 
 === Hypothesis ===
 
@@ -8621,10 +8621,10 @@ LTLSPEC ((! (state=event3)) -> (state=event2))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event2, no other events will happen. After event5, event1 will happen. After event5, event2 will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event3 will happen. After event4, event5 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen.","C1: Event5 will always happen at any future time.
+"Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event3 will happen. After event4, event5 will happen. After event5, event1 will happen. After event5, event2 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event5, event1 will happen. After event5, event2 will happen.","C1: Event5 will always happen at any future time.
 C2: C1 holds and event5 happens.","=== Context ===
 
-Initially, event1 happened. After event2, no other events will happen. After event5, event1 will happen. After event5, event2 will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event3 will happen. After event4, event5 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen.
+Initially, event1 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event4 will happen. After event1, event5 will happen. After event4, event3 will happen. After event4, event5 will happen. After event5, event1 will happen. After event5, event2 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event5, event1 will happen. After event5, event2 will happen.
 
 === Hypothesis ===
 
@@ -9001,10 +9001,10 @@ LTLSPEC (((state=event5) -> (state=event1)) -> (state=event2))
     <edge source=""event4"" target=""event5"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event2, no other events will happen. After event5, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event1, event4 will happen. After event3, no other events will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event3 will happen. After event4, event5 will happen.","C1: Event3 will happen at next time.
+"Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event1, event4 will happen. After event3, no other events will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event3 will happen. After event4, event5 will happen. After event5, event1 will happen.","C1: Event3 will happen at next time.
 C2: C1 will happen eventually.","=== Context ===
 
-Initially, event2 happened. After event2, no other events will happen. After event5, event1 will happen. After event1, event2 will happen. After event1, event3 will happen. After event1, event4 will happen. After event3, no other events will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event3 will happen. After event4, event5 will happen.
+Initially, event2 happened. After event2, no other events will happen. After event1, event2 will happen. After event1, event3 will happen. After event1, event4 will happen. After event3, no other events will happen. After event4, event1 will happen. After event4, event2 will happen. After event4, event3 will happen. After event4, event5 will happen. After event5, event1 will happen.
 
 === Hypothesis ===
 
@@ -9101,10 +9101,10 @@ LTLSPEC (G ((state=event3) & (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event5 will happen. After event1, event2 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.","C1: Event3 happens and event4 happens.
+"Initially, event3 happened. After event5, no other events will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.","C1: Event3 happens and event4 happens.
 C2: C1 will happen eventually.","=== Context ===
 
-Initially, event3 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event5 will happen. After event1, event2 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.
+Initially, event3 happened. After event5, no other events will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event3 will happen. After event2, event5 will happen. After event3, event2 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.
 
 === Hypothesis ===
 
@@ -11128,10 +11128,10 @@ LTLSPEC (G ((state=event2) | (state=event4)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event2, no other events will happen. After event5, event1 will happen. After event5, event3 will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.","C1: Event2 happens or event4 happens.
+"Initially, event4 happened. After event2, no other events will happen. After event1, no other events will happen. After event5, event1 will happen. After event5, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.","C1: Event2 happens or event4 happens.
 C2: C1 will always happen at any future time.","=== Context ===
 
-Initially, event4 happened. After event2, no other events will happen. After event5, event1 will happen. After event5, event3 will happen. After event1, no other events will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.
+Initially, event4 happened. After event2, no other events will happen. After event1, no other events will happen. After event5, event1 will happen. After event5, event3 will happen. After event3, event1 will happen. After event3, event2 will happen. After event3, event4 will happen. After event3, event5 will happen. After event4, event3 will happen. After event4, event5 will happen.
 
 === Hypothesis ===
 
@@ -11386,10 +11386,10 @@ LTLSPEC (! ((state=event3) -> (state=event3)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event1, event3 will happen. After event1, event4 will happen. After event3, event4 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen. After event5, event4 will happen. After event2, event4 will happen. After event2, event5 will happen.","C1: Event1 happens and event5 happens.
+"Initially, event5 happened. After event1, event3 will happen. After event1, event4 will happen. After event3, event4 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen. After event2, event4 will happen. After event2, event5 will happen. After event5, event4 will happen.","C1: Event1 happens and event5 happens.
 C2: C1 will happen at next time.","=== Context ===
 
-Initially, event5 happened. After event1, event3 will happen. After event1, event4 will happen. After event3, event4 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen. After event5, event4 will happen. After event2, event4 will happen. After event2, event5 will happen.
+Initially, event5 happened. After event1, event3 will happen. After event1, event4 will happen. After event3, event4 will happen. After event4, event1 will happen. After event4, event3 will happen. After event4, event1 will happen. After event4, event3 will happen. After event2, event4 will happen. After event2, event5 will happen. After event5, event4 will happen.
 
 === Hypothesis ===
 
@@ -13559,10 +13559,10 @@ LTLSPEC ((state=event4) & (! (state=event4)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event5 will happen. After event1, event2 will happen. After event3, no other events will happen. After event4, event1 will happen.","C1: That event5 happens implies that event5 happens.
+"Initially, event5 happened. After event5, no other events will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event5 will happen. After event3, no other events will happen. After event4, event1 will happen.","C1: That event5 happens implies that event5 happens.
 C2: Event3 happens and C1 holds.","=== Context ===
 
-Initially, event5 happened. After event5, no other events will happen. After event2, event1 will happen. After event2, event5 will happen. After event1, event2 will happen. After event3, no other events will happen. After event4, event1 will happen.
+Initially, event5 happened. After event5, no other events will happen. After event1, event2 will happen. After event2, event1 will happen. After event2, event5 will happen. After event3, no other events will happen. After event4, event1 will happen.
 
 === Hypothesis ===
 
@@ -13580,8 +13580,8 @@ ASSIGN
 		state = event2 : event1;
 		state = event2 : event5;
 		state = event4 : event1;
-		state = event5 : event5;
 		state = event3 : event3;
+		state = event5 : event5;
     esac;
 LTLSPEC ((state=event3) & ((state=event5) -> (state=event5)))
 ",(event3 & (event5 -> event5)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">

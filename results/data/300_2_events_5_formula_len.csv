@@ -57,8 +57,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! (! ((state=event1) | (X (! (state=event1))))))
 ",(! (! (event1 | (X (! event1))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -292,8 +292,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (((state=event1) & ((F (state=event2)) | (F (state=event2)))) -> (state=event1))
 ",((event1 & ((F event2) | (F event2))) -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -325,8 +325,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (X (F ((state=event1) | ((state=event1) | (state=event2))))))
 ",(F (X (F (event1 | (event1 | event2))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -390,8 +390,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((G (F (state=event1))) -> (G (F (state=event1))))
 ",((G (F event1)) -> (G (F event1))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -458,8 +458,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((G (! (X (state=event2)))) -> (X (state=event2)))
 ",((G (! (X event2))) -> (X event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -627,8 +627,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((G (state=event2)) & (F (X (G (state=event2)))))
 ",((G event2) & (F (X (G event2)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -695,8 +695,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F ((state=event2) -> ((! (! (state=event1))) -> (state=event1))))
 ",(F (event2 -> ((! (! event1)) -> event1))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -728,8 +728,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! ((state=event2) & ((X ((state=event1) | (state=event2))) | (state=event2))))
 ",(! (event2 & ((X (event1 | event2)) | event2))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -795,8 +795,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G (((state=event2) & ((state=event1) -> (! (state=event2)))) | (state=event1)))
 ",(G ((event2 & (event1 -> (! event2))) | event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -860,8 +860,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((((state=event2) -> (X (state=event1))) -> (state=event1)) -> (X (state=event1)))
 ",(((event2 -> (X event1)) -> event1) -> (X event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -893,8 +893,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F ((! (state=event2)) | (! (! (state=event2)))))
 ",(F ((! event2) | (! (! event2)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -959,8 +959,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F ((! (G (state=event1))) | (G (state=event1))))
 ",(F ((! (G event1)) | (G event1))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -992,8 +992,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G ((((state=event1) | (state=event2)) | ((state=event1) | (state=event2))) | (state=event1)))
 ",(G (((event1 | event2) | (event1 | event2)) | event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1161,8 +1161,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((! (state=event1)) -> ((state=event2) | ((! (state=event1)) -> (state=event1))))
 ",((! event1) -> (event2 | ((! event1) -> event1))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1329,8 +1329,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (((state=event1) -> (state=event2)) -> ((state=event1) & (((state=event1) -> (state=event2)) | (state=event1))))
 ",((event1 -> event2) -> (event1 & ((event1 -> event2) | event1))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1535,8 +1535,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((((state=event1) -> (state=event1)) -> ((state=event1) -> (state=event1))) | ((state=event1) -> (state=event1)))
 ",(((event1 -> event1) -> (event1 -> event1)) | (event1 -> event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1671,8 +1671,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (X (G ((state=event1) -> ((state=event1) | (state=event2))))))
 ",(F (X (G (event1 -> (event1 | event2))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1772,8 +1772,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G ((state=event1) -> (X ((! (state=event2)) | (state=event2)))))
 ",(G (event1 -> (X ((! event2) | event2)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1839,8 +1839,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! (((state=event1) | (state=event1)) | (F ((state=event1) | (state=event1)))))
 ",(! ((event1 | event1) | (F (event1 | event1)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1975,8 +1975,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X ((X (! (state=event1))) & (! (state=event1))))
 ",(X ((X (! event1)) & (! event1))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2076,8 +2076,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((((state=event1) -> ((state=event1) -> (state=event2))) -> (state=event1)) -> ((state=event1) -> (state=event2)))
 ",(((event1 -> (event1 -> event2)) -> event1) -> (event1 -> event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2208,8 +2208,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (X (X (X (F (state=event2))))))
 ",(X (X (X (X (F event2))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2239,8 +2239,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((G ((state=event2) | (state=event2))) & (G ((state=event2) | (state=event2))))
 ",((G (event2 | event2)) & (G (event2 | event2))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2272,8 +2272,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (((state=event1) & (state=event1)) -> (G ((state=event1) & (state=event1)))))
 ",(event2 -> ((event1 & event1) -> (G (event1 & event1)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2923,8 +2923,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G ((F (state=event1)) -> ((state=event1) -> (F (state=event1)))))
 ",(G ((F event1) -> (event1 -> (F event1)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3198,8 +3198,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((! ((F ((state=event1) -> (state=event2))) | (state=event2))) | (state=event2))
 ",((! ((F (event1 -> event2)) | event2)) | event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3300,8 +3300,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! (X (F ((state=event1) & (X (state=event1))))))
 ",(! (X (F (event1 & (X event1))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3368,8 +3368,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((X (F (G ((state=event1) -> (state=event2))))) -> (state=event2))
 ",((X (F (G (event1 -> event2)))) -> event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3470,8 +3470,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((! (X (G (G (state=event1))))) -> (state=event1))
 ",((! (X (G (G event1)))) -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3503,8 +3503,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (G (X (! (X (state=event1))))))
 ",(F (G (X (! (X event1))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3604,8 +3604,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (! (G (((state=event2) -> (state=event1)) & (state=event1)))))
 ",(event2 -> (! (G ((event2 -> event1) & event1)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3809,8 +3809,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G (! (F ((state=event2) & (X (state=event1))))))
 ",(G (! (F (event2 & (X event1))))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3910,8 +3910,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((! (F ((state=event2) -> (state=event2)))) -> ((state=event2) -> (state=event2)))
 ",((! (F (event2 -> event2))) -> (event2 -> event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4181,8 +4181,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (((state=event1) -> (state=event2)) | (((state=event1) -> (state=event2)) -> ((state=event1) -> (state=event2))))
 ",((event1 -> event2) | ((event1 -> event2) -> (event1 -> event2))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4689,8 +4689,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((((state=event1) & (state=event1)) & (state=event2)) -> (((state=event1) & (state=event1)) & (state=event2)))
 ",(((event1 & event1) & event2) -> ((event1 & event1) & event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4824,8 +4824,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((F (! (! (state=event2)))) | (! (state=event2)))
 ",((F (! (! event2))) | (! event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4958,8 +4958,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X ((state=event1) | (F ((F (state=event2)) | (state=event2)))))
 ",(X (event1 | (F ((F event2) | event2)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5025,8 +5025,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X ((! (state=event1)) -> (G (! (state=event1)))))
 ",(X ((! event1) -> (G (! event1)))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5058,8 +5058,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((state=event2) -> (((G (state=event2)) -> (state=event2)) | (G (state=event2))))
 ",(event2 -> (((G event2) -> event2) | (G event2))),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5192,8 +5192,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (! (F (! ((state=event2) & (state=event1))))))
 ",(X (! (F (! (event2 & event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5501,8 +5501,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G (X (G ((state=event2) & ((state=event2) | (state=event1))))))
 ",(G (X (G (event2 & (event2 | event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5534,8 +5534,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (! (F (G ((state=event1) -> (state=event1))))))
 ",(X (! (F (G (event1 -> event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5567,8 +5567,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! (! (F (! (! (state=event1))))))
 ",(! (! (F (! (! event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5769,8 +5769,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (((state=event1) & ((state=event2) & (state=event1))) & ((state=event1) & ((state=event2) & (state=event1))))
 ",((event1 & (event2 & event1)) & (event1 & (event2 & event1))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5904,8 +5904,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((((state=event2) | (state=event2)) & (state=event1)) & (((state=event2) | (state=event2)) & (state=event1)))
 ",(((event2 | event2) & event1) & ((event2 | event2) & event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5937,8 +5937,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X ((F (! (G (state=event1)))) & (state=event1)))
 ",(X ((F (! (G event1))) & event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6038,8 +6038,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (X (! (X (X (state=event1))))))
 ",(X (X (! (X (X event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6106,8 +6106,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (((state=event2) | (state=event1)) & (! ((state=event2) | (state=event1)))))
 ",(F ((event2 | event1) & (! (event2 | event1)))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6174,8 +6174,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((((state=event1) | (state=event1)) & ((state=event1) | (state=event1))) | ((state=event1) | (state=event1)))
 ",(((event1 | event1) & (event1 | event1)) | (event1 | event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6307,8 +6307,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((X ((state=event2) | (state=event2))) | (X ((state=event2) | (state=event2))))
 ",((X (event2 | event2)) | (X (event2 | event2))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6375,8 +6375,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (((F (state=event2)) -> (F (state=event2))) -> (state=event2)))
 ",(F (((F event2) -> (F event2)) -> event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6477,8 +6477,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (F ((X (G (state=event2))) & (state=event2))))
 ",(X (F ((X (G event2)) & event2))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6544,8 +6544,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! (X (F (F (G (state=event1))))))
 ",(! (X (F (F (G event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6646,8 +6646,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((G (F (X ((state=event2) & (state=event2))))) -> (state=event1))
 ",((G (F (X (event2 & event2)))) -> event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6713,8 +6713,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((F (state=event2)) | (F (X (F (state=event2)))))
 ",((F event2) | (F (X (F event2)))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7055,8 +7055,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (((((state=event2) | (state=event2)) -> ((state=event2) | (state=event2))) & (state=event1)) -> (state=event2))
 ",((((event2 | event2) -> (event2 | event2)) & event1) -> event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7154,8 +7154,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((X ((! (state=event2)) -> (state=event2))) -> (! (state=event2)))
 ",((X ((! event2) -> event2)) -> (! event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7222,8 +7222,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (((state=event2) | (((state=event1) & (state=event2)) -> (state=event2))) -> ((state=event1) & (state=event2)))
 ",((event2 | ((event1 & event2) -> event2)) -> (event1 & event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7460,8 +7460,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! ((G (F (state=event2))) & (F (state=event2))))
 ",(! ((G (F event2)) & (F event2))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7664,8 +7664,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (! (! (X (F (state=event1))))))
 ",(F (! (! (X (F event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7697,8 +7697,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (((state=event2) & (! ((state=event2) -> (state=event2)))) | (state=event2)))
 ",(X ((event2 & (! (event2 -> event2))) | event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7969,8 +7969,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((F (((state=event1) & (state=event1)) & (state=event2))) & ((state=event1) & (state=event1)))
 ",((F ((event1 & event1) & event2)) & (event1 & event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8036,8 +8036,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (((state=event1) & (state=event2)) & (! ((state=event1) & (state=event2)))))
 ",(X ((event1 & event2) & (! (event1 & event2)))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8137,8 +8137,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((state=event1) & ((G (G (G (state=event2)))) -> (state=event2)))
 ",(event1 & ((G (G (G event2))) -> event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8238,8 +8238,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((! ((state=event1) -> ((state=event1) | (state=event2)))) & ((state=event1) | (state=event2)))
 ",((! (event1 -> (event1 | event2))) & (event1 | event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8408,8 +8408,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G (((state=event1) -> (state=event2)) & (((state=event1) -> (state=event2)) & (state=event1))))
 ",(G ((event1 -> event2) & ((event1 -> event2) & event1))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8545,8 +8545,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F (! (((state=event1) | (state=event1)) -> ((state=event1) | (state=event1)))))
 ",(F (! ((event1 | event1) -> (event1 | event1)))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8715,8 +8715,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (F ((state=event2) & (X ((state=event1) & (G (state=event2))))))
 ",(F (event2 & (X (event1 & (G event2))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8922,8 +8922,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (G ((state=event2) & (! (F (state=event2))))))
 ",(X (G (event2 & (! (F event2))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8990,8 +8990,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (! ((((state=event1) & (state=event2)) | (state=event1)) -> (state=event1))))
 ",(X (! (((event1 & event2) | event1) -> event1))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9023,8 +9023,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! (((state=event1) -> (state=event1)) & ((state=event1) -> ((state=event1) -> (state=event1)))))
 ",(! ((event1 -> event1) & (event1 -> (event1 -> event1)))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9126,8 +9126,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (X (X (X (F (G (state=event1))))))
 ",(X (X (X (F (G event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9193,8 +9193,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (! ((F (X (! (state=event2)))) | (state=event1)))
 ",(! ((F (X (! event2))) | event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9431,8 +9431,8 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC (G (X (G (! ((state=event1) | (state=event1))))))
 ",(G (X (G (! (event1 | event1))))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9669,8 +9669,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((F (state=event1)) & (G (! (F (state=event1)))))
 ",((F event1) & (G (! (F event1)))),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9804,8 +9804,8 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event2;
-		state = event1 : event1;
+        state = event1 : event1;
+		state = event2 : event2;
     esac;
 LTLSPEC ((! (G (((state=event2) -> (state=event2)) -> (state=event1)))) -> (state=event1))
 ",((! (G ((event2 -> event2) -> event1))) -> event1),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">

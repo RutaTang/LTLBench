@@ -66,13 +66,17 @@ def _generate(count_of_problem: int, number_of_events: int,
 
 @app.command()
 @click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
-@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=int, multiple=True,
-              default=(2, 3, 4, 5, 6))
-@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=int, multiple=True,
-              default=(2, 3, 4, 5, 6))
+@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=str,
+              default="2")
+@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=str,
+              default="2, 3, 4, 5, 6")
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
-def batch_generate(count_of_problem: int, list_of_number_of_events: list[int],
-                   list_of_formula_length: list[int], random_seed: int):
+def batch_generate(count_of_problem: int, list_of_number_of_events: str,
+                   list_of_formula_length: str, random_seed: int):
+    # Parse
+    list_of_number_of_events = [int(x) for x in list_of_number_of_events.split(',')]
+    list_of_formula_length = [int(x) for x in list_of_formula_length.split(',')]
+    # Generate problems in parallel
     threads = []
     for number_of_events in list_of_number_of_events:
         for formula_length in list_of_formula_length:
@@ -129,13 +133,18 @@ def _evaluate(count_of_problem: int, number_of_events: int,
 
 @app.command()
 @click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
-@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=int, multiple=True,
-              default=(2,))
-@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=int, multiple=True,
-              default=(2, 3, 4, 5, 6))
+@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=str,
+              default="2")
+@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=str,
+              default="2, 3, 4, 5, 6")
 @click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
-def batch_evaluate(count_of_problem: int, list_of_number_of_events: list[int],
-                   list_of_formula_length: list[int], model: str):
+def batch_evaluate(count_of_problem: int, list_of_number_of_events: str,
+                   list_of_formula_length: str, model: str):
+    # Parse
+    list_of_number_of_events = [int(x) for x in list_of_number_of_events.split(',')]
+    list_of_formula_length = [int(x) for x in list_of_formula_length.split(',')]
+
+    # Evaluate problems in parallel
     threads = []
     for number_of_events in list_of_number_of_events:
         for formula_length in list_of_formula_length:
