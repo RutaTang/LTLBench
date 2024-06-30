@@ -60,13 +60,13 @@ def generate_context_from_graph(rng: Generator, graph: nx.DiGraph) -> str:
         visited.add(node)
 
         for neighbor in graph.neighbors(node):
-            transition = f'After {node}, {neighbor} will happen.'
+            transition = f'After {node}, {neighbor} can happen.'
             context.append(transition)
             if neighbor not in visited:
                 queue.append(neighbor)
 
         if len(list(graph.neighbors(node))) == 0:
-            context.append(f'After {node}, no other events will happen.')
+            context.append(f'After {node}, no other events can happen.')
 
         if len(queue) == 0 and len(visited) != len(nodes):
             node = list(set(nodes) - visited)[0]
