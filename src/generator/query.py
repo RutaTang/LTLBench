@@ -131,7 +131,7 @@ def convert_ltl_formula_to_nl(ltl_formula: list, base_states: list, c_idx: Refer
         if operator == "X":
             nl = f'{operand} will happen at next time'
         elif operator == "G":
-            nl = f'{operand} will always happen at any future time'
+            nl = f'{operand} will always be true at any future time'
         elif operator == "F":
             nl = f'{operand} will happen eventually'
         elif operator == "!":

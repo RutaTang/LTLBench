@@ -29,8 +29,7 @@ class Test(TestCase):
 
     def test_covert_ltl_formula_to_str(self):
         converted = covert_ltl_formula_to_str_formula(['F', ['G', ['!', "event2"]]])
-        print(converted)
-        self.assertTrue(converted == "(F (G (! event2))")
+        self.assertTrue(converted == "(F (G (! event2)))")
 
     def test_convert_ltl_formula_to_nl(self):
         h_idx = ReferenceValue(0)
