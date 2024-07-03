@@ -32,12 +32,12 @@ def app():
 @click.option('--number_of_operators', '-l', help='Number of operators', type=int)
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
 def generate(count_of_problem: int, number_of_events: int,
-             formula_length: int, random_seed: int):
-    _generate(count_of_problem, number_of_events, formula_length, random_seed)
+             number_of_operators: int, random_seed: int):
+    _generate(count_of_problem, number_of_events, number_of_operators, random_seed)
 
 
 def _generate(count_of_problem: int, number_of_events: int,
-              formula_length: int, random_seed: int):
+              number_of_operators: int, random_seed: int):
     """
     Generate LTL problems
     """
@@ -51,7 +51,7 @@ def _generate(count_of_problem: int, number_of_events: int,
 
     # Generate problems while ensuring that there are equal number of true and false problems
     while (len(problems_false) + len(problems_true)) < count_of_problem:
-        problem = generate_problem(rng=rng, number_of_events=number_of_events, formula_length=formula_length)
+        problem = generate_problem(rng=rng, number_of_events=number_of_events, formula_length=number_of_operators)
         if problem['answer'] and len(problems_true) < count_of_problem // 2:
             problems_true.append(problem)
         elif (not problem['answer']) and len(problems_false) < count_of_problem // 2:
@@ -60,7 +60,7 @@ def _generate(count_of_problem: int, number_of_events: int,
     problems.extend(problems_true)
     problems.extend(problems_false)
 
-    path = get_data_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem)
+    path = get_data_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem)
     pd.DataFrame(problems).to_csv(path, index=False)
     print(f'Generated {count_of_problem} problems to {path}.')
 
@@ -70,15 +70,15 @@ def _generate(count_of_problem: int, number_of_events: int,
 @click.option('--list_of_numbers_of_events', '-e', help='List of numbers of events', type=str)
 @click.option('--list_of_numbers_of_operators', '-l', help='List of numbers of operators', type=str)
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
-def batch_generate(count_of_problem: int, list_of_number_of_events: str,
-                   list_of_formula_length: str, random_seed: int):
+def batch_generate(count_of_problem: int, list_of_numbers_of_events: str,
+                   list_of_numbers_of_operators: str, random_seed: int):
     # Parse
-    list_of_number_of_events = [int(x) for x in list_of_number_of_events.split(',')]
-    list_of_formula_length = [int(x) for x in list_of_formula_length.split(',')]
+    list_of_numbers_of_events = [int(x) for x in list_of_numbers_of_events.split(',')]
+    list_of_numbers_of_operators = [int(x) for x in list_of_numbers_of_operators.split(',')]
     # Generate problems in parallel
     threads = []
-    for number_of_events in list_of_number_of_events:
-        for formula_length in list_of_formula_length:
+    for number_of_events in list_of_numbers_of_events:
+        for formula_length in list_of_numbers_of_operators:
             thread = Thread(target=_generate, args=(count_of_problem, number_of_events, formula_length, random_seed))
             threads.append(thread)
             thread.start()
@@ -95,16 +95,16 @@ def batch_generate(count_of_problem: int, list_of_number_of_events: str,
 @click.option('--number_of_operators', '-l', help='Number of operators', type=int)
 @click.option('--model', '-m', help='Model name')
 def evaluate(count_of_problem: int, number_of_events: int,
-             formula_length: int, model: str):
-    _evaluate(count_of_problem, number_of_events, formula_length, model)
+             number_of_operators: int, model: str):
+    _evaluate(count_of_problem, number_of_events, number_of_operators, model)
 
 
 def _evaluate(count_of_problem: int, number_of_events: int,
-              formula_length: int, model: str):
+              number_of_operators: int, model: str):
     """
     Evaluate models
     """
-    path = get_data_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem)
+    path = get_data_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem)
     data = pd.read_csv(path)
     llm = choose_model(model)
     llm.reconfig({
@@ -124,7 +124,7 @@ def _evaluate(count_of_problem: int, number_of_events: int,
         data.at[index, 'prediction'] = result
         data.at[index, 'prediction_raw'] = str(message)
 
-    path = get_evaluation_file_path(event_n=number_of_events, formula_n=formula_length, count=count_of_problem,
+    path = get_evaluation_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem,
                                     model=model)
     data.to_csv(path, index=False)
     # print(f'Evaluation result of {model} saved to {path}.')
@@ -135,16 +135,16 @@ def _evaluate(count_of_problem: int, number_of_events: int,
 @click.option('--list_of_numbers_of_events', '-e', help='List of numbers of events', type=str)
 @click.option('--list_of_numbers_of_operators', '-l', help='List of numbers of operators', type=str)
 @click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
-def batch_evaluate(count_of_problem: int, list_of_number_of_events: str,
-                   list_of_formula_length: str, model: str):
+def batch_evaluate(count_of_problem: int, list_of_numbers_of_events: str,
+                   list_of_numbers_of_operators: str, model: str):
     # Parse
-    list_of_number_of_events = [int(x) for x in list_of_number_of_events.split(',')]
-    list_of_formula_length = [int(x) for x in list_of_formula_length.split(',')]
+    list_of_numbers_of_events = [int(x) for x in list_of_numbers_of_events.split(',')]
+    list_of_numbers_of_operators = [int(x) for x in list_of_numbers_of_operators.split(',')]
 
     # Evaluate problems in parallel
     threads = []
-    for number_of_events in list_of_number_of_events:
-        for formula_length in list_of_formula_length:
+    for number_of_events in list_of_numbers_of_events:
+        for formula_length in list_of_numbers_of_operators:
             thread = Thread(target=_evaluate, args=(count_of_problem, number_of_events, formula_length, model))
             threads.append(thread)
             thread.start()
