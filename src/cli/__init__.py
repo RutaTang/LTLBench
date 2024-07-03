@@ -27,9 +27,9 @@ def app():
 
 
 @app.command()
-@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
-@click.option('--number_of_events', '-e', help='Number of events', type=int, default=3)
-@click.option('--formula_length', '-l', help='Length of the formula', type=int, default=3)
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int)
+@click.option('--number_of_events', '-e', help='Number of events', type=int)
+@click.option('--number_of_operators', '-l', help='Number of operators', type=int)
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
 def generate(count_of_problem: int, number_of_events: int,
              formula_length: int, random_seed: int):
@@ -66,11 +66,9 @@ def _generate(count_of_problem: int, number_of_events: int,
 
 
 @app.command()
-@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
-@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=str,
-              default="2")
-@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=str,
-              default="2, 3, 4, 5, 6")
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int)
+@click.option('--list_of_numbers_of_events', '-e', help='List of numbers of events', type=str)
+@click.option('--list_of_numbers_of_operators', '-l', help='List of numbers of operators', type=str)
 @click.option('--random_seed', '-s', help='Random seed', type=int, default=1)
 def batch_generate(count_of_problem: int, list_of_number_of_events: str,
                    list_of_formula_length: str, random_seed: int):
@@ -92,10 +90,10 @@ def batch_generate(count_of_problem: int, list_of_number_of_events: str,
 
 
 @app.command()
-@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
-@click.option('--number_of_events', '-e', help='Number of events', type=int, default=3)
-@click.option('--formula_length', '-l', help='Length of the formula', type=int, default=3)
-@click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int)
+@click.option('--number_of_events', '-e', help='Number of events', type=int)
+@click.option('--number_of_operators', '-l', help='Number of operators', type=int)
+@click.option('--model', '-m', help='Model name')
 def evaluate(count_of_problem: int, number_of_events: int,
              formula_length: int, model: str):
     _evaluate(count_of_problem, number_of_events, formula_length, model)
@@ -133,11 +131,9 @@ def _evaluate(count_of_problem: int, number_of_events: int,
 
 
 @app.command()
-@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int, default=300)
-@click.option('--list_of_number_of_events', '-e', help='List of number of events', type=str,
-              default="2")
-@click.option('--list_of_formula_length', '-l', help='List of length of the formula', type=str,
-              default="2, 3, 4, 5, 6")
+@click.option('--count_of_problem', '-c', help='Count of problems to generate', type=int)
+@click.option('--list_of_numbers_of_events', '-e', help='List of numbers of events', type=str)
+@click.option('--list_of_numbers_of_operators', '-l', help='List of numbers of operators', type=str)
 @click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
 def batch_evaluate(count_of_problem: int, list_of_number_of_events: str,
                    list_of_formula_length: str, model: str):
