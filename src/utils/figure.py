@@ -24,7 +24,7 @@ def save_graph_to_string(graph: DiGraph) -> str:
 
 def plot_lines(data: pd.DataFrame, x: str, y: str, z: str, title: str, x_label: str, y_label: str,
                x_ticks: Optional[list] = None, y_ticks: Optional[list] = None,
-               fig_size: tuple[float, float] = (12, 5)):
+               fig_size: tuple[float, float] = (16, 5)):
     palette = sns.color_palette(COLOR_PALETTE, len(data[z].unique()))
 
     # Group the data by the z column
@@ -41,9 +41,9 @@ def plot_lines(data: pd.DataFrame, x: str, y: str, z: str, title: str, x_label: 
     plt.legend()
 
     # Add title and labels
-    plt.title(title)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
+    plt.title(title, fontsize=20)
+    plt.xlabel(x_label, fontsize=15)
+    plt.ylabel(y_label, fontsize=15)
     if isinstance(x_ticks, list):
         plt.xticks(x_ticks)
     if isinstance(y_ticks, list):
