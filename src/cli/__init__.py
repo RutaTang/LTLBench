@@ -127,7 +127,7 @@ def _evaluate(count_of_problem: int, number_of_events: int,
     path = get_evaluation_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem,
                                     model=model)
     data.to_csv(path, index=False)
-    # print(f'Evaluation result of {model} saved to {path}.')
+    print(f'Evaluation result of {model} saved to {path}.')
 
 
 @app.command()

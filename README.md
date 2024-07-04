@@ -41,7 +41,7 @@ and operators.
 
 ## Run the Experiments
 
-**Note**: Before running the experiments, make use to set your OpenAI API key in the `.env` file and also to download
+**Note**: Before running the experiments, make sure to set your OpenAI API key in the `.env` file and also to download
 Ollama
 and pull the models you want.
 

@@ -32,6 +32,7 @@ class OpenAIModel(BaseModel):
                 "role": "user",
                 "content": message,
             }],
+            temperature=self.config["temperature"],
             model=self.config["model"],
             max_tokens=self.config["max_tokens"],
         )
