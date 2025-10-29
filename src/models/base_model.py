@@ -13,3 +13,7 @@ class BaseModel(ABC):
     @abstractmethod
     def reconfig(self, config: Dict[str, any]):
         pass
+
+    @abstractmethod
+    def get_model_name(self) -> str:
+        pass

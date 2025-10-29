@@ -23,6 +23,9 @@ class OpenAIModel(BaseModel):
         }
 
     def reconfig(self, config: Dict[str, any]):
+        # For gpt-5 models, ignore temperature setting
+        if self.config["model"].startswith("gpt-5") and "temperature" in config:
+            config = {k: v for k, v in config.items() if k != "temperature"}
         self.config.update(config)
 
     @backoff.on_exception(backoff.expo, openai.RateLimitError, max_time=10)
@@ -38,3 +41,6 @@ class OpenAIModel(BaseModel):
         )
         chat_message = chat_completion.choices[0].message
         return chat_message.content
+
+    def get_model_name(self) -> str:
+        return self.config["model"]

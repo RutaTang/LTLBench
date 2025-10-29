@@ -12,6 +12,11 @@ from src.generator.data import generate_problem
 from src.models.choose import choose_model
 from src.utils.file import RESULT_FOLDER_PATH, DATA_FOLDER_PATH, get_evaluation_file_path, EVALUATION_FOLDER_PATH, \
     get_data_file_path
+from src.strategies.direct import direct_prompt
+from src.strategies.zero_shot_cot import cot_prompt
+from src.strategies.few_shot_cot import few_shot_cot_prompt
+from src.strategies.self_consistency import self_consistency_prompt
+from src.strategies.least_to_most import least_to_most_prompt
 
 
 @click.group()
@@ -94,40 +99,58 @@ def batch_generate(count_of_problem: int, list_of_numbers_of_events: str,
 @click.option('--number_of_events', '-e', help='Number of events', type=int)
 @click.option('--number_of_operators', '-l', help='Number of operators', type=int)
 @click.option('--model', '-m', help='Model name')
+@click.option('--strategy', '-s', help='Prompt strategy to use',
+              type=click.Choice(['direct', 'zero_shot_cot', 'few_shot_cot', 'self_consistency', 'least_to_most']),
+              default='direct')
 def evaluate(count_of_problem: int, number_of_events: int,
-             number_of_operators: int, model: str):
-    _evaluate(count_of_problem, number_of_events, number_of_operators, model)
+             number_of_operators: int, model: str, strategy: str):
+    _evaluate(count_of_problem, number_of_events, number_of_operators, model, strategy)
 
 
 def _evaluate(count_of_problem: int, number_of_events: int,
-              number_of_operators: int, model: str):
+              number_of_operators: int, model: str, strategy: str = 'direct'):
     """
     Evaluate models
     """
+    # Choose the strategy function
+    strategy_map = {
+        'direct': direct_prompt,
+        'zero_shot_cot': cot_prompt,
+        'few_shot_cot': few_shot_cot_prompt,
+        'self_consistency': self_consistency_prompt,
+        'least_to_most': least_to_most_prompt
+    }
+
+    strategy_func = strategy_map[strategy]
+
     path = get_data_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem)
     data = pd.read_csv(path)
-    llm = choose_model(model)
-    llm.reconfig({
-        'max_tokens': 5,
-    })
+
     for index, row in tqdm.tqdm(data.iterrows(), total=len(data)):
         question = row['question']
-        message = llm.chat(message=question)
-        pattern = r'(true|false)'
-        result = re.search(pattern, message, flags=re.IGNORECASE)
-        if result is None:
+
+        # Initialize fresh LLM for each problem
+        llm = choose_model(model)
+
+        # Use the selected strategy
+        response, answer = strategy_func(question, llm)
+
+        # Convert answer to numeric format
+        if answer is None:
             result = -1
         else:
-            result = result.group(0)
-            result = result.lower()
-            result = 1 if result == 'true' else 0
+            answer = answer.lower()
+            result = 1 if answer == 'true' else 0
+
         data.at[index, 'prediction'] = result
-        data.at[index, 'prediction_raw'] = str(message)
+        data.at[index, 'prediction_raw'] = str(response)
 
     path = get_evaluation_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem,
                                     model=model)
+    # Include strategy in the filename
+    path = path.replace('.csv', f'_{strategy}.csv')
     data.to_csv(path, index=False)
-    print(f'Evaluation result of {model} saved to {path}.')
+    print(f'Evaluation result of {model} with {strategy} strategy saved to {path}.')
 
 
 @app.command()
@@ -135,8 +158,11 @@ def _evaluate(count_of_problem: int, number_of_events: int,
 @click.option('--list_of_numbers_of_events', '-e', help='List of numbers of events', type=str)
 @click.option('--list_of_numbers_of_operators', '-l', help='List of numbers of operators', type=str)
 @click.option('--model', '-m', help='Model name', default='qwen:7b-chat')
+@click.option('--strategy', '-s', help='Prompt strategy to use',
+              type=click.Choice(['direct', 'zero_shot_cot', 'few_shot_cot', 'self_consistency', 'least_to_most']),
+              default='direct')
 def batch_evaluate(count_of_problem: int, list_of_numbers_of_events: str,
-                   list_of_numbers_of_operators: str, model: str):
+                   list_of_numbers_of_operators: str, model: str, strategy: str):
     # Parse
     list_of_numbers_of_events = [int(x) for x in list_of_numbers_of_events.split(',')]
     list_of_numbers_of_operators = [int(x) for x in list_of_numbers_of_operators.split(',')]
@@ -145,7 +171,7 @@ def batch_evaluate(count_of_problem: int, list_of_numbers_of_events: str,
     threads = []
     for number_of_events in list_of_numbers_of_events:
         for formula_length in list_of_numbers_of_operators:
-            thread = Thread(target=_evaluate, args=(count_of_problem, number_of_events, formula_length, model))
+            thread = Thread(target=_evaluate, args=(count_of_problem, number_of_events, formula_length, model, strategy))
             threads.append(thread)
             thread.start()
 

@@ -34,3 +34,6 @@ class OllamaModel(BaseModel):
 
     def reconfig(self, config: Dict[str, any]):
         self.config.update(config)
+
+    def get_model_name(self) -> str:
+        return self.config["model"]
