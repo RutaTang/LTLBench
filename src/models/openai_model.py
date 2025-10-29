@@ -15,7 +15,7 @@ class OpenAIModel(BaseModel):
     def __init__(self):
         super().__init__()
         load_dotenv(find_dotenv())
-        self.client = OpenAI(api_key=os.getenv("OPENAI_KEY"))
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.config = {
             "model": "gpt-3.5-turbo",
             "temperature": 0,

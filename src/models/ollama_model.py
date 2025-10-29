@@ -1,7 +1,9 @@
 import copy
+import os
 from typing import Dict
 import ollama
 from ollama import Client
+from dotenv import find_dotenv, load_dotenv
 
 from src.models.base_model import BaseModel
 
@@ -10,7 +12,10 @@ class OllamaModel(BaseModel):
 
     def __init__(self):
         super().__init__()
-        self.client = Client()
+        load_dotenv(find_dotenv())
+        ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
+        self.client = Client(host=ollama_url)
+
         self.config = {
             "model": "gemma:7b-instruct",
             "temperature": 0,

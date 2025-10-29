@@ -9,8 +9,11 @@ It consists of both the code of the **Dataset Construction Pipeline** and the co
 
 1. Download this repository;
 2. Install the required packages by running `pip install -r requirements.txt`;
-3. (Optional) Create a `.env` file in the root directory and set a `OPENAI_KEY` variable with your OpenAI API key in it,
-   if you want to evaluate the OpenAI models;
+3. (Optional) Configure API keys and URLs:
+   - Copy `.env.example` to `.env`: `cp .env.example .env`
+   - Edit `.env` and set your configurations:
+     - `OPENAI_API_KEY`: Your OpenAI API key (for evaluating OpenAI models)
+     - `OLLAMA_URL`: Custom Ollama server URL (defaults to `http://localhost:11434`)
 4. (Optional) Download [Ollama](https://ollama.com/) if you want to evaluate the models available on Ollama.
 
 ## Run the Pipeline to Generate the Dataset
@@ -45,10 +48,38 @@ and operators.
 Ollama
 and pull the models you want.
 
+### Prompt Strategies
+
+LTLBench supports multiple prompt strategies to evaluate model performance:
+
+- **`direct`**: Direct prompting without reasoning steps
+- **`zero_shot_cot`**: Zero-shot Chain-of-Thought prompting
+- **`few_shot_cot`**: Few-shot Chain-of-Thought with examples
+- **`self_consistency`**: Self-consistency with multiple samples and majority voting
+- **`least_to_most`**: Least-to-most prompting with problem decomposition
+
+### Evaluation Commands
+
 1. Run the following command to evaluate a model on the LTLBench dataset:
 
 ```bash
-python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-3.5-turbo
+python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-3.5-turbo -s direct
+```
+
+You can also specify different prompt strategies with the `-s` flag:
+
+```bash
+# Zero-shot Chain-of-Thought
+python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-4 -s zero_shot_cot
+
+# Few-shot Chain-of-Thought
+python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-4 -s few_shot_cot
+
+# Self-consistency (5 samples with majority voting)
+python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-4 -s self_consistency
+
+# Least-to-most prompting
+python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-4 -s least_to_most
 ```
 
 For the command above, you can change `gpt-3.5-turbo` to any other available model while you should also have a look at
@@ -58,7 +89,13 @@ code, you can slightly modify the code to include them which should not be troub
 2. Run the following command to batch-evaluate a model on the LTLBench dataset:
 
 ```bash
-python -m src.main batch-evaluate -c 300 -e 2 -l 1,2,3,4,5,7,9 -m gpt-3.5-turbo
+python -m src.main batch-evaluate -c 300 -e 2 -l 1,2,3,4,5,7,9 -m gpt-3.5-turbo -s direct
+```
+
+You can also specify different prompt strategies for batch evaluation:
+
+```bash
+python -m src.main batch-evaluate -c 300 -e 2 -l 1,2,3,4,5,7,9 -m gpt-4 -s few_shot_cot
 ```
 
 
