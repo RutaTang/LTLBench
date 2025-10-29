@@ -239,11 +239,11 @@ LTLSPEC (! (((state=event1) | (state=event1)) & (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event2 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event2 happens or event2 happens.
 C2: C1 always holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -372,11 +372,11 @@ LTLSPEC (X ((F (state=event3)) -> (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event2 happens in the next state.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event2 happens in the next state.
 C2: C1 always holds.
 C3: Event2 happens or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -538,11 +538,11 @@ LTLSPEC (! (X ((state=event3) -> (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event1 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -605,11 +605,11 @@ LTLSPEC ((F (state=event3)) | (F (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event2 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event2 does not happen.
 C2: C1 does not hold.
 C3: If event2 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -808,11 +808,11 @@ LTLSPEC (! (! (F (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event1 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event1 happens or event2 happens.
 C2: C1 holds in the next state.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -2036,11 +2036,11 @@ LTLSPEC ((F (! (state=event3))) | (state=event2))
     <edge source=""event1"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event2 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event2 happens or event3 happens.
 C2: Event2 happens or event3 happens.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -2405,11 +2405,11 @@ LTLSPEC ((F (state=event1)) | (F (state=event1)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event3 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event3 happens in the next state.
 C2: C1 does not hold.
 C3: Event3 happens or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -2473,11 +2473,11 @@ LTLSPEC (F (((state=event1) & (state=event2)) -> (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: If event1 happens, then event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: If event1 happens, then event2 happens.
 C2: Event3 happens or C1 holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -2987,11 +2987,11 @@ LTLSPEC ((state=event3) -> ((X (state=event1)) -> (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: If event2 happens, then event3 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: If event2 happens, then event3 happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -3056,11 +3056,11 @@ LTLSPEC (F (G ((state=event1) -> (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event1 happens and event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event1 happens and event1 happens.
 C2: C1 always holds.
 C3: If C2 holds, then event3 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -3260,11 +3260,11 @@ LTLSPEC (X (! (X (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event1 happens in the next state.
 C2: C1 always holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -3364,11 +3364,11 @@ LTLSPEC (F ((state=event2) | ((state=event1) | (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event1 always happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event1 always happens.
 C2: Event3 happens or C1 holds.
 C3: C2 holds and event1 happens.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -3537,11 +3537,11 @@ LTLSPEC ((X (state=event3)) -> (X (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event2 happens and event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event2 happens and event2 happens.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -3600,11 +3600,11 @@ LTLSPEC (G (X (F (state=event1))))
     <node id=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event2 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event2 always happens.
 C2: C1 does not hold.
 C3: If C2 holds, then event2 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -3665,11 +3665,11 @@ LTLSPEC ((state=event2) | (X (! (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event1 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event1 eventually happens.
 C2: C1 eventually holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -4310,11 +4310,11 @@ LTLSPEC ((! (state=event2)) -> (! (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event3 happens and event2 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event3 happens and event2 happens.
 C2: If event1 happens, then C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -4517,11 +4517,11 @@ LTLSPEC (X ((state=event3) -> (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event3 eventually happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event3 eventually happens.
 C2: C1 holds and event3 happens.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -4928,11 +4928,11 @@ LTLSPEC (! (G (X (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event2 happens and event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event2 happens and event2 happens.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -4992,11 +4992,11 @@ LTLSPEC ((! (state=event2)) -> (! (state=event2)))
     <node id=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event1 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event1 eventually happens.
 C2: C1 holds and event1 happens.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -5884,11 +5884,11 @@ LTLSPEC (((state=event3) & (state=event3)) -> ((state=event3) & (state=event3)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event1 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event1 happens or event2 happens.
 C2: C1 holds or event3 happens.
 C3: C2 holds or event1 happens.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -6596,11 +6596,11 @@ LTLSPEC ((state=event2) -> ((state=event3) | (F (state=event3))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -6899,11 +6899,11 @@ LTLSPEC ((G (state=event2)) -> (G (state=event2)))
     <edge source=""event1"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: If event2 happens, then event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: If event2 happens, then event1 happens.
 C2: If event2 happens, then event1 happens.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -7438,11 +7438,11 @@ LTLSPEC (((state=event3) -> (state=event3)) | ((state=event3) -> (state=event3))
     <edge source=""event2"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: Event1 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 does not happen.
 C2: Event1 does not happen.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -8636,11 +8636,11 @@ LTLSPEC ((state=event3) -> (X (F (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: If event2 happens, then event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: If event2 happens, then event2 happens.
 C2: C1 always holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -8807,11 +8807,11 @@ LTLSPEC (X ((state=event1) | ((state=event2) -> (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event3 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event3 does not happen.
 C2: C1 always holds.
 C3: C2 holds or event3 happens.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -9247,11 +9247,11 @@ LTLSPEC (G ((state=event2) -> (! (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event1 happens and event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event1 happens and event1 happens.
 C2: Event1 happens and event1 happens.
 C3: C1 holds and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -9892,11 +9892,11 @@ LTLSPEC (X ((state=event2) -> ((state=event1) -> (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event2 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event2 does not happen.
 C2: Event2 does not happen.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -10364,11 +10364,11 @@ LTLSPEC ((! (G (state=event3))) | (state=event3))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event2 happens or event3 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event2 happens or event3 happens.
 C2: C1 always holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -11699,11 +11699,11 @@ LTLSPEC (F ((state=event3) -> ((state=event1) -> (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 always happens.
 C2: C1 eventually holds.
 C3: If event3 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -11766,11 +11766,11 @@ LTLSPEC (G (! (X (state=event2))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: Event2 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: Event2 does not happen.
 C2: C1 eventually holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -12646,11 +12646,11 @@ LTLSPEC ((state=event2) -> (X ((state=event2) & (state=event3))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event1 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event1 does not happen.
 C2: C1 does not hold.
 C3: Event3 happens or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -12782,11 +12782,11 @@ LTLSPEC (! (F ((state=event3) & (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event1 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -12991,11 +12991,11 @@ LTLSPEC (! ((state=event3) | (G (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event3 happens or event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event3 happens or event1 happens.
 C2: If event3 happens, then C1 holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -13022,11 +13022,11 @@ LTLSPEC (F ((state=event3) -> ((state=event3) | (state=event1))))
     <node id=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: If event2 happens, then event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: If event2 happens, then event2 happens.
 C2: C1 eventually holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -13526,11 +13526,11 @@ LTLSPEC (G (F ((state=event1) | (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event2 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event2 does not happen.
 C2: C1 holds or event2 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -13630,11 +13630,11 @@ LTLSPEC (G ((! (state=event3)) | (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event2 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event2 does not happen.
 C2: C1 holds in the next state.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -14316,11 +14316,11 @@ LTLSPEC (((state=event2) -> (state=event2)) -> ((state=event2) -> (state=event2)
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event3 always happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event3 always happens.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -14417,11 +14417,11 @@ LTLSPEC ((state=event1) -> (! ((state=event2) | (state=event3))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event1 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event1 does not happen.
 C2: If event3 happens, then C1 holds.
 C3: Event2 happens or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -14586,11 +14586,11 @@ LTLSPEC ((F (F (state=event2))) & (state=event1))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 happens in the next state.
 C2: C1 always holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -14824,11 +14824,11 @@ LTLSPEC ((X ((state=event3) | (state=event1))) | (state=event3))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: If event1 happens, then event1 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: If event1 happens, then event1 happens.
 C2: C1 holds in the next state.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -14925,11 +14925,11 @@ LTLSPEC (X ((F (state=event1)) | (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event1 happens or event2 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event1 happens or event2 happens.
 C2: C1 always holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -14958,11 +14958,11 @@ LTLSPEC (X (G ((state=event1) | (state=event2))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event1 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event1 does not happen.
 C2: C1 holds or event2 happens.
 C3: C2 holds or event3 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -15534,11 +15534,11 @@ LTLSPEC ((G (! (state=event1))) & (state=event2))
     <edge source=""event1"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event1 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -15567,11 +15567,11 @@ LTLSPEC (! (F (X (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event1 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event1 does not happen.
 C2: C1 holds and event3 happens.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -15668,11 +15668,11 @@ LTLSPEC ((G (! (state=event2))) -> (state=event3))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event1 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 always happens.
 C2: C1 holds or event2 happens.
 C3: If event1 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -16517,11 +16517,11 @@ LTLSPEC ((! (state=event3)) & (! (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event3 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event3 happens in the next state.
 C2: C1 holds in the next state.
 C3: If event2 happens, then C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -17774,11 +17774,11 @@ LTLSPEC ((! (state=event1)) -> (! (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: Event2 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: Event2 always happens.
 C2: C1 holds in the next state.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -17880,11 +17880,11 @@ LTLSPEC (X ((state=event2) | (F (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event1 happens and event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 happens and event1 happens.
 C2: Event1 happens and event1 happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -18083,11 +18083,11 @@ LTLSPEC ((state=event1) | (X ((state=event1) -> (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: If event3 happens, then event3 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: If event3 happens, then event3 happens.
 C2: If event3 happens, then C1 holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -19197,11 +19197,11 @@ LTLSPEC (! ((state=event2) & ((state=event1) | (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 always happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 always happens.
 C2: C1 always holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -19403,11 +19403,11 @@ LTLSPEC ((state=event1) & (! ((state=event3) & (state=event3))))
     <edge source=""event2"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event1 happens or event2 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event1 happens or event2 happens.
 C2: Event1 happens or event2 happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -19537,11 +19537,11 @@ LTLSPEC ((state=event3) -> (G (X (state=event3))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event1 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event1 does not happen.
 C2: Event2 happens or C1 holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -20083,11 +20083,11 @@ LTLSPEC (X ((state=event3) -> (G (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event2 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event2 happens in the next state.
 C2: Event2 happens in the next state.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -20319,11 +20319,11 @@ LTLSPEC (X (X (! (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event3 happens and event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event3 happens and event1 happens.
 C2: Event3 happens and event1 happens.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -20519,11 +20519,11 @@ LTLSPEC ((state=event1) | ((F (state=event2)) & (state=event2)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: C1 always holds.
 C3: If C2 holds, then event3 happens.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -22044,11 +22044,11 @@ LTLSPEC (F ((state=event1) -> (X (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: If event1 happens, then event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: If event1 happens, then event1 happens.
 C2: If event1 happens, then event1 happens.
 C3: C1 holds and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -22147,11 +22147,11 @@ LTLSPEC (F ((state=event2) | (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: If event1 happens, then event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: If event1 happens, then event2 happens.
 C2: C1 holds or event3 happens.
 C3: If event3 happens, then C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -22416,11 +22416,11 @@ LTLSPEC ((state=event2) | (! (X (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: Event3 eventually happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: Event3 eventually happens.
 C2: Event3 eventually happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -22554,11 +22554,11 @@ LTLSPEC (((state=event3) | (state=event1)) & ((state=event3) | (state=event1)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event2 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event2 always happens.
 C2: C1 does not hold.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -22931,11 +22931,11 @@ LTLSPEC (F (X (X (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event3 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event3 happens or event2 happens.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -23097,11 +23097,11 @@ LTLSPEC (((state=event1) | (state=event1)) -> ((state=event1) | (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -23371,11 +23371,11 @@ LTLSPEC (X (((state=event1) | (state=event2)) | (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: If event2 happens, then event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: If event2 happens, then event2 happens.
 C2: If C1 holds, then event2 happens.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -23437,11 +23437,11 @@ LTLSPEC (F ((state=event3) -> ((state=event3) & (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event3 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event3 always happens.
 C2: If C1 holds, then event1 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -23676,11 +23676,11 @@ LTLSPEC (F ((state=event3) | (! (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event1 happens or event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event1 happens or event1 happens.
 C2: C1 holds or event2 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -23743,11 +23743,11 @@ LTLSPEC (G ((X (state=event3)) -> (state=event2)))
     <edge source=""event2"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event1 happens or event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event1 happens or event1 happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -23977,11 +23977,11 @@ LTLSPEC (! ((F (state=event1)) & (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: If event1 happens, then event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: If event1 happens, then event3 happens.
 C2: C1 holds or event2 happens.
 C3: C2 always holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -24243,11 +24243,11 @@ LTLSPEC (X ((state=event3) | (! (state=event3))))
     <edge source=""event1"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event3 happens or event2 happens.
 C2: Event3 happens or event2 happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -25056,11 +25056,11 @@ LTLSPEC (X (F (F (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event1 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 eventually happens.
 C2: Event1 eventually happens.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -25090,11 +25090,11 @@ LTLSPEC ((F (state=event1)) -> (F (state=event1)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: Event3 happens and C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -25292,11 +25292,11 @@ LTLSPEC ((state=event3) | (G (! (state=event1))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event2 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event2 happens in the next state.
 C2: Event1 happens and C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -25530,11 +25530,11 @@ LTLSPEC (G ((state=event2) -> (F (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event2 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event2 does not happen.
 C2: C1 eventually holds.
 C3: If C2 holds, then event1 happens.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -25935,11 +25935,11 @@ LTLSPEC ((! ((state=event1) -> (state=event3))) -> (state=event1))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 happens in the next state.
 C2: Event1 happens in the next state.
 C3: C1 holds and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -25970,11 +25970,11 @@ LTLSPEC ((X (state=event1)) & (X (state=event1)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event3 happens and event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event3 happens and event3 happens.
 C2: If C1 holds, then event1 happens.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -26072,11 +26072,11 @@ LTLSPEC (G ((state=event1) -> (! (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event3 happens or event1 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event3 happens or event1 happens.
 C2: C1 eventually holds.
 C3: If event2 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -26106,11 +26106,11 @@ LTLSPEC ((state=event2) -> (F ((state=event3) | (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: If event3 happens, then event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: If event3 happens, then event1 happens.
 C2: C1 holds or event2 happens.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -26762,11 +26762,11 @@ LTLSPEC (! (! (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: Event3 happens in the next state.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -27708,11 +27708,11 @@ LTLSPEC ((F (state=event1)) & (F (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: Event1 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: Event1 happens or event2 happens.
 C2: If event2 happens, then C1 holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -27910,11 +27910,11 @@ LTLSPEC (X (G ((state=event3) & (state=event3))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event1 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event1 always happens.
 C2: C1 always holds.
 C3: Event2 happens or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -28214,11 +28214,11 @@ LTLSPEC (X (F ((state=event3) -> (state=event3))))
     <node id=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event1 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event1 does not happen.
 C2: If event1 happens, then C1 holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -28656,11 +28656,11 @@ LTLSPEC (X (G ((state=event2) | (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event3 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event3 does not happen.
 C2: C1 holds or event3 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -28826,11 +28826,11 @@ LTLSPEC ((X (F (state=event2))) | (state=event3))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event3 happens or event2 happens.
 C2: C1 always holds.
 C3: If event2 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -28995,11 +28995,11 @@ LTLSPEC (! (F ((state=event1) & (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event1 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event1 happens or event3 happens.
 C2: If event3 happens, then C1 holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -29061,11 +29061,11 @@ LTLSPEC ((F (! (state=event1))) -> (state=event1))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: If event3 happens, then event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: If event3 happens, then event2 happens.
 C2: If event3 happens, then C1 holds.
 C3: C2 holds or event3 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -29331,11 +29331,11 @@ LTLSPEC (((state=event1) -> (state=event3)) -> ((state=event1) -> (state=event3)
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event1 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event1 does not happen.
 C2: C1 always holds.
 C3: If event1 happens, then C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -29809,11 +29809,11 @@ LTLSPEC ((! (state=event2)) -> (! (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event3 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event3 always happens.
 C2: Event3 always happens.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -30215,11 +30215,11 @@ LTLSPEC ((state=event2) -> (((state=event2) -> (state=event1)) | (state=event1))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event2 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event2 happens in the next state.
 C2: C1 holds in the next state.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -30482,11 +30482,11 @@ LTLSPEC (F ((state=event3) | (F (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event3 happens or event2 happens.
 C2: Event3 happens or event2 happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -30515,11 +30515,11 @@ LTLSPEC (((state=event3) | (state=event2)) | ((state=event3) | (state=event2)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event3 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event3 does not happen.
 C2: C1 always holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -31030,11 +31030,11 @@ LTLSPEC (! ((state=event2) & ((state=event3) | (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: If event1 happens, then event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: If event1 happens, then event1 happens.
 C2: If event1 happens, then event1 happens.
 C3: If C1 holds, then C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -31644,11 +31644,11 @@ LTLSPEC (((state=event1) & ((state=event2) | (state=event2))) -> (state=event2))
     <edge source=""event2"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event1 happens or event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event1 happens or event2 happens.
 C2: C1 holds or event3 happens.
 C3: Event2 happens or C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -32221,11 +32221,11 @@ LTLSPEC ((F ((state=event2) -> (state=event3))) & (state=event3))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 happens or event1 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 happens or event1 happens.
 C2: C1 always holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -32389,11 +32389,11 @@ LTLSPEC (! (X (G (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event1 happens or event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event1 happens or event1 happens.
 C2: C1 always holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -32625,11 +32625,11 @@ LTLSPEC (F (! ((state=event1) | (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event3 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event3 does not happen.
 C2: C1 always holds.
 C3: If event1 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -32693,11 +32693,11 @@ LTLSPEC ((X (state=event2)) -> (X (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: C1 holds and event3 happens.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -32992,11 +32992,11 @@ LTLSPEC (((state=event1) -> (state=event1)) -> ((state=event1) -> (state=event1)
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 happens or event2 happens.
 C2: C1 eventually holds.
 C3: If C2 holds, then event2 happens.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -33330,11 +33330,11 @@ LTLSPEC (F ((state=event3) -> ((state=event2) -> (state=event2))))
     <edge source=""event1"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: If event1 happens, then event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: If event1 happens, then event2 happens.
 C2: If event1 happens, then C1 holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -34363,11 +34363,11 @@ LTLSPEC (X (X ((state=event3) -> (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event2 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event2 always happens.
 C2: C1 eventually holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -35319,11 +35319,11 @@ LTLSPEC (X (! (! (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event3 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event3 happens or event3 happens.
 C2: Event3 happens or C1 holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -35760,11 +35760,11 @@ LTLSPEC ((state=event3) & (! ((state=event1) | (state=event2))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event2 happens and event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event2 happens and event2 happens.
 C2: C1 eventually holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -35934,11 +35934,11 @@ LTLSPEC ((state=event1) | ((state=event1) | (X (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event1 happens or event2 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event1 happens or event2 happens.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -36247,11 +36247,11 @@ LTLSPEC (F ((state=event2) & (! (state=event2))))
     <edge source=""event2"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event2 happens and event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event2 happens and event1 happens.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -36351,11 +36351,11 @@ LTLSPEC (! (X ((state=event3) | (state=event3))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event2 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event2 does not happen.
 C2: Event1 happens or C1 holds.
 C3: Event3 happens or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -37035,11 +37035,11 @@ LTLSPEC (F ((state=event1) | (X (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event2 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event2 happens in the next state.
 C2: C1 always holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -37614,11 +37614,11 @@ LTLSPEC (X (((state=event3) | (state=event3)) | (state=event3)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event1 eventually happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 eventually happens.
 C2: C1 does not hold.
 C3: C2 holds or event1 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -38250,11 +38250,11 @@ LTLSPEC (X ((state=event1) -> (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event1 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event1 always happens.
 C2: C1 always holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -38665,11 +38665,11 @@ LTLSPEC (((state=event1) | (state=event2)) | ((state=event1) | (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event3 eventually happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event3 eventually happens.
 C2: C1 does not hold.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -38863,11 +38863,11 @@ LTLSPEC (F ((state=event1) -> (G (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event3 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event3 happens or event3 happens.
 C2: Event3 happens or event3 happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -38897,11 +38897,11 @@ LTLSPEC (((state=event3) | (state=event3)) | ((state=event3) | (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 happens and event3 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 happens and event3 happens.
 C2: C1 holds and event3 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -39068,11 +39068,11 @@ LTLSPEC (! (((state=event2) -> (state=event1)) | (state=event3)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event3 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event3 does not happen.
 C2: Event3 does not happen.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -39232,11 +39232,11 @@ LTLSPEC (G (F (F (state=event3))))
     <edge source=""event1"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event3 happens and event1 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event3 happens and event1 happens.
 C2: Event3 happens or C1 holds.
 C3: If C2 holds, then event1 happens.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -40014,11 +40014,11 @@ LTLSPEC (! (G (! (state=event3))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event2 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event2 does not happen.
 C2: If C1 holds, then event2 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -41002,11 +41002,11 @@ LTLSPEC (G ((F (state=event2)) | (state=event2)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event1 happens in the next state.
 C2: C1 holds and event3 happens.
 C3: C2 holds and event2 happens.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -42808,11 +42808,11 @@ LTLSPEC (X ((state=event1) | (F (state=event3))))
     <edge source=""event1"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event3 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event3 eventually happens.
 C2: C1 holds in the next state.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -43322,11 +43322,11 @@ LTLSPEC (G ((state=event1) & (X (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event2 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event2 happens in the next state.
 C2: C1 holds in the next state.
 C3: Event2 happens and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -43565,11 +43565,11 @@ LTLSPEC ((state=event3) & ((! (state=event2)) -> (state=event1)))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 happens in the next state.
 C2: C1 holds in the next state.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -43733,11 +43733,11 @@ LTLSPEC (G ((G (state=event2)) & (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: Event1 happens and C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -43869,11 +43869,11 @@ LTLSPEC (F (! (F (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event2 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event2 does not happen.
 C2: C1 holds in the next state.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -44658,11 +44658,11 @@ LTLSPEC (((X (state=event3)) | (state=event2)) -> (state=event1))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event3 happens or event2 happens.
 C2: C1 eventually holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -44934,11 +44934,11 @@ LTLSPEC (G (G (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens and event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event3 happens and event2 happens.
 C2: If C1 holds, then event3 happens.
 C3: If C2 holds, then event2 happens.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -45821,11 +45821,11 @@ LTLSPEC (G (G ((state=event2) | (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens and event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: Event3 happens and event1 happens.
 C2: C1 eventually holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -45922,11 +45922,11 @@ LTLSPEC ((! (X (state=event2))) -> (state=event1))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event2 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event2 does not happen.
 C2: C1 does not hold.
 C3: Event2 happens or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -46229,11 +46229,11 @@ LTLSPEC (! (F (X (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event3 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event3 always happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -47662,11 +47662,11 @@ LTLSPEC ((state=event1) & ((F (state=event2)) | (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event2 happens and event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event2 happens and event1 happens.
 C2: C1 eventually holds.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -48145,11 +48145,11 @@ LTLSPEC (G (X (G (state=event1))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 happens in the next state.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 happens in the next state.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -48211,11 +48211,11 @@ LTLSPEC ((state=event2) | (F ((state=event3) & (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event1 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event1 happens or event3 happens.
 C2: C1 does not hold.
 C3: If C2 holds, then event1 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -48525,11 +48525,11 @@ LTLSPEC ((state=event2) & (((state=event1) | (state=event1)) | (state=event2)))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event1 eventually happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event1 eventually happens.
 C2: C1 holds or event1 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -48660,11 +48660,11 @@ LTLSPEC (! (F (X (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event2 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event2 eventually happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -48694,11 +48694,11 @@ LTLSPEC (X (X (F (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event2 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event2 always happens.
 C2: C1 eventually holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -48828,11 +48828,11 @@ LTLSPEC (G (F (F (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 happens and event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 happens and event2 happens.
 C2: C1 always holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -49130,11 +49130,11 @@ LTLSPEC (X ((state=event3) & (X (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 does not happen.
 C2: Event2 happens and C1 holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -49401,11 +49401,11 @@ LTLSPEC ((state=event1) & (((state=event3) | (state=event2)) | (state=event1)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: Event3 happens in the next state.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -49642,11 +49642,11 @@ LTLSPEC (! (F (! (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event3 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event3 happens or event3 happens.
 C2: C1 holds in the next state.
 C3: C2 holds and event1 happens.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -50255,11 +50255,11 @@ LTLSPEC ((state=event1) & ((state=event1) | ((state=event1) -> (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: Event2 eventually happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: Event2 eventually happens.
 C2: C1 holds and event1 happens.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -50975,11 +50975,11 @@ LTLSPEC (! (G (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event2 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event2 does not happen.
 C2: Event3 happens or C1 holds.
 C3: Event3 happens and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -51279,11 +51279,11 @@ LTLSPEC (((state=event2) & (state=event1)) | ((state=event2) & (state=event1)))
     <edge source=""event1"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event3 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event3 happens or event3 happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -51786,11 +51786,11 @@ LTLSPEC (! ((state=event3) -> (G (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: If event3 happens, then event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: If event3 happens, then event1 happens.
 C2: Event2 happens or C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -52440,11 +52440,11 @@ LTLSPEC (! (((state=event2) | (state=event2)) | (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event3 happens and event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event3 happens and event2 happens.
 C2: C1 holds and event3 happens.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -52677,11 +52677,11 @@ LTLSPEC (X (X ((state=event2) & (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 always happens.
 C2: If event1 happens, then C1 holds.
 C3: C2 holds and event2 happens.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -52846,11 +52846,11 @@ LTLSPEC ((! (state=event2)) | (! (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event3 happens and event3 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event3 happens and event3 happens.
 C2: C1 holds or event2 happens.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -53016,11 +53016,11 @@ LTLSPEC (G (! (! (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event1 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event1 does not happen.
 C2: C1 holds or event1 happens.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -54191,11 +54191,11 @@ LTLSPEC (G ((state=event3) | (! (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event1 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event1 eventually happens.
 C2: C1 holds in the next state.
 C3: Event3 happens and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -55113,11 +55113,11 @@ LTLSPEC ((state=event3) & (F (F (state=event3))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.","C1: Event1 happens in the next state.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: C1 holds in the next state.
 C3: C2 always holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -55421,11 +55421,11 @@ LTLSPEC ((G (state=event3)) | (G (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.","C1: Event1 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.","C1: Event1 does not happen.
 C2: C1 holds in the next state.
 C3: C2 always holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -55521,11 +55521,11 @@ LTLSPEC ((state=event2) & ((state=event3) | ((state=event3) & (state=event3))))
     <edge source=""event1"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event3 always happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event3 always happens.
 C2: C1 eventually holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -55625,11 +55625,11 @@ LTLSPEC ((state=event3) & ((X (state=event2)) & (state=event2)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 always happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 always happens.
 C2: C1 always holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -56955,11 +56955,11 @@ LTLSPEC ((((state=event1) -> (state=event1)) -> (state=event1)) | (state=event1)
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event3 eventually happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event3 eventually happens.
 C2: Event3 eventually happens.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -57366,11 +57366,11 @@ LTLSPEC (X (F (G (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event1 happens or event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event1 happens or event3 happens.
 C2: C1 does not hold.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -57530,11 +57530,11 @@ LTLSPEC (G (X ((state=event1) | (state=event3))))
     <edge source=""event1"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event3 happens or event2 happens.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -58406,11 +58406,11 @@ LTLSPEC (! (G ((state=event3) | (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event3 happens or event2 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event3 happens or event2 happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -59193,11 +59193,11 @@ LTLSPEC (X ((state=event1) & ((state=event1) -> (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: Event2 happens or event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: Event2 happens or event1 happens.
 C2: C1 eventually holds.
 C3: Event3 happens and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -59897,11 +59897,11 @@ LTLSPEC (G (G (X (state=event2))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event2 does not happen.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event2 does not happen.
 C2: Event3 happens and C1 holds.
 C3: Event1 happens and C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -60027,11 +60027,11 @@ LTLSPEC (G ((state=event2) | (G (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: If event1 happens, then event3 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: If event1 happens, then event3 happens.
 C2: C1 does not hold.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -60367,11 +60367,11 @@ LTLSPEC (F (G (F (state=event2))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event2 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event2 happens in the next state.
 C2: Event2 happens in the next state.
 C3: C1 holds and C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -60471,11 +60471,11 @@ LTLSPEC (X (! (! (state=event3))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event3 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event3 does not happen.
 C2: C1 holds in the next state.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -61086,11 +61086,11 @@ LTLSPEC (X (! (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event1 always happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event1 always happens.
 C2: C1 always holds.
 C3: Event1 happens and C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -61119,11 +61119,11 @@ LTLSPEC ((state=event1) & (G (G (state=event1))))
     <edge source=""event2"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event1 happens in the next state.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event1 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -62283,11 +62283,11 @@ LTLSPEC (F (F ((state=event3) | (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.","C1: Event1 does not happen.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.","C1: Event1 does not happen.
 C2: Event1 does not happen.
 C3: C1 holds or C2 holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -62586,11 +62586,11 @@ LTLSPEC (G ((state=event1) | (X (state=event3))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event1 eventually happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event1 eventually happens.
 C2: C1 does not hold.
 C3: C2 always holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -63204,11 +63204,11 @@ LTLSPEC (G ((state=event3) & ((state=event1) & (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.","C1: Event3 happens and event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.","C1: Event3 happens and event2 happens.
 C2: C1 holds in the next state.
 C3: If event3 happens, then C2 holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -63236,11 +63236,11 @@ LTLSPEC ((state=event3) -> (X ((state=event3) & (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: If event3 happens, then event1 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: If event3 happens, then event1 happens.
 C2: If C1 holds, then event3 happens.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -63405,11 +63405,11 @@ LTLSPEC ((G (state=event2)) & (G (state=event2)))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.","C1: Event1 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 always happens.
 C2: C1 does not hold.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -63439,11 +63439,11 @@ LTLSPEC (! (! (G (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.","C1: Event1 happens in the next state.
 C2: Event2 happens or C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -63677,11 +63677,11 @@ LTLSPEC (F (F ((state=event2) & (state=event3))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event2 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event2 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -63777,11 +63777,11 @@ LTLSPEC ((state=event1) & ((G (state=event1)) & (state=event1)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event1 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event1 happens in the next state.
 C2: C1 holds or event2 happens.
 C3: If C2 holds, then event2 happens.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -63843,11 +63843,11 @@ LTLSPEC (G (((state=event3) | (state=event2)) & (state=event3)))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.","C1: If event1 happens, then event2 happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.","C1: If event1 happens, then event2 happens.
 C2: Event2 happens or C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -64554,11 +64554,11 @@ LTLSPEC (X (G (F (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.","C1: Event1 always happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.","C1: Event1 always happens.
 C2: C1 eventually holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -64587,11 +64587,11 @@ LTLSPEC (! (F (G (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.","C1: Event1 happens or event1 happens.
+"Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.","C1: Event1 happens or event1 happens.
 C2: C1 does not hold.
 C3: Event1 happens and C2 holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -64689,11 +64689,11 @@ LTLSPEC (X (! (F (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event2 happens in the next state.
+"Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.","C1: Event2 happens in the next state.
 C2: C1 holds in the next state.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, either event1, or event3 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -65261,11 +65261,11 @@ LTLSPEC (F (G ((state=event2) & (state=event1))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.","C1: Event1 eventually happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.","C1: Event1 eventually happens.
 C2: C1 holds or event1 happens.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, either event1, or event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -66092,11 +66092,11 @@ LTLSPEC (G (G ((state=event2) | (state=event3))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.","C1: Event3 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.","C1: Event3 does not happen.
 C2: C1 always holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event3 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event3 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
@@ -66225,11 +66225,11 @@ LTLSPEC (! (! (X (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.","C1: Event3 happens and event2 happens.
+"Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.","C1: Event3 happens and event2 happens.
 C2: C1 always holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event1, no other events can happen. After event3, event1 must happen. After event2, event1 must happen.
+Initially, event1 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, event1 must happen.
 
 === Hypothesis ===
 
@@ -66258,11 +66258,11 @@ LTLSPEC (F (G ((state=event3) & (state=event2))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.","C1: Event2 does not happen.
+"Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.","C1: Event2 does not happen.
 C2: If event2 happens, then C1 holds.
 C3: C2 does not hold.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, no other events can happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, no other events can happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -66876,11 +66876,11 @@ LTLSPEC ((state=event3) & (F (X (state=event1))))
     <edge source=""event3"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.","C1: Event3 happens in the next state.
+"Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.","C1: Event3 happens in the next state.
 C2: C1 eventually holds.
 C3: C2 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event1, no other events can happen. After event3, event2 must happen. After event2, either event1, or event3 must happen.
+Initially, event2 happened. After event1, no other events can happen. After event2, either event1, or event3 must happen. After event3, event2 must happen.
 
 === Hypothesis ===
 
@@ -67736,11 +67736,11 @@ LTLSPEC (X (F (G (state=event2))))
     <edge source=""event3"" target=""event2"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.","C1: Event1 eventually happens.
+"Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.","C1: Event1 eventually happens.
 C2: C1 holds in the next state.
 C3: C2 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, no other events can happen. After event3, no other events can happen. After event2, event1 must happen.
+Initially, event3 happened. After event1, no other events can happen. After event2, event1 must happen. After event3, no other events can happen.
 
 === Hypothesis ===
 
