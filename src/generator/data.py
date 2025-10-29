@@ -60,7 +60,7 @@ def generate_problem(rng: Generator, number_of_events: int, formula_length: int)
 === Hypothesis ===\n
 {query}
 
-{last_case} is True or False? Answer with "True" or "False" directly:
+{last_case} is True or False?
 ''',
         "code": code,
         "formula": covert_ltl_formula_to_str_formula(formula),

@@ -129,11 +129,20 @@ def convert_ltl_formula_to_nl(ltl_formula: list, base_states: list, c_idx: Refer
         operator = ltl_formula[0]
         operand = ltl_formula[1]
         if operator == "X":
-            nl = f'{operand} will happen at next time'
+            if operand in base_states:
+                nl = f'{operand} happens in the next state'
+            else:
+                nl = f'{operand} holds in the next state'
         elif operator == "G":
-            nl = f'{operand} will always be true at any future time'
+            if operand in base_states:
+                nl = f'{operand} always happens'
+            else:
+                nl = f'{operand} always holds'
         elif operator == "F":
-            nl = f'{operand} will happen eventually'
+            if operand in base_states:
+                nl = f'{operand} eventually happens'
+            else:
+                nl = f'{operand} eventually holds'
         elif operator == "!":
             if operand in base_states:
                 nl = f'{operand} does not happen'
@@ -162,7 +171,7 @@ def convert_ltl_formula_to_nl(ltl_formula: list, base_states: list, c_idx: Refer
         elif operator == "|":
             nl = f'{left_operand} or {right_operand}'
         elif operator == "->":
-            nl = f'That {left_operand} implies that {right_operand}'
+            nl = f'{left_operand} implies {right_operand}'
         else:
             raise ValueError(f'Unknown operator: {operator}')
         nl = nl[0].upper() + nl[1:]

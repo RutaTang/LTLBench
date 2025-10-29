@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/evaluation/300_2_events_1_formula_len/gemma:7b-instruct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

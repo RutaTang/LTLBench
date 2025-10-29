@@ -2,7 +2,7 @@ import networkx as nx
 from matplotlib import pyplot as plt
 from networkx import DiGraph
 from numpy.random import Generator
-
+from collections import defaultdict
 
 def generate_random_directed_graph(rng: Generator, nodes: list) -> DiGraph:
     """
@@ -59,14 +59,20 @@ def generate_context_from_graph(rng: Generator, graph: nx.DiGraph) -> str:
         node = queue.pop(0)
         visited.add(node)
 
-        for neighbor in graph.neighbors(node):
-            transition = f'After {node}, {neighbor} can happen.'
-            context.append(transition)
+        # Get all neighbors for this node
+        neighbors = list(graph.neighbors(node))
+
+        if len(neighbors) == 0:
+            context.append(f'After {node}, no other events can happen.')
+        elif len(neighbors) == 1:
+            context.append(f'After {node}, {neighbors[0]} must happen.')
+        else:
+            neighbors_str = ', '.join(neighbors[:-1]) + f', or {neighbors[-1]}'
+            context.append(f'After {node}, either {neighbors_str} must happen.')
+
+        for neighbor in neighbors:
             if neighbor not in visited:
                 queue.append(neighbor)
-
-        if len(list(graph.neighbors(node))) == 0:
-            context.append(f'After {node}, no other events can happen.')
 
         if len(queue) == 0 and len(visited) != len(nodes):
             node = list(set(nodes) - visited)[0]
@@ -92,9 +98,18 @@ def code_template(state: list[str], init: str, transition: list[tuple[str, str]]
         transition.append((s, s))
     # Generate the code
     state: str = ', '.join(state)
-    trans = []
+
+    trans_dict = defaultdict(list)
     for t in transition:
-        t_str = f'state = {t[0]} : {t[1]};'
+        trans_dict[t[0]].append(t[1])
+
+    trans = []
+    for source, targets in trans_dict.items():
+        if len(targets) == 1:
+            t_str = f'state = {source} : {targets[0]};'
+        else:
+            target_set = '{' + ', '.join(targets) + '}'
+            t_str = f'state = {source} : {target_set};'
         trans.append(t_str)
     trans = '\n\t\t'.join(trans)
 
