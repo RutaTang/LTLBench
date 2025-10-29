@@ -25,6 +25,7 @@ class OpenAIModel(BaseModel):
     def reconfig(self, config: Dict[str, any]):
         # For gpt-5 models, ignore temperature setting
         if self.config["model"].startswith("gpt-5") and "temperature" in config:
+            self.config.pop("temperature")
             config = {k: v for k, v in config.items() if k != "temperature"}
         self.config.update(config)
 
