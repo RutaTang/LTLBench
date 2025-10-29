@@ -34,7 +34,7 @@ class OpenAIModel(BaseModel):
             }],
             temperature=self.config["temperature"],
             model=self.config["model"],
-            max_tokens=self.config["max_tokens"],
+            max_completion_tokens=self.config["max_tokens"],
         )
         chat_message = chat_completion.choices[0].message
         return chat_message.content
