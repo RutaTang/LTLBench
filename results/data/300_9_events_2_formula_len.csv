@@ -333,13 +333,13 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event3, event4, event5, event7};
 		state = event2 : {event1, event4, event6, event7, event9};
+		state = event3 : event3;
 		state = event4 : {event6, event8};
 		state = event5 : {event3, event6, event7, event8};
 		state = event6 : {event1, event2, event3, event4, event9};
 		state = event7 : {event1, event4, event6};
 		state = event8 : {event2, event5, event6, event7, event9};
 		state = event9 : {event2, event3, event4, event6};
-		state = event3 : event3;
     esac;
 LTLSPEC (! ((state=event2) & (state=event2)))
 ",(! (event2 & event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -721,11 +721,11 @@ ASSIGN
 		state = event2 : {event1, event6};
 		state = event3 : {event1, event2, event4, event6, event7, event8};
 		state = event4 : {event3, event5};
+		state = event5 : event5;
 		state = event6 : {event1, event7, event8, event9};
 		state = event7 : {event2, event4, event6};
 		state = event8 : {event2, event3, event6, event7};
 		state = event9 : {event1, event2, event3, event4, event8};
-		state = event5 : event5;
     esac;
 LTLSPEC ((state=event4) | (G (state=event8)))
 ",(event4 | (G event8)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1324,10 +1324,10 @@ LTLSPEC (((state=event4) -> (state=event1)) | (state=event2))
     <edge source=""event9"" target=""event8"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event4, no other events can happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event1, either event2, event5, event6, or event8 must happen. After event2, either event3, event5, event6, or event8 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event2, either event3, event5, event6, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event3, either event2, event7, or event8 must happen.","C1: Event4 does not happen.
+"Initially, event3 happened. After event4, no other events can happen. After event1, either event2, event5, event6, or event8 must happen. After event2, either event3, event5, event6, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event3, either event2, event7, or event8 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen.","C1: Event4 does not happen.
 C2: C1 holds or event8 happens.","=== Context ===
 
-Initially, event3 happened. After event4, no other events can happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event1, either event2, event5, event6, or event8 must happen. After event2, either event3, event5, event6, or event8 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event2, either event3, event5, event6, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event3, either event2, event7, or event8 must happen.
+Initially, event3 happened. After event4, no other events can happen. After event1, either event2, event5, event6, or event8 must happen. After event2, either event3, event5, event6, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event5, either event2, event3, event4, event8, or event9 must happen. After event6, either event1, event3, event8, or event9 must happen. After event8, either event2, event7, or event9 must happen. After event3, either event2, event7, or event8 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event3, either event2, event7, or event8 must happen. After event8, either event2, event7, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event9, either event1, event2, event3, event4, event5, or event6 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen. After event7, either event1, event2, event4, event6, event8, or event9 must happen.
 
 === Hypothesis ===
 
@@ -1344,12 +1344,12 @@ ASSIGN
         state = event1 : {event2, event5, event6, event8};
 		state = event2 : {event3, event5, event6, event8};
 		state = event3 : {event2, event7, event8};
+		state = event4 : event4;
 		state = event5 : {event2, event3, event4, event8, event9};
 		state = event6 : {event1, event3, event8, event9};
 		state = event7 : {event1, event2, event4, event6, event8, event9};
 		state = event8 : {event2, event7, event9};
 		state = event9 : {event1, event2, event3, event4, event5, event6};
-		state = event4 : event4;
     esac;
 LTLSPEC ((! (state=event4)) | (state=event8))
 ",((! event4) | event8),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2192,11 +2192,11 @@ ASSIGN
 		state = event2 : {event4, event9};
 		state = event3 : {event1, event4};
 		state = event4 : {event2, event3, event6};
+		state = event5 : event5;
 		state = event6 : {event3, event4, event5, event8, event9};
 		state = event7 : {event1, event4, event6, event8};
 		state = event8 : {event1, event3, event6, event7};
 		state = event9 : {event1, event2, event3, event4, event5, event6, event7, event8};
-		state = event5 : event5;
     esac;
 LTLSPEC ((! (state=event2)) | (state=event8))
 ",((! event2) | event8),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4704,11 +4704,11 @@ ASSIGN
 		state = event2 : {event4, event5, event6, event9};
 		state = event3 : {event1, event2, event5, event6};
 		state = event4 : {event1, event2, event3, event5, event7, event8};
+		state = event5 : event5;
 		state = event6 : {event1, event4, event7};
 		state = event7 : {event2, event3, event4, event8, event9};
 		state = event8 : {event1, event5, event9};
 		state = event9 : {event1, event8};
-		state = event5 : event5;
     esac;
 LTLSPEC (! (X (state=event4)))
 ",(! (X event4)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7903,8 +7903,8 @@ ASSIGN
 		state = event5 : {event1, event2, event6, event8, event9};
 		state = event6 : {event1, event2, event7, event8, event9};
 		state = event7 : {event1, event3, event6, event9};
-		state = event9 : {event3, event6};
 		state = event8 : event8;
+		state = event9 : {event3, event6};
     esac;
 LTLSPEC (! ((state=event9) | (state=event9)))
 ",(! (event9 | event9)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -10958,10 +10958,10 @@ LTLSPEC ((! (state=event9)) -> (state=event6))
     <edge source=""event9"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event8 happened. After event3, no other events can happen. After event7, either event1, event4, event6, or event8 must happen. After event1, either event5, event6, event7, or event9 must happen. After event4, either event1, event2, event3, or event7 must happen. After event6, either event1, event7, or event9 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event5, either event2, event3, or event9 must happen. After event6, either event1, event7, or event9 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event5, either event2, event3, or event9 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event9, either event3, event5, event6, event7, or event8 must happen.","C1: Event1 happens and event5 happens.
+"Initially, event8 happened. After event3, no other events can happen. After event1, either event5, event6, event7, or event9 must happen. After event5, either event2, event3, or event9 must happen. After event6, either event1, event7, or event9 must happen. After event7, either event1, event4, event6, or event8 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event7, either event1, event4, event6, or event8 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event4, either event1, event2, event3, or event7 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event4, either event1, event2, event3, or event7 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event4, either event1, event2, event3, or event7 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event8, either event1, event2, event4, event5, or event9 must happen.","C1: Event1 happens and event5 happens.
 C2: C1 does not hold.","=== Context ===
 
-Initially, event8 happened. After event3, no other events can happen. After event7, either event1, event4, event6, or event8 must happen. After event1, either event5, event6, event7, or event9 must happen. After event4, either event1, event2, event3, or event7 must happen. After event6, either event1, event7, or event9 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event5, either event2, event3, or event9 must happen. After event6, either event1, event7, or event9 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event5, either event2, event3, or event9 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event9, either event3, event5, event6, event7, or event8 must happen.
+Initially, event8 happened. After event3, no other events can happen. After event1, either event5, event6, event7, or event9 must happen. After event5, either event2, event3, or event9 must happen. After event6, either event1, event7, or event9 must happen. After event7, either event1, event4, event6, or event8 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event2, either event4, event6, or event7 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event7, either event1, event4, event6, or event8 must happen. After event9, either event3, event5, event6, event7, or event8 must happen. After event4, either event1, event2, event3, or event7 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event4, either event1, event2, event3, or event7 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event4, either event1, event2, event3, or event7 must happen. After event8, either event1, event2, event4, event5, or event9 must happen. After event8, either event1, event2, event4, event5, or event9 must happen.
 
 === Hypothesis ===
 
@@ -10977,13 +10977,13 @@ ASSIGN
     next(state) := case
         state = event1 : {event5, event6, event7, event9};
 		state = event2 : {event4, event6, event7};
+		state = event3 : event3;
 		state = event4 : {event1, event2, event3, event7};
 		state = event5 : {event2, event3, event9};
 		state = event6 : {event1, event7, event9};
 		state = event7 : {event1, event4, event6, event8};
 		state = event8 : {event1, event2, event4, event5, event9};
 		state = event9 : {event3, event5, event6, event7, event8};
-		state = event3 : event3;
     esac;
 LTLSPEC (! ((state=event1) & (state=event5)))
 ",(! (event1 & event5)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -14655,11 +14655,11 @@ ASSIGN
 		state = event2 : {event1, event4, event6, event9};
 		state = event3 : {event5, event6, event9};
 		state = event4 : {event5, event7, event8};
+		state = event5 : event5;
 		state = event6 : {event1, event2, event3, event5, event7, event8};
 		state = event7 : {event1, event5};
 		state = event8 : event6;
 		state = event9 : {event1, event2, event3, event5, event6, event7, event8};
-		state = event5 : event5;
     esac;
 LTLSPEC ((X (state=event8)) & (state=event7))
 ",((X event8) & event7),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -18807,11 +18807,11 @@ ASSIGN
 		state = event2 : {event1, event4, event7, event8};
 		state = event3 : {event2, event4, event8};
 		state = event4 : {event2, event3, event9};
+		state = event5 : event5;
 		state = event6 : {event2, event3, event5, event8};
 		state = event7 : {event2, event4, event6, event8};
 		state = event8 : {event1, event7};
 		state = event9 : {event2, event4, event5, event8};
-		state = event5 : event5;
     esac;
 LTLSPEC (! (! (state=event7)))
 ",(! (! event7)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -19858,12 +19858,12 @@ ASSIGN
         state = event1 : {event2, event3, event5, event6, event7, event8, event9};
 		state = event2 : {event4, event6, event9};
 		state = event3 : {event2, event5, event6, event8, event9};
+		state = event4 : event4;
 		state = event5 : {event1, event4, event6, event7};
 		state = event6 : {event5, event7, event9};
 		state = event7 : {event1, event5};
 		state = event8 : {event3, event5};
 		state = event9 : {event3, event4, event5, event6, event7, event8};
-		state = event4 : event4;
     esac;
 LTLSPEC (F (X (state=event7)))
 ",(F (X event7)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -21983,13 +21983,13 @@ ASSIGN
     next(state) := case
         state = event1 : {event3, event5, event7};
 		state = event2 : {event3, event5, event7, event8};
+		state = event3 : event3;
 		state = event4 : {event2, event3};
 		state = event5 : {event1, event4, event6};
 		state = event6 : event1;
 		state = event7 : {event3, event5, event8};
 		state = event8 : {event3, event4};
 		state = event9 : {event1, event2, event3, event4, event5, event6, event8};
-		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event7) -> (state=event4)))
 ",(G (event7 -> event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">

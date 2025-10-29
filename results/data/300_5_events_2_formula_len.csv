@@ -171,10 +171,10 @@ LTLSPEC (F ((state=event5) -> (state=event4)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event3, no other events can happen. After event2, either event3, or event4 must happen. After event4, either event1, or event3 must happen. After event1, event4 must happen. After event5, either event1, event2, or event4 must happen.","C1: Event5 eventually happens.
+"Initially, event5 happened. After event3, no other events can happen. After event1, event4 must happen. After event4, either event1, or event3 must happen. After event2, either event3, or event4 must happen. After event5, either event1, event2, or event4 must happen.","C1: Event5 eventually happens.
 C2: If event4 happens, then C1 holds.","=== Context ===
 
-Initially, event5 happened. After event3, no other events can happen. After event2, either event3, or event4 must happen. After event4, either event1, or event3 must happen. After event1, event4 must happen. After event5, either event1, event2, or event4 must happen.
+Initially, event5 happened. After event3, no other events can happen. After event1, event4 must happen. After event4, either event1, or event3 must happen. After event2, either event3, or event4 must happen. After event5, either event1, event2, or event4 must happen.
 
 === Hypothesis ===
 
@@ -190,9 +190,9 @@ ASSIGN
     next(state) := case
         state = event1 : event4;
 		state = event2 : {event3, event4};
+		state = event3 : event3;
 		state = event4 : {event1, event3};
 		state = event5 : {event1, event2, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC ((state=event4) -> (F (state=event5)))
 ",(event4 -> (F event5)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -232,8 +232,8 @@ ASSIGN
         state = event1 : {event2, event3, event4};
 		state = event2 : {event1, event3, event4, event5};
 		state = event3 : {event1, event4};
-		state = event5 : event1;
 		state = event4 : event4;
+		state = event5 : event1;
     esac;
 LTLSPEC (! ((state=event3) & (state=event2)))
 ",(! (event3 & event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -405,11 +405,11 @@ VAR
 ASSIGN
     init(state) := event3;
     next(state) := case
-        state = event2 : {event1, event4, event5};
+        state = event1 : event1;
+		state = event2 : {event1, event4, event5};
 		state = event3 : event2;
-		state = event5 : {event2, event3, event4};
 		state = event4 : event4;
-		state = event1 : event1;
+		state = event5 : {event2, event3, event4};
     esac;
 LTLSPEC (((state=event4) -> (state=event2)) | (state=event1))
 ",((event4 -> event2) | event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -621,10 +621,10 @@ ASSIGN
     init(state) := event4;
     next(state) := case
         state = event1 : {event3, event4};
+		state = event2 : event2;
 		state = event3 : {event1, event2, event4, event5};
 		state = event4 : event5;
 		state = event5 : {event2, event4};
-		state = event2 : event2;
     esac;
 LTLSPEC (! (X (state=event1)))
 ",(! (X event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -645,10 +645,10 @@ LTLSPEC (! (X (state=event1)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event4, event2 must happen. After event2, no other events can happen. After event1, no other events can happen. After event5, either event2, or event3 must happen. After event3, event4 must happen.","C1: Event3 happens and event5 happens.
+"Initially, event5 happened. After event4, event2 must happen. After event2, no other events can happen. After event1, no other events can happen. After event3, event4 must happen. After event5, either event2, or event3 must happen.","C1: Event3 happens and event5 happens.
 C2: If C1 holds, then event2 happens.","=== Context ===
 
-Initially, event5 happened. After event4, event2 must happen. After event2, no other events can happen. After event1, no other events can happen. After event5, either event2, or event3 must happen. After event3, event4 must happen.
+Initially, event5 happened. After event4, event2 must happen. After event2, no other events can happen. After event1, no other events can happen. After event3, event4 must happen. After event5, either event2, or event3 must happen.
 
 === Hypothesis ===
 
@@ -662,11 +662,11 @@ VAR
 ASSIGN
     init(state) := event5;
     next(state) := case
-        state = event3 : event4;
+        state = event1 : event1;
+		state = event2 : event2;
+		state = event3 : event4;
 		state = event4 : event2;
 		state = event5 : {event2, event3};
-		state = event2 : event2;
-		state = event1 : event1;
     esac;
 LTLSPEC (((state=event3) & (state=event5)) -> (state=event2))
 ",((event3 & event5) -> event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -872,11 +872,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : event4;
+        state = event1 : event1;
+		state = event2 : event4;
 		state = event3 : {event2, event4, event5};
 		state = event4 : {event1, event2, event3};
 		state = event5 : event5;
-		state = event1 : event1;
     esac;
 LTLSPEC (F (! (state=event3)))
 ",(F (! event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -957,10 +957,10 @@ ASSIGN
     init(state) := event3;
     next(state) := case
         state = event1 : {event2, event4, event5};
+		state = event2 : event2;
 		state = event3 : {event2, event5};
 		state = event4 : {event1, event3};
 		state = event5 : {event1, event2, event3, event4};
-		state = event2 : event2;
     esac;
 LTLSPEC (((state=event2) | (state=event1)) -> (state=event5))
 ",((event2 | event1) -> event5),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1083,11 +1083,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : event4;
+        state = event1 : event1;
+		state = event2 : event4;
 		state = event3 : event5;
 		state = event4 : event1;
 		state = event5 : {event1, event4};
-		state = event1 : event1;
     esac;
 LTLSPEC (F (! (state=event1)))
 ",(F (! event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1149,10 +1149,10 @@ LTLSPEC (F (X (state=event2)))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event5, no other events can happen. After event2, either event1, or event4 must happen. After event1, either event3, event4, or event5 must happen. After event4, either event1, event2, or event5 must happen. After event3, either event2, or event5 must happen. After event4, either event1, event2, or event5 must happen.","C1: Event4 does not happen.
+"Initially, event5 happened. After event5, no other events can happen. After event1, either event3, event4, or event5 must happen. After event3, either event2, or event5 must happen. After event4, either event1, event2, or event5 must happen. After event2, either event1, or event4 must happen. After event2, either event1, or event4 must happen.","C1: Event4 does not happen.
 C2: If event1 happens, then C1 holds.","=== Context ===
 
-Initially, event5 happened. After event5, no other events can happen. After event2, either event1, or event4 must happen. After event1, either event3, event4, or event5 must happen. After event4, either event1, event2, or event5 must happen. After event3, either event2, or event5 must happen. After event4, either event1, event2, or event5 must happen.
+Initially, event5 happened. After event5, no other events can happen. After event1, either event3, event4, or event5 must happen. After event3, either event2, or event5 must happen. After event4, either event1, event2, or event5 must happen. After event2, either event1, or event4 must happen. After event2, either event1, or event4 must happen.
 
 === Hypothesis ===
 
@@ -1237,10 +1237,10 @@ LTLSPEC (X ((state=event2) | (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event5, event2 must happen. After event4, either event1, event2, event3, or event5 must happen. After event1, either event3, or event4 must happen.","C1: If event2 happens, then event5 happens.
+"Initially, event5 happened. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event5, event2 must happen. After event1, either event3, or event4 must happen. After event4, either event1, event2, event3, or event5 must happen.","C1: If event2 happens, then event5 happens.
 C2: Event4 happens or C1 holds.","=== Context ===
 
-Initially, event5 happened. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event5, event2 must happen. After event4, either event1, event2, event3, or event5 must happen. After event1, either event3, or event4 must happen.
+Initially, event5 happened. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event5, event2 must happen. After event1, either event3, or event4 must happen. After event4, either event1, event2, event3, or event5 must happen.
 
 === Hypothesis ===
 
@@ -1322,10 +1322,10 @@ LTLSPEC ((G (state=event4)) | (state=event4))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event4, no other events can happen. After event2, either event4, or event5 must happen. After event5, either event1, or event4 must happen. After event1, either event4, or event5 must happen. After event3, either event2, or event5 must happen.","C1: Event5 happens or event4 happens.
+"Initially, event4 happened. After event4, no other events can happen. After event1, either event4, or event5 must happen. After event5, either event1, or event4 must happen. After event2, either event4, or event5 must happen. After event3, either event2, or event5 must happen.","C1: Event5 happens or event4 happens.
 C2: C1 holds in the next state.","=== Context ===
 
-Initially, event4 happened. After event4, no other events can happen. After event2, either event4, or event5 must happen. After event5, either event1, or event4 must happen. After event1, either event4, or event5 must happen. After event3, either event2, or event5 must happen.
+Initially, event4 happened. After event4, no other events can happen. After event1, either event4, or event5 must happen. After event5, either event1, or event4 must happen. After event2, either event4, or event5 must happen. After event3, either event2, or event5 must happen.
 
 === Hypothesis ===
 
@@ -1342,8 +1342,8 @@ ASSIGN
         state = event1 : {event4, event5};
 		state = event2 : {event4, event5};
 		state = event3 : {event2, event5};
-		state = event5 : {event1, event4};
 		state = event4 : event4;
+		state = event5 : {event1, event4};
     esac;
 LTLSPEC (X ((state=event5) | (state=event4)))
 ",(X (event5 | event4)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1463,9 +1463,9 @@ ASSIGN
     next(state) := case
         state = event1 : event2;
 		state = event2 : {event4, event5};
+		state = event3 : event3;
 		state = event4 : event2;
 		state = event5 : {event1, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC (G (F (state=event3)))
 ",(G (F event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1500,11 +1500,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : {event3, event4, event5};
+        state = event1 : event1;
+		state = event2 : {event3, event4, event5};
 		state = event3 : {event1, event2, event5};
 		state = event4 : {event3, event5};
 		state = event5 : {event1, event3};
-		state = event1 : event1;
     esac;
 LTLSPEC ((! (state=event3)) | (state=event4))
 ",((! event3) | event4),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1630,11 +1630,11 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : {event1, event3};
+        state = event1 : event1;
+		state = event2 : {event1, event3};
 		state = event3 : {event2, event4, event5};
 		state = event4 : event1;
 		state = event5 : {event1, event3, event4};
-		state = event1 : event1;
     esac;
 LTLSPEC ((state=event2) | (F (state=event3)))
 ",(event2 | (F event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -1973,9 +1973,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event5};
 		state = event2 : {event1, event4};
-		state = event5 : event4;
-		state = event4 : event4;
 		state = event3 : event3;
+		state = event4 : event4;
+		state = event5 : event4;
     esac;
 LTLSPEC (((state=event1) | (state=event5)) -> (state=event1))
 ",((event1 | event5) -> event1),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2010,10 +2010,10 @@ ASSIGN
     init(state) := event2;
     next(state) := case
         state = event1 : {event3, event5};
+		state = event2 : event2;
 		state = event3 : {event4, event5};
 		state = event4 : {event3, event5};
 		state = event5 : {event1, event2};
-		state = event2 : event2;
     esac;
 LTLSPEC (G ((state=event5) -> (state=event1)))
 ",(G (event5 -> event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2333,10 +2333,10 @@ LTLSPEC ((state=event1) | ((state=event1) -> (state=event4)))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event3, no other events can happen. After event2, event4 must happen. After event4, either event2, or event3 must happen. After event5, event3 must happen. After event1, either event3, event4, or event5 must happen.","C1: Event2 happens or event3 happens.
+"Initially, event1 happened. After event3, no other events can happen. After event1, either event3, event4, or event5 must happen. After event4, either event2, or event3 must happen. After event5, event3 must happen. After event2, event4 must happen.","C1: Event2 happens or event3 happens.
 C2: C1 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event3, no other events can happen. After event2, event4 must happen. After event4, either event2, or event3 must happen. After event5, event3 must happen. After event1, either event3, event4, or event5 must happen.
+Initially, event1 happened. After event3, no other events can happen. After event1, either event3, event4, or event5 must happen. After event4, either event2, or event3 must happen. After event5, event3 must happen. After event2, event4 must happen.
 
 === Hypothesis ===
 
@@ -2352,9 +2352,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event3, event4, event5};
 		state = event2 : event4;
+		state = event3 : event3;
 		state = event4 : {event2, event3};
 		state = event5 : event3;
-		state = event3 : event3;
     esac;
 LTLSPEC (F ((state=event2) | (state=event3)))
 ",(F (event2 | event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2784,8 +2784,8 @@ ASSIGN
         state = event1 : event4;
 		state = event2 : event1;
 		state = event3 : {event1, event4, event5};
-		state = event5 : {event1, event2, event4};
 		state = event4 : event4;
+		state = event5 : {event1, event2, event4};
     esac;
 LTLSPEC (G (F (state=event4)))
 ",(G (F event4)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -2863,11 +2863,11 @@ VAR
 ASSIGN
     init(state) := event5;
     next(state) := case
-        state = event2 : {event1, event3, event4};
+        state = event1 : event1;
+		state = event2 : {event1, event3, event4};
 		state = event3 : {event2, event5};
 		state = event4 : event3;
 		state = event5 : {event2, event3};
-		state = event1 : event1;
     esac;
 LTLSPEC ((! (state=event1)) | (state=event3))
 ",((! event1) | event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3022,10 +3022,10 @@ LTLSPEC (G (! (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event5, no other events can happen. After event2, either event1, event3, event4, or event5 must happen. After event1, event4 must happen. After event3, either event1, event2, or event5 must happen. After event4, either event1, or event3 must happen. After event4, either event1, or event3 must happen.","C1: Event5 eventually happens.
+"Initially, event4 happened. After event5, no other events can happen. After event1, event4 must happen. After event4, either event1, or event3 must happen. After event3, either event1, event2, or event5 must happen. After event2, either event1, event3, event4, or event5 must happen.","C1: Event5 eventually happens.
 C2: If C1 holds, then event4 happens.","=== Context ===
 
-Initially, event4 happened. After event5, no other events can happen. After event2, either event1, event3, event4, or event5 must happen. After event1, event4 must happen. After event3, either event1, event2, or event5 must happen. After event4, either event1, or event3 must happen. After event4, either event1, or event3 must happen.
+Initially, event4 happened. After event5, no other events can happen. After event1, event4 must happen. After event4, either event1, or event3 must happen. After event3, either event1, event2, or event5 must happen. After event2, either event1, event3, event4, or event5 must happen.
 
 === Hypothesis ===
 
@@ -3169,8 +3169,8 @@ ASSIGN
         state = event1 : event3;
 		state = event2 : {event1, event3, event4, event5};
 		state = event3 : {event1, event4, event5};
-		state = event5 : event1;
 		state = event4 : event4;
+		state = event5 : event1;
     esac;
 LTLSPEC ((state=event1) | (F (state=event4)))
 ",(event1 | (F event4)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3249,10 +3249,10 @@ ASSIGN
     init(state) := event4;
     next(state) := case
         state = event1 : {event2, event3, event4, event5};
+		state = event2 : event2;
 		state = event3 : {event1, event2, event4, event5};
 		state = event4 : {event3, event5};
 		state = event5 : {event1, event2, event3};
-		state = event2 : event2;
     esac;
 LTLSPEC (! (X (state=event4)))
 ",(! (X event4)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3452,10 +3452,10 @@ LTLSPEC ((state=event4) -> ((state=event5) & (state=event3)))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event1, event2 must happen. After event2, no other events can happen. After event4, either event2, event3, or event5 must happen. After event3, either event1, event2, or event5 must happen. After event5, event2 must happen. After event5, event2 must happen.","C1: Event2 eventually happens.
+"Initially, event3 happened. After event1, event2 must happen. After event2, no other events can happen. After event3, either event1, event2, or event5 must happen. After event5, event2 must happen. After event4, either event2, event3, or event5 must happen.","C1: Event2 eventually happens.
 C2: C1 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event1, event2 must happen. After event2, no other events can happen. After event4, either event2, event3, or event5 must happen. After event3, either event1, event2, or event5 must happen. After event5, event2 must happen. After event5, event2 must happen.
+Initially, event3 happened. After event1, event2 must happen. After event2, no other events can happen. After event3, either event1, event2, or event5 must happen. After event5, event2 must happen. After event4, either event2, event3, or event5 must happen.
 
 === Hypothesis ===
 
@@ -3470,10 +3470,10 @@ ASSIGN
     init(state) := event3;
     next(state) := case
         state = event1 : event2;
+		state = event2 : event2;
 		state = event3 : {event1, event2, event5};
 		state = event4 : {event2, event3, event5};
 		state = event5 : event2;
-		state = event2 : event2;
     esac;
 LTLSPEC (X (F (state=event2)))
 ",(X (F event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3648,10 +3648,10 @@ ASSIGN
     init(state) := event2;
     next(state) := case
         state = event1 : {event3, event4, event5};
+		state = event2 : event2;
 		state = event3 : event1;
 		state = event4 : event1;
 		state = event5 : {event1, event4};
-		state = event2 : event2;
     esac;
 LTLSPEC (G (G (state=event2)))
 ",(G (G event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -3956,10 +3956,10 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event1 : {event3, event4};
+		state = event2 : event2;
 		state = event3 : event1;
 		state = event4 : {event1, event2, event5};
 		state = event5 : event4;
-		state = event2 : event2;
     esac;
 LTLSPEC (! (X (state=event2)))
 ",(! (X event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4134,9 +4134,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event3, event4};
 		state = event2 : event1;
+		state = event3 : event3;
 		state = event4 : {event1, event5};
 		state = event5 : {event1, event3};
-		state = event3 : event3;
     esac;
 LTLSPEC ((state=event4) -> (G (state=event5)))
 ",(event4 -> (G event5)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4261,11 +4261,11 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : event5;
+        state = event1 : event1;
+		state = event2 : event5;
 		state = event3 : {event1, event2, event4};
 		state = event4 : {event1, event5};
 		state = event5 : {event3, event4};
-		state = event1 : event1;
     esac;
 LTLSPEC (! ((state=event2) -> (state=event1)))
 ",(! (event2 -> event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4285,10 +4285,10 @@ LTLSPEC (! ((state=event2) -> (state=event1)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event4, no other events can happen. After event2, either event1, event3, event4, or event5 must happen. After event1, event4 must happen. After event3, either event2, or event5 must happen. After event5, either event2, event3, or event4 must happen. After event5, either event2, event3, or event4 must happen.","C1: Event4 happens in the next state.
+"Initially, event1 happened. After event4, no other events can happen. After event1, event4 must happen. After event2, either event1, event3, event4, or event5 must happen. After event3, either event2, or event5 must happen. After event5, either event2, event3, or event4 must happen. After event5, either event2, event3, or event4 must happen.","C1: Event4 happens in the next state.
 C2: C1 holds in the next state.","=== Context ===
 
-Initially, event1 happened. After event4, no other events can happen. After event2, either event1, event3, event4, or event5 must happen. After event1, event4 must happen. After event3, either event2, or event5 must happen. After event5, either event2, event3, or event4 must happen. After event5, either event2, event3, or event4 must happen.
+Initially, event1 happened. After event4, no other events can happen. After event1, event4 must happen. After event2, either event1, event3, event4, or event5 must happen. After event3, either event2, or event5 must happen. After event5, either event2, event3, or event4 must happen. After event5, either event2, event3, or event4 must happen.
 
 === Hypothesis ===
 
@@ -4305,8 +4305,8 @@ ASSIGN
         state = event1 : event4;
 		state = event2 : {event1, event3, event4, event5};
 		state = event3 : {event2, event5};
-		state = event5 : {event2, event3, event4};
 		state = event4 : event4;
+		state = event5 : {event2, event3, event4};
     esac;
 LTLSPEC (X (X (state=event4)))
 ",(X (X event4)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4529,10 +4529,10 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event1 : {event2, event4};
+		state = event2 : event2;
 		state = event3 : {event1, event4, event5};
 		state = event4 : event3;
 		state = event5 : event2;
-		state = event2 : event2;
     esac;
 LTLSPEC ((state=event3) | ((state=event2) | (state=event1)))
 ",(event3 | (event2 | event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4872,9 +4872,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event3, event4, event5};
 		state = event2 : {event1, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event2, event3, event5};
 		state = event5 : {event1, event2, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC ((X (state=event3)) -> (state=event3))
 ",((X event3) -> event3),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -4918,8 +4918,8 @@ ASSIGN
         state = event1 : event4;
 		state = event2 : {event1, event5};
 		state = event3 : {event1, event2, event4, event5};
-		state = event5 : event2;
 		state = event4 : event4;
+		state = event5 : event2;
     esac;
 LTLSPEC (((state=event2) & (state=event1)) -> (state=event2))
 ",((event2 & event1) -> event2),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5028,10 +5028,10 @@ LTLSPEC (! ((state=event2) | (state=event4)))
     <edge source=""event5"" target=""event1"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event3, event4 must happen. After event4, event3 must happen. After event2, either event1, or event4 must happen. After event1, either event2, event3, or event5 must happen. After event5, either event2, or event4 must happen.","C1: Event4 happens and event2 happens.
+"Initially, event4 happened. After event3, event4 must happen. After event4, event3 must happen. After event1, either event2, event3, or event5 must happen. After event2, either event1, or event4 must happen. After event5, either event2, or event4 must happen.","C1: Event4 happens and event2 happens.
 C2: If C1 holds, then event3 happens.","=== Context ===
 
-Initially, event4 happened. After event3, event4 must happen. After event4, event3 must happen. After event2, either event1, or event4 must happen. After event1, either event2, event3, or event5 must happen. After event5, either event2, or event4 must happen.
+Initially, event4 happened. After event3, event4 must happen. After event4, event3 must happen. After event1, either event2, event3, or event5 must happen. After event2, either event1, or event4 must happen. After event5, either event2, or event4 must happen.
 
 === Hypothesis ===
 
@@ -5157,10 +5157,10 @@ LTLSPEC (F (! (state=event4)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event5, event3 must happen. After event3, event5 must happen. After event2, no other events can happen. After event4, either event3, or event5 must happen. After event1, either event2, or event4 must happen.","C1: Event3 eventually happens.
+"Initially, event2 happened. After event5, event3 must happen. After event3, event5 must happen. After event1, either event2, or event4 must happen. After event2, no other events can happen. After event4, either event3, or event5 must happen.","C1: Event3 eventually happens.
 C2: If event3 happens, then C1 holds.","=== Context ===
 
-Initially, event2 happened. After event5, event3 must happen. After event3, event5 must happen. After event2, no other events can happen. After event4, either event3, or event5 must happen. After event1, either event2, or event4 must happen.
+Initially, event2 happened. After event5, event3 must happen. After event3, event5 must happen. After event1, either event2, or event4 must happen. After event2, no other events can happen. After event4, either event3, or event5 must happen.
 
 === Hypothesis ===
 
@@ -5175,10 +5175,10 @@ ASSIGN
     init(state) := event2;
     next(state) := case
         state = event1 : {event2, event4};
+		state = event2 : event2;
 		state = event3 : event5;
 		state = event4 : {event3, event5};
 		state = event5 : event3;
-		state = event2 : event2;
     esac;
 LTLSPEC ((state=event3) -> (F (state=event3)))
 ",(event3 -> (F event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5259,11 +5259,11 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : {event4, event5};
+        state = event1 : event1;
+		state = event2 : {event4, event5};
 		state = event3 : {event2, event5};
 		state = event4 : {event2, event3};
 		state = event5 : event2;
-		state = event1 : event1;
     esac;
 LTLSPEC (! ((state=event5) | (state=event3)))
 ",(! (event5 | event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5523,10 +5523,10 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event1 : {event2, event4};
-		state = event4 : {event2, event3, event5};
-		state = event5 : {event1, event4};
 		state = event2 : event2;
 		state = event3 : event3;
+		state = event4 : {event2, event3, event5};
+		state = event5 : {event1, event4};
     esac;
 LTLSPEC (X (! (state=event5)))
 ",(X (! event5)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5589,10 +5589,10 @@ LTLSPEC (! (G (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event2 happened. After event3, no other events can happen. After event2, event4 must happen. After event4, no other events can happen. After event5, either event1, event2, or event3 must happen. After event1, either event2, event3, or event5 must happen.","C1: If event3 happens, then event2 happens.
+"Initially, event2 happened. After event3, no other events can happen. After event1, either event2, event3, or event5 must happen. After event2, event4 must happen. After event5, either event1, event2, or event3 must happen. After event4, no other events can happen.","C1: If event3 happens, then event2 happens.
 C2: C1 eventually holds.","=== Context ===
 
-Initially, event2 happened. After event3, no other events can happen. After event2, event4 must happen. After event4, no other events can happen. After event5, either event1, event2, or event3 must happen. After event1, either event2, event3, or event5 must happen.
+Initially, event2 happened. After event3, no other events can happen. After event1, either event2, event3, or event5 must happen. After event2, event4 must happen. After event5, either event1, event2, or event3 must happen. After event4, no other events can happen.
 
 === Hypothesis ===
 
@@ -5608,9 +5608,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event3, event5};
 		state = event2 : event4;
-		state = event5 : {event1, event2, event3};
-		state = event4 : event4;
 		state = event3 : event3;
+		state = event4 : event4;
+		state = event5 : {event1, event2, event3};
     esac;
 LTLSPEC (F ((state=event3) -> (state=event2)))
 ",(F (event3 -> event2)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -5722,10 +5722,10 @@ LTLSPEC (F (! (state=event1)))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event3, event4 must happen. After event4, either event3, or event5 must happen. After event5, no other events can happen. After event2, either event1, or event3 must happen. After event1, no other events can happen.","C1: Event4 happens and event1 happens.
+"Initially, event3 happened. After event3, event4 must happen. After event4, either event3, or event5 must happen. After event5, no other events can happen. After event1, no other events can happen. After event2, either event1, or event3 must happen.","C1: Event4 happens and event1 happens.
 C2: If C1 holds, then event4 happens.","=== Context ===
 
-Initially, event3 happened. After event3, event4 must happen. After event4, either event3, or event5 must happen. After event5, no other events can happen. After event2, either event1, or event3 must happen. After event1, no other events can happen.
+Initially, event3 happened. After event3, event4 must happen. After event4, either event3, or event5 must happen. After event5, no other events can happen. After event1, no other events can happen. After event2, either event1, or event3 must happen.
 
 === Hypothesis ===
 
@@ -5739,11 +5739,11 @@ VAR
 ASSIGN
     init(state) := event3;
     next(state) := case
-        state = event2 : {event1, event3};
+        state = event1 : event1;
+		state = event2 : {event1, event3};
 		state = event3 : event4;
 		state = event4 : {event3, event5};
 		state = event5 : event5;
-		state = event1 : event1;
     esac;
 LTLSPEC (((state=event4) & (state=event1)) -> (state=event4))
 ",((event4 & event1) -> event4),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6085,11 +6085,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : event3;
+        state = event1 : event1;
+		state = event2 : event3;
+		state = event3 : event3;
 		state = event4 : {event2, event5};
 		state = event5 : {event2, event3, event4};
-		state = event1 : event1;
-		state = event3 : event3;
     esac;
 LTLSPEC (F ((state=event5) -> (state=event5)))
 ",(F (event5 -> event5)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6173,8 +6173,8 @@ ASSIGN
         state = event1 : {event2, event4, event5};
 		state = event2 : {event1, event3, event4};
 		state = event3 : {event1, event2, event4};
-		state = event5 : event3;
 		state = event4 : event4;
+		state = event5 : event3;
     esac;
 LTLSPEC (! (X (state=event1)))
 ",(! (X event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6257,8 +6257,8 @@ ASSIGN
         state = event1 : {event3, event5};
 		state = event2 : {event1, event3, event4};
 		state = event3 : {event4, event5};
-		state = event5 : {event1, event2};
 		state = event4 : event4;
+		state = event5 : {event1, event2};
     esac;
 LTLSPEC (F ((state=event2) -> (state=event3)))
 ",(F (event2 -> event3)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6297,10 +6297,10 @@ ASSIGN
     init(state) := event5;
     next(state) := case
         state = event1 : event4;
+		state = event2 : event2;
 		state = event3 : {event1, event2, event4};
 		state = event4 : {event1, event2, event3, event5};
 		state = event5 : {event2, event4};
-		state = event2 : event2;
     esac;
 LTLSPEC ((state=event5) | ((state=event4) & (state=event1)))
 ",(event5 | (event4 & event1)),True,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -6675,10 +6675,10 @@ LTLSPEC (G (G (state=event1)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event5, event3 must happen. After event3, no other events can happen. After event2, either event3, or event5 must happen. After event4, either event1, or event2 must happen. After event1, no other events can happen.","C1: If event1 happens, then event4 happens.
+"Initially, event1 happened. After event5, event3 must happen. After event3, no other events can happen. After event1, no other events can happen. After event2, either event3, or event5 must happen. After event4, either event1, or event2 must happen.","C1: If event1 happens, then event4 happens.
 C2: If event1 happens, then C1 holds.","=== Context ===
 
-Initially, event1 happened. After event5, event3 must happen. After event3, no other events can happen. After event2, either event3, or event5 must happen. After event4, either event1, or event2 must happen. After event1, no other events can happen.
+Initially, event1 happened. After event5, event3 must happen. After event3, no other events can happen. After event1, no other events can happen. After event2, either event3, or event5 must happen. After event4, either event1, or event2 must happen.
 
 === Hypothesis ===
 
@@ -6692,11 +6692,11 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : {event3, event5};
+        state = event1 : event1;
+		state = event2 : {event3, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event2};
 		state = event5 : event3;
-		state = event1 : event1;
-		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) -> ((state=event1) -> (state=event4)))
 ",(event1 -> (event1 -> event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7247,9 +7247,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event4};
 		state = event2 : {event3, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event3};
 		state = event5 : event3;
-		state = event3 : event3;
     esac;
 LTLSPEC (! (X (state=event2)))
 ",(! (X event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7470,9 +7470,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event3, event5};
 		state = event2 : {event3, event5};
+		state = event3 : event3;
 		state = event4 : event1;
 		state = event5 : {event1, event3};
-		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event2) | (state=event4)))
 ",(G (event2 | event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -7815,10 +7815,10 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event1 : {event2, event4, event5};
+		state = event2 : event2;
 		state = event3 : {event1, event2, event4, event5};
 		state = event4 : {event3, event5};
 		state = event5 : {event1, event2};
-		state = event2 : event2;
     esac;
 LTLSPEC ((G (state=event5)) & (state=event5))
 ",((G event5) & event5),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8039,11 +8039,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : event5;
+        state = event1 : event1;
+		state = event2 : event5;
+		state = event3 : event3;
 		state = event4 : {event2, event5};
 		state = event5 : event4;
-		state = event1 : event1;
-		state = event3 : event3;
     esac;
 LTLSPEC ((state=event3) & ((state=event5) -> (state=event3)))
 ",(event3 & (event5 -> event3)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8078,9 +8078,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event4};
 		state = event2 : {event3, event4};
+		state = event3 : event3;
 		state = event4 : {event1, event2};
 		state = event5 : {event1, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC ((! (state=event5)) & (state=event4))
 ",((! event5) & event4),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8158,11 +8158,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : {event3, event5};
+        state = event1 : event1;
+		state = event2 : {event3, event5};
 		state = event3 : {event2, event5};
 		state = event4 : {event1, event2, event3, event5};
 		state = event5 : event5;
-		state = event1 : event1;
     esac;
 LTLSPEC (((state=event5) -> (state=event1)) -> (state=event2))
 ",((event5 -> event1) -> event2),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8200,10 +8200,10 @@ ASSIGN
     init(state) := event2;
     next(state) := case
         state = event1 : {event2, event3, event4};
-		state = event4 : {event1, event2, event3, event5};
-		state = event5 : event1;
 		state = event2 : event2;
 		state = event3 : event3;
+		state = event4 : {event1, event2, event3, event5};
+		state = event5 : event1;
     esac;
 LTLSPEC (F (X (state=event3)))
 ",(F (X event3)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8269,10 +8269,10 @@ LTLSPEC (G ((state=event3) & (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event5, no other events can happen. After event2, either event1, event3, or event5 must happen. After event1, event2 must happen. After event3, either event2, or event5 must happen. After event4, either event3, or event5 must happen.","C1: Event3 happens and event4 happens.
+"Initially, event3 happened. After event5, no other events can happen. After event1, event2 must happen. After event2, either event1, event3, or event5 must happen. After event3, either event2, or event5 must happen. After event4, either event3, or event5 must happen.","C1: Event3 happens and event4 happens.
 C2: C1 eventually holds.","=== Context ===
 
-Initially, event3 happened. After event5, no other events can happen. After event2, either event1, event3, or event5 must happen. After event1, event2 must happen. After event3, either event2, or event5 must happen. After event4, either event3, or event5 must happen.
+Initially, event3 happened. After event5, no other events can happen. After event1, event2 must happen. After event2, either event1, event3, or event5 must happen. After event3, either event2, or event5 must happen. After event4, either event3, or event5 must happen.
 
 === Hypothesis ===
 
@@ -8548,9 +8548,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event3};
 		state = event2 : {event1, event3};
+		state = event3 : event3;
 		state = event4 : event2;
 		state = event5 : {event2, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC (F (X (state=event4)))
 ",(F (X event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8787,10 +8787,10 @@ LTLSPEC ((F (state=event2)) -> (state=event2))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event3, no other events can happen. After event2, either event1, or event4 must happen. After event1, either event2, or event5 must happen. After event4, either event1, event2, or event5 must happen. After event5, event1 must happen. After event5, event1 must happen.","C1: Event1 happens and event1 happens.
+"Initially, event5 happened. After event3, no other events can happen. After event1, either event2, or event5 must happen. After event2, either event1, or event4 must happen. After event5, event1 must happen. After event4, either event1, event2, or event5 must happen.","C1: Event1 happens and event1 happens.
 C2: C1 always holds.","=== Context ===
 
-Initially, event5 happened. After event3, no other events can happen. After event2, either event1, or event4 must happen. After event1, either event2, or event5 must happen. After event4, either event1, event2, or event5 must happen. After event5, event1 must happen. After event5, event1 must happen.
+Initially, event5 happened. After event3, no other events can happen. After event1, either event2, or event5 must happen. After event2, either event1, or event4 must happen. After event5, event1 must happen. After event4, either event1, event2, or event5 must happen.
 
 === Hypothesis ===
 
@@ -8806,9 +8806,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event5};
 		state = event2 : {event1, event4};
+		state = event3 : event3;
 		state = event4 : {event1, event2, event5};
 		state = event5 : event1;
-		state = event3 : event3;
     esac;
 LTLSPEC (G ((state=event1) & (state=event1)))
 ",(G (event1 & event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -8934,11 +8934,11 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : {event1, event3, event4, event5};
+        state = event1 : event1;
+		state = event2 : {event1, event3, event4, event5};
 		state = event3 : event1;
 		state = event4 : {event1, event3};
 		state = event5 : {event2, event4};
-		state = event1 : event1;
     esac;
 LTLSPEC (! ((state=event4) | (state=event2)))
 ",(! (event4 | event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9180,10 +9180,10 @@ LTLSPEC (! (F (state=event4)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event3 happened. After event2, event5 must happen. After event5, event2 must happen. After event1, no other events can happen. After event4, either event3, or event5 must happen. After event3, either event4, or event5 must happen.","C1: Event5 does not happen.
+"Initially, event3 happened. After event2, event5 must happen. After event5, event2 must happen. After event1, no other events can happen. After event3, either event4, or event5 must happen. After event4, either event3, or event5 must happen.","C1: Event5 does not happen.
 C2: C1 holds in the next state.","=== Context ===
 
-Initially, event3 happened. After event2, event5 must happen. After event5, event2 must happen. After event1, no other events can happen. After event4, either event3, or event5 must happen. After event3, either event4, or event5 must happen.
+Initially, event3 happened. After event2, event5 must happen. After event5, event2 must happen. After event1, no other events can happen. After event3, either event4, or event5 must happen. After event4, either event3, or event5 must happen.
 
 === Hypothesis ===
 
@@ -9197,11 +9197,11 @@ VAR
 ASSIGN
     init(state) := event3;
     next(state) := case
-        state = event2 : event5;
+        state = event1 : event1;
+		state = event2 : event5;
 		state = event3 : {event4, event5};
 		state = event4 : {event3, event5};
 		state = event5 : event2;
-		state = event1 : event1;
     esac;
 LTLSPEC (X (! (state=event5)))
 ",(X (! event5)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9363,8 +9363,8 @@ ASSIGN
         state = event1 : {event2, event3};
 		state = event2 : {event1, event4};
 		state = event3 : event2;
-		state = event5 : {event1, event2, event4};
 		state = event4 : event4;
+		state = event5 : {event1, event2, event4};
     esac;
 LTLSPEC ((state=event1) & (G (state=event2)))
 ",(event1 & (G event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -9492,9 +9492,9 @@ ASSIGN
     next(state) := case
         state = event1 : event4;
 		state = event2 : {event1, event3, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event2, event3, event5};
 		state = event5 : {event2, event3, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC ((state=event1) | ((state=event4) & (state=event4)))
 ",(event1 | (event4 & event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -10229,11 +10229,11 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : {event3, event4, event5};
+        state = event1 : event1;
+		state = event2 : {event3, event4, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event3};
 		state = event5 : event1;
-		state = event1 : event1;
-		state = event3 : event3;
     esac;
 LTLSPEC ((! (state=event3)) -> (state=event3))
 ",((! event3) -> event3),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -10295,10 +10295,10 @@ LTLSPEC (G ((state=event3) -> (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event3, no other events can happen. After event2, either event3, or event4 must happen. After event4, either event1, or event3 must happen. After event1, event3 must happen. After event5, event4 must happen.","C1: Event5 eventually happens.
+"Initially, event5 happened. After event3, no other events can happen. After event1, event3 must happen. After event2, either event3, or event4 must happen. After event4, either event1, or event3 must happen. After event5, event4 must happen.","C1: Event5 eventually happens.
 C2: C1 holds in the next state.","=== Context ===
 
-Initially, event5 happened. After event3, no other events can happen. After event2, either event3, or event4 must happen. After event4, either event1, or event3 must happen. After event1, event3 must happen. After event5, event4 must happen.
+Initially, event5 happened. After event3, no other events can happen. After event1, event3 must happen. After event2, either event3, or event4 must happen. After event4, either event1, or event3 must happen. After event5, event4 must happen.
 
 === Hypothesis ===
 
@@ -10314,9 +10314,9 @@ ASSIGN
     next(state) := case
         state = event1 : event3;
 		state = event2 : {event3, event4};
+		state = event3 : event3;
 		state = event4 : {event1, event3};
 		state = event5 : event4;
-		state = event3 : event3;
     esac;
 LTLSPEC (X (F (state=event5)))
 ",(X (F event5)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -10352,10 +10352,10 @@ ASSIGN
     init(state) := event1;
     next(state) := case
         state = event1 : event3;
+		state = event2 : event2;
 		state = event3 : {event1, event5};
 		state = event4 : event1;
 		state = event5 : {event1, event2, event3};
-		state = event2 : event2;
     esac;
 LTLSPEC ((state=event3) & ((state=event5) & (state=event4)))
 ",(event3 & (event5 & event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -10554,10 +10554,10 @@ LTLSPEC (G ((state=event2) | (state=event4)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event4 happened. After event2, no other events can happen. After event1, no other events can happen. After event4, either event3, or event5 must happen. After event3, either event1, event2, event4, or event5 must happen. After event5, either event1, or event3 must happen. After event5, either event1, or event3 must happen.","C1: Event2 happens or event4 happens.
+"Initially, event4 happened. After event2, no other events can happen. After event1, no other events can happen. After event3, either event1, event2, event4, or event5 must happen. After event4, either event3, or event5 must happen. After event5, either event1, or event3 must happen. After event5, either event1, or event3 must happen.","C1: Event2 happens or event4 happens.
 C2: C1 always holds.","=== Context ===
 
-Initially, event4 happened. After event2, no other events can happen. After event1, no other events can happen. After event4, either event3, or event5 must happen. After event3, either event1, event2, event4, or event5 must happen. After event5, either event1, or event3 must happen. After event5, either event1, or event3 must happen.
+Initially, event4 happened. After event2, no other events can happen. After event1, no other events can happen. After event3, either event1, event2, event4, or event5 must happen. After event4, either event3, or event5 must happen. After event5, either event1, or event3 must happen. After event5, either event1, or event3 must happen.
 
 === Hypothesis ===
 
@@ -10571,11 +10571,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event3 : {event1, event2, event4, event5};
+        state = event1 : event1;
+		state = event2 : event2;
+		state = event3 : {event1, event2, event4, event5};
 		state = event4 : {event3, event5};
 		state = event5 : {event1, event3};
-		state = event2 : event2;
-		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event2) | (state=event4)))
 ",(G (event2 | event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -10877,11 +10877,11 @@ VAR
 ASSIGN
     init(state) := event2;
     next(state) := case
-        state = event2 : {event1, event3, event5};
+        state = event1 : event1;
+		state = event2 : {event1, event3, event5};
 		state = event3 : event2;
 		state = event4 : {event2, event3, event5};
 		state = event5 : {event2, event3};
-		state = event1 : event1;
     esac;
 LTLSPEC (! ((state=event1) -> (state=event2)))
 ",(! (event1 -> event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -11364,9 +11364,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event4, event5};
 		state = event2 : {event1, event3, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event5};
 		state = event5 : {event1, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC (G (F (state=event1)))
 ",(G (F event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -11449,8 +11449,8 @@ ASSIGN
         state = event1 : {event2, event3};
 		state = event2 : {event1, event4, event5};
 		state = event3 : {event2, event4};
-		state = event5 : {event1, event2, event3};
 		state = event4 : event4;
+		state = event5 : {event1, event2, event3};
     esac;
 LTLSPEC ((state=event1) & (X (state=event4)))
 ",(event1 & (X event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -11490,10 +11490,10 @@ ASSIGN
     init(state) := event2;
     next(state) := case
         state = event1 : {event2, event3, event4, event5};
+		state = event2 : event2;
 		state = event3 : {event4, event5};
 		state = event4 : event3;
 		state = event5 : {event2, event4};
-		state = event2 : event2;
     esac;
 LTLSPEC (G ((state=event4) & (state=event2)))
 ",(G (event4 & event2)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -11613,11 +11613,11 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : {event1, event3};
+        state = event1 : event1;
+		state = event2 : {event1, event3};
 		state = event3 : event2;
 		state = event4 : {event1, event2};
 		state = event5 : {event1, event3, event4};
-		state = event1 : event1;
     esac;
 LTLSPEC (F ((state=event3) & (state=event1)))
 ",(F (event3 & event1)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -11699,10 +11699,10 @@ ASSIGN
     init(state) := event5;
     next(state) := case
         state = event1 : {event2, event3};
-		state = event4 : {event1, event2, event3};
-		state = event5 : event1;
 		state = event2 : event2;
 		state = event3 : event3;
+		state = event4 : {event1, event2, event3};
+		state = event5 : event1;
     esac;
 LTLSPEC ((state=event5) & (F (state=event4)))
 ",(event5 & (F event4)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -11916,11 +11916,11 @@ VAR
 ASSIGN
     init(state) := event5;
     next(state) := case
-        state = event2 : {event3, event4};
+        state = event1 : event1;
+		state = event2 : {event3, event4};
 		state = event3 : event5;
 		state = event4 : event5;
 		state = event5 : {event1, event2, event4};
-		state = event1 : event1;
     esac;
 LTLSPEC ((G (state=event5)) | (state=event4))
 ",((G event5) | event4),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -12047,9 +12047,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event3, event4};
 		state = event2 : {event1, event4, event5};
+		state = event3 : event3;
 		state = event4 : {event1, event2};
 		state = event5 : event1;
-		state = event3 : event3;
     esac;
 LTLSPEC ((state=event5) & (G (state=event5)))
 ",(event5 & (G event5)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -12174,11 +12174,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : {event1, event3, event4, event5};
+        state = event1 : event1;
+		state = event2 : {event1, event3, event4, event5};
 		state = event3 : event4;
 		state = event4 : event2;
 		state = event5 : event4;
-		state = event1 : event1;
     esac;
 LTLSPEC (G ((state=event3) | (state=event3)))
 ",(G (event3 | event3)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -12214,11 +12214,11 @@ VAR
 ASSIGN
     init(state) := event1;
     next(state) := case
-        state = event2 : {event3, event5};
+        state = event1 : event1;
+		state = event2 : {event3, event5};
 		state = event3 : {event2, event4, event5};
-		state = event5 : {event2, event3};
 		state = event4 : event4;
-		state = event1 : event1;
+		state = event5 : {event2, event3};
     esac;
 LTLSPEC (X (X (state=event5)))
 ",(X (X event5)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -12344,9 +12344,9 @@ ASSIGN
     next(state) := case
         state = event1 : {event2, event3};
 		state = event2 : {event3, event4};
+		state = event3 : event3;
 		state = event4 : {event2, event3, event5};
 		state = event5 : {event1, event4};
-		state = event3 : event3;
     esac;
 LTLSPEC (F (X (state=event5)))
 ",(F (X event5)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
@@ -12367,10 +12367,10 @@ LTLSPEC (F (X (state=event5)))
     <edge source=""event5"" target=""event4"" />
   </graph>
 </graphml>"
-"Initially, event5 happened. After event5, event3 must happen. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event4, event3 must happen. After event1, either event2, or event4 must happen.","C1: Event3 always happens.
+"Initially, event5 happened. After event5, event3 must happen. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event1, either event2, or event4 must happen. After event4, event3 must happen.","C1: Event3 always happens.
 C2: C1 holds in the next state.","=== Context ===
 
-Initially, event5 happened. After event5, event3 must happen. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event4, event3 must happen. After event1, either event2, or event4 must happen.
+Initially, event5 happened. After event5, event3 must happen. After event3, either event2, or event5 must happen. After event2, event3 must happen. After event1, either event2, or event4 must happen. After event4, event3 must happen.
 
 === Hypothesis ===
 
@@ -12760,10 +12760,10 @@ LTLSPEC (((state=event3) | (state=event5)) & (state=event1))
     <edge source=""event5"" target=""event3"" />
   </graph>
 </graphml>"
-"Initially, event1 happened. After event5, event4 must happen. After event4, event5 must happen. After event2, either event1, event4, or event5 must happen. After event1, either event2, event4, or event5 must happen. After event3, either event1, event2, or event4 must happen.","C1: Event3 eventually happens.
+"Initially, event1 happened. After event5, event4 must happen. After event4, event5 must happen. After event1, either event2, event4, or event5 must happen. After event2, either event1, event4, or event5 must happen. After event3, either event1, event2, or event4 must happen.","C1: Event3 eventually happens.
 C2: C1 eventually holds.","=== Context ===
 
-Initially, event1 happened. After event5, event4 must happen. After event4, event5 must happen. After event2, either event1, event4, or event5 must happen. After event1, either event2, event4, or event5 must happen. After event3, either event1, event2, or event4 must happen.
+Initially, event1 happened. After event5, event4 must happen. After event4, event5 must happen. After event1, either event2, event4, or event5 must happen. After event2, either event1, event4, or event5 must happen. After event3, either event1, event2, or event4 must happen.
 
 === Hypothesis ===
 
@@ -12908,11 +12908,11 @@ VAR
 ASSIGN
     init(state) := event4;
     next(state) := case
-        state = event2 : event3;
+        state = event1 : event1;
+		state = event2 : event3;
 		state = event3 : {event1, event4, event5};
 		state = event4 : {event1, event2, event3};
 		state = event5 : event1;
-		state = event1 : event1;
     esac;
 LTLSPEC (! (F (state=event3)))
 ",(! (F event3)),False,"<graphml xmlns=""http://graphml.graphdrawing.org/xmlns"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"">
