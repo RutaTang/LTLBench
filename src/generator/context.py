@@ -51,7 +51,7 @@ def generate_context_from_graph(rng: Generator, graph: nx.DiGraph) -> str:
     """
     context = []
 
-    nodes = list(graph.nodes)
+    nodes = sorted(list(graph.nodes))
     node = rng.choice(nodes)
     visited = set()
     queue = [node]
@@ -60,7 +60,7 @@ def generate_context_from_graph(rng: Generator, graph: nx.DiGraph) -> str:
         visited.add(node)
 
         # Get all neighbors for this node
-        neighbors = list(graph.neighbors(node))
+        neighbors = sorted(list(graph.neighbors(node)))
 
         if len(neighbors) == 0:
             context.append(f'After {node}, no other events can happen.')
@@ -75,7 +75,7 @@ def generate_context_from_graph(rng: Generator, graph: nx.DiGraph) -> str:
                 queue.append(neighbor)
 
         if len(queue) == 0 and len(visited) != len(nodes):
-            node = list(set(nodes) - visited)[0]
+            node = sorted(list(set(nodes) - visited))[0]
             queue.append(node)
 
     context = ' '.join(context)
@@ -104,11 +104,11 @@ def code_template(state: list[str], init: str, transition: list[tuple[str, str]]
         trans_dict[t[0]].append(t[1])
 
     trans = []
-    for source, targets in trans_dict.items():
+    for source, targets in sorted(trans_dict.items()):
         if len(targets) == 1:
             t_str = f'state = {source} : {targets[0]};'
         else:
-            target_set = '{' + ', '.join(targets) + '}'
+            target_set = '{' + ', '.join(sorted(targets)) + '}'
             t_str = f'state = {source} : {target_set};'
         trans.append(t_str)
     trans = '\n\t\t'.join(trans)
