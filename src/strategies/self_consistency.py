@@ -3,7 +3,7 @@ from collections import Counter
 from src.models.base_model import BaseModel
 
 
-def self_consistency_prompt(question: str, llm: BaseModel, num_samples: int = 5) -> tuple[str, str]:
+def self_consistency_prompt(question: str, llm: BaseModel, num_samples: int = 3) -> tuple[str, str]:
     llm.reconfig({'temperature': 0.7, 'max_tokens': 2000})
 
     prompt = question + """
