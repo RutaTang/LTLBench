@@ -171,7 +171,7 @@ def convert_ltl_formula_to_nl(ltl_formula: list, base_states: list, c_idx: Refer
         elif operator == "|":
             nl = f'{left_operand} or {right_operand}'
         elif operator == "->":
-            nl = f'{left_operand} implies {right_operand}'
+            nl = f'If {left_operand}, then {right_operand}'
         else:
             raise ValueError(f'Unknown operator: {operator}')
         nl = nl[0].upper() + nl[1:]
