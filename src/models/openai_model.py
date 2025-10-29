@@ -31,15 +31,25 @@ class OpenAIModel(BaseModel):
 
     @backoff.on_exception(backoff.expo, openai.RateLimitError, max_time=10)
     def chat(self, message: str) -> str:
-        chat_completion = self.client.chat.completions.create(
-            messages=[{
-                "role": "user",
-                "content": message,
-            }],
-            temperature=self.config["temperature"],
-            model=self.config["model"],
-            max_completion_tokens=self.config["max_tokens"],
-        )
+        if not self.config["model"].startswith("gpt-5"):
+            chat_completion = self.client.chat.completions.create(
+                messages=[{
+                    "role": "user",
+                    "content": message,
+                }],
+                temperature=self.config["temperature"],
+                model=self.config["model"],
+                max_completion_tokens=self.config["max_tokens"],
+            )
+        else:
+            chat_completion = self.client.chat.completions.create(
+                messages=[{
+                    "role": "user",
+                    "content": message,
+                }],
+                model=self.config["model"],
+                max_completion_tokens=self.config["max_tokens"],
+            )
         chat_message = chat_completion.choices[0].message
         return chat_message.content
 
