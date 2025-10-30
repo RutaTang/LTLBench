@@ -130,10 +130,31 @@ def _evaluate(count_of_problem: int, number_of_events: int,
 
     strategy_func = strategy_map[strategy]
 
-    path = get_data_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem)
-    data = pd.read_csv(path)
+    eval_path = get_evaluation_file_path(event_n=number_of_events, formula_n=number_of_operators,
+                                         count=count_of_problem, model=model, strategy=strategy)
+
+    # Load existing results if available, otherwise load fresh data
+    if os.path.exists(eval_path):
+        print(f'Resuming from existing results at {eval_path}')
+        data = pd.read_csv(eval_path)
+        # Count already completed problems
+        completed = data['prediction'].notna().sum() if 'prediction' in data.columns else 0
+        print(f'Already completed: {completed}/{len(data)} problems')
+    else:
+        print(f'Starting fresh evaluation')
+        data_path = get_data_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem)
+        data = pd.read_csv(data_path)
+        # Initialize result columns if they don't exist
+        if 'prediction' not in data.columns:
+            data['prediction'] = pd.NA
+        if 'prediction_raw' not in data.columns:
+            data['prediction_raw'] = pd.NA
 
     for index, row in tqdm.tqdm(data.iterrows(), total=len(data)):
+        # Skip already evaluated problems
+        if pd.notna(row.get('prediction')):
+            continue
+
         question = row['question']
 
         # Initialize fresh LLM for each problem
@@ -152,12 +173,11 @@ def _evaluate(count_of_problem: int, number_of_events: int,
         data.at[index, 'prediction'] = result
         data.at[index, 'prediction_raw'] = str(response)
 
-    path = get_evaluation_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem,
-                                    model=model)
-    # Include strategy in the filename
-    path = path.replace('.csv', f'_{strategy}.csv')
-    data.to_csv(path, index=False)
-    print(f'Evaluation result of {model} with {strategy} strategy saved to {path}.')
+        # Save progress incrementally after each problem
+        data.to_csv(eval_path, index=False)
+
+    print(f'Evaluation result of {model} with {strategy} strategy saved to {eval_path}.')
+
 
 
 @app.command()
