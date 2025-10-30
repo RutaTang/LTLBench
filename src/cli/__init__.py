@@ -65,8 +65,15 @@ def _generate(count_of_problem: int, number_of_events: int,
     problems.extend(problems_true)
     problems.extend(problems_false)
 
+    # Create DataFrame and add ID column
+    df = pd.DataFrame(problems)
+    df['id'] = range(len(df))
+    # Reorder columns to put id first
+    cols = ['id'] + [col for col in df.columns if col != 'id']
+    df = df[cols]
+
     path = get_data_file_path(event_n=number_of_events, formula_n=number_of_operators, count=count_of_problem)
-    pd.DataFrame(problems).to_csv(path, index=False)
+    df.to_csv(path, index=False)
     print(f'Generated {count_of_problem} problems to {path}.')
 
 
