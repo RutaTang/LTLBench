@@ -4,7 +4,6 @@ from typing import Dict
 
 import backoff
 import openai
-from dotenv import find_dotenv, load_dotenv
 from openai import OpenAI
 
 from src.models.base_model import BaseModel
@@ -14,7 +13,6 @@ class OpenAIModel(BaseModel):
 
     def __init__(self):
         super().__init__()
-        load_dotenv(find_dotenv())
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.config = {
             "model": "gpt-3.5-turbo",

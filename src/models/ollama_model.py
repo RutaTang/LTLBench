@@ -12,7 +12,6 @@ class OllamaModel(BaseModel):
 
     def __init__(self):
         super().__init__()
-        load_dotenv(find_dotenv())
         ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
         self.client = Client(host=ollama_url)
 
