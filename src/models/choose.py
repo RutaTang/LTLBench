@@ -1,6 +1,7 @@
 from src.models.base_model import BaseModel
 from src.models.ollama_model import OllamaModel
 from src.models.openai_model import OpenAIModel
+from src.models.deepseek_model import DeepSeekModel
 
 
 def choose_model(model_name: str) -> BaseModel:
@@ -16,6 +17,10 @@ def choose_model(model_name: str) -> BaseModel:
                         "qwen3:14b-q8_0", "qwen:7b-chat", "deepseek-r1:14b",
                         "mistral:7b-instruct", "qwen:32b-chat"]:
         model = OllamaModel()
+        model.reconfig({"model": model_name})
+        return model
+    elif model_name in ["deepseek-chat", "deepseek-reasoner"]:
+        model = DeepSeekModel()
         model.reconfig({"model": model_name})
         return model
     else:

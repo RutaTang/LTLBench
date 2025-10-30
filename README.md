@@ -14,6 +14,7 @@ It consists of both the code of the **Dataset Construction Pipeline** and the co
    - Edit `.env` and set your configurations:
      - `OPENAI_API_KEY`: Your OpenAI API key (for evaluating OpenAI models)
      - `OLLAMA_URL`: Custom Ollama server URL (defaults to `http://localhost:11434`)
+     - `DEEPSEEK_API_KEY`: Your Deepseek API key (for evaluating Deepseek models)
 4. (Optional) Download [Ollama](https://ollama.com/) if you want to evaluate the models available on Ollama.
 
 ## Run the Pipeline to Generate the Dataset
