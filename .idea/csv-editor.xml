@@ -87,6 +87,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/gpt-3.5-turbo_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/results/evaluation/2_3_events_3_formula_len/gpt-3.5-turbo_self_consistency.csv">
           <value>
             <Attribute>
