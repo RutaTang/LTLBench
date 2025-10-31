@@ -24,7 +24,7 @@ def choose_model(model_name: str) -> BaseModel:
         model = DeepSeekModel()
         model.reconfig({"model": model_name})
         return model
-    elif model_name in ["qwen-plus", "qwen-turbo", "qwen-max", "qwen2.5-72b-instruct", "qwen3-32b", "qwen3-14b"]:
+    elif model_name in ["qwen3-max", "qwen2.5-72b-instruct", "qwen3-32b", "qwen3-14b"]:
         model = AlibabaModel()
         model.reconfig({"model": model_name})
         return model
