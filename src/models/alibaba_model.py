@@ -37,6 +37,7 @@ class AlibabaModel(BaseModel):
             temperature=self.config["temperature"],
             model=self.config["model"],
             max_tokens=self.config["max_tokens"],
+            extra_body= {"enable_thinking": False} if self.config["model"] in ["qwen3-32b","qwen3-14b"] else {},
         )
         chat_message = chat_completion.choices[0].message
         return chat_message.content
