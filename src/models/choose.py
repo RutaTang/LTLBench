@@ -2,6 +2,7 @@ from src.models.base_model import BaseModel
 from src.models.ollama_model import OllamaModel
 from src.models.openai_model import OpenAIModel
 from src.models.deepseek_model import DeepSeekModel
+from src.models.alibaba_model import AlibabaModel
 
 
 def choose_model(model_name: str) -> BaseModel:
@@ -21,6 +22,10 @@ def choose_model(model_name: str) -> BaseModel:
         return model
     elif model_name in ["deepseek-chat", "deepseek-reasoner"]:
         model = DeepSeekModel()
+        model.reconfig({"model": model_name})
+        return model
+    elif model_name in ["qwen-plus", "qwen-turbo", "qwen-max"]:
+        model = AlibabaModel()
         model.reconfig({"model": model_name})
         return model
     else:
