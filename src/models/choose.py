@@ -15,8 +15,8 @@ def choose_model(model_name: str) -> BaseModel:
         model.reconfig({"model": model_name})
         return model
     elif model_name in ["llama3:70b-instruct", "qwen:72b-chat", "gemma:7b-instruct-q8_0", "gemma3:12b-it-q8_0",
-                        "qwen3:14b", "qwen:7b-chat", "deepseek-r1:14b",
-                        "mistral:7b-instruct", "qwen:32b", "qwen3:32b","phi4:14b"]:
+                        "qwen:7b-chat", "deepseek-r1:14b",
+                        "mistral:7b-instruct", "qwen:32b", "phi4:14b"]:
         model = OllamaModel()
         model.reconfig({"model": model_name})
         return model
