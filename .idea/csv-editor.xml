@@ -108,6 +108,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/evaluation/300_3_events_2_formula_len/gpt-5-mini_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
