@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/results/data/2_3_events_3_formula_len.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/results/data/300_2_events_1_formula_len.csv">
           <value>
             <Attribute>
@@ -59,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/data/300_2_events_9_formula_len.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/results/data/300_3_events_2_formula_len.csv">
           <value>
             <Attribute>
@@ -80,7 +80,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/data/300_7_events_2_formula_len.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/results/data/300_9_events_2_formula_len.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/deepseek-chat_direct.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -94,14 +108,105 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/results/evaluation/2_3_events_3_formula_len/gpt-3.5-turbo_self_consistency.csv">
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/gpt-4o-mini_direct.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="/results/evaluation/300_2_events_1_formula_len/gemma:7b-instruct.csv">
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/gpt-5-mini_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/phi4:14b_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/phi4:14b_few_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/qwen-turbo_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/qwen3-14b_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/qwen3-32b_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_1_formula_len/deepseek-reasoner_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_1_formula_len/gpt-5-mini_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_1_formula_len/qwen-turbo_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/gpt-5-mini_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_4_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_5_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_9_formula_len/qwen-turbo_self_consistency.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -109,6 +214,76 @@
           </value>
         </entry>
         <entry key="/results/evaluation/300_3_events_2_formula_len/gpt-5-mini_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_3_events_2_formula_len/qwen-turbo-0624_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_3_events_2_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_4_events_2_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_5_events_2_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_7_events_2_formula_len/qwen-turbo_least_to_most.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_7_events_2_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_9_events_2_formula_len/qwen-turbo_few_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_9_events_2_formula_len/qwen-turbo_least_to_most.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_9_events_2_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_9_events_2_formula_len/qwen-turbo_zero_shot_cot.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

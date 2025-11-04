@@ -1,5 +1,5 @@
 import io
-from typing import Optional
+from typing import Optional, Iterable
 
 import networkx as nx
 import numpy as np
@@ -22,31 +22,50 @@ def save_graph_to_string(graph: DiGraph) -> str:
     return '\n'.join(graphml)
 
 
-def plot_lines(data: pd.DataFrame, x: str, y: str, z: str, title: str, x_label: str, y_label: str,
-               x_ticks: Optional[list] = None, y_ticks: Optional[list] = None,
-               fig_size: tuple[float, float] = (16, 5)):
-    palette = sns.color_palette(COLOR_PALETTE, len(data[z].unique()))
 
-    # Group the data by the z column
-    grouped = data.groupby(z)
+def plot_lines(
+        df: pd.DataFrame,
+        x: str = "number_of_operators",
+        y: str = "accuracy",
+        z: str = "model",
+        title: Optional[str] = None,
+        x_label: Optional[str] = None,
+        y_label: Optional[str] = None,
+        x_ticks: Optional[Iterable] = None,
+        y_ticks: Optional[Iterable] = None,
+        figsize: tuple[int, int] = (7, 4),
+        marker: str = "o",
+        grid: bool = True,
+        legend_loc: str = "best",
+) -> None:
+    _ALLOWED_METRICS = {"accuracy", "precision", "recall", "f1", "auc"}
+    if y not in _ALLOWED_METRICS:
+        raise ValueError(f"y must be one of {_ALLOWED_METRICS}, got '{y}'")
 
-    # Create a new figure
-    plt.figure(figsize=fig_size)
+    # Drop rows with missing essentials
+    data = df[[x, y, z]].dropna()
 
-    # Plot each mode
-    for (mode, group), color in zip(grouped, palette):
-        plt.plot(group[x], group[y], label=mode, marker='s', color=color)
+    plt.figure(figsize=figsize)
 
-    # Add a legend
-    plt.legend()
+    # One line per z
+    for name, group in data.groupby(z):
+        # Sort by x so lines are ordered
+        group = group.sort_values(by=x)
+        plt.plot(group[x], group[y], marker=marker, label=str(name))
 
-    # Add title and labels
-    plt.title(title, fontsize=20)
-    plt.xlabel(x_label, fontsize=15)
-    plt.ylabel(y_label, fontsize=15)
-    if isinstance(x_ticks, list):
+    # Labels & ticks
+    plt.title(title or y.capitalize())
+    plt.xlabel(x_label or x.replace("_", " ").title())
+    plt.ylabel(y_label or y.upper())
+
+    if x_ticks is not None:
         plt.xticks(x_ticks)
-    if isinstance(y_ticks, list):
+    if y_ticks is not None:
         plt.yticks(y_ticks)
-    # Show the plot
+
+    if grid:
+        plt.grid(True, linestyle="--", linewidth=0.5, alpha=0.6)
+
+    plt.legend(title=z, loc=legend_loc)
+    plt.tight_layout()
     plt.show()
