@@ -54,11 +54,11 @@ and pull the models you want.
 
 LTLBench supports multiple prompt strategies to evaluate model performance:
 
-- **`direct`**: Direct prompting without reasoning steps
-- **`zero_shot_cot`**: Zero-shot Chain-of-Thought prompting
-- **`few_shot_cot`**: Few-shot Chain-of-Thought with examples
-- **`self_consistency`**: Self-consistency with multiple samples and majority voting
-- **`least_to_most`**: Least-to-most prompting with problem decomposition
+- **`direct`**: Direct prompting without reasoning steps;
+- **`zero_shot_cot`**: Zero-shot Chain-of-Thought prompting;
+- **`few_shot_cot`**: Few-shot Chain-of-Thought with examples;
+- **`self_consistency`**: Self-consistency with multiple samples and majority voting;
+- **`least_to_most`**: Least-to-most prompting;
 
 ### Evaluation Commands
 
@@ -85,7 +85,7 @@ python -m src.main evaluate -c 2000 -e 3 -l 3 -m gpt-4 -s least_to_most
 ```
 
 For the command above, you can change `gpt-3.5-turbo` to any other available model while you should also have a look at
-the code in `src/models/choose.py` to see the available models. If you want to evaluate models not available in the
+the code in `src/models/choose.py` to see the available models. If you want to evaluate models that are not available in the
 code, you can slightly modify the code to include them which should not be troublesome.
 
 2. Run the following command to batch-evaluate a model on the LTLBench dataset:

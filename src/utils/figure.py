@@ -37,21 +37,32 @@ def plot_lines(
         marker: str = "o",
         grid: bool = True,
         legend_loc: str = "best",
+        colors: Optional[list] = None,
+        as_percentage: bool = False,
 ) -> None:
     _ALLOWED_METRICS = {"accuracy", "precision", "recall", "f1", "auc"}
     if y not in _ALLOWED_METRICS:
         raise ValueError(f"y must be one of {_ALLOWED_METRICS}, got '{y}'")
 
     # Drop rows with missing essentials
-    data = df[[x, y, z]].dropna()
+    data = df[[x, y, z]].dropna().copy()
+
+    # Convert to percentage if requested
+    if as_percentage:
+        data[y] = data[y] * 100
+
+    # Default colors if not provided
+    if colors is None:
+        colors = ['#c44e52','#8172b3','#dd8452']
 
     plt.figure(figsize=figsize)
 
     # One line per z
-    for name, group in data.groupby(z):
+    for idx, (name, group) in enumerate(data.groupby(z)):
         # Sort by x so lines are ordered
         group = group.sort_values(by=x)
-        plt.plot(group[x], group[y], marker=marker, label=str(name))
+        color = colors[idx % len(colors)]  # Cycle through colors if needed
+        plt.plot(group[x], group[y], marker=marker, label=str(name), color=color)
 
     # Labels & ticks
     plt.title(title or y.capitalize())

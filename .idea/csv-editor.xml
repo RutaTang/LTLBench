@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/qualitative_analysis_samples.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/results/data/2000_3_events_3_formula_len.csv">
           <value>
             <Attribute>
@@ -101,6 +108,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/deepseek-chat_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/2000_3_events_3_formula_len/deepseek-reasoner_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/results/evaluation/2000_3_events_3_formula_len/gpt-3.5-turbo_direct.csv">
           <value>
             <Attribute>
@@ -178,7 +199,70 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/results/evaluation/300_2_events_2_formula_len/deepseek-reasoner_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/deepseek-reasoner_few_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/deepseek-reasoner_least_to_most.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/deepseek-reasoner_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/deepseek-reasoner_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/results/evaluation/300_2_events_3_formula_len/gpt-5-mini_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/gpt-5-mini_few_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/gpt-5-mini_least_to_most.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/gpt-5-mini_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_3_formula_len/qwen-turbo_direct.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -193,6 +277,69 @@
           </value>
         </entry>
         <entry key="/results/evaluation/300_2_events_5_formula_len/qwen-turbo_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/deepseek-reasoner_few_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/deepseek-reasoner_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/gpt-5-mini_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/gpt-5-mini_few_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/gpt-5-mini_least_to_most.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/gpt-5-mini_self_consistency.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/gpt-5-mini_zero_shot_cot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/qwen-turbo_direct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/results/evaluation/300_2_events_7_formula_len/qwen-turbo_least_to_most.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -214,13 +361,6 @@
           </value>
         </entry>
         <entry key="/results/evaluation/300_3_events_2_formula_len/gpt-5-mini_zero_shot_cot.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/results/evaluation/300_3_events_2_formula_len/qwen-turbo-0624_direct.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
