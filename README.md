@@ -1,6 +1,6 @@
 # LTLBench
 
-This is the source code for the paper **_LTLBench: Towards Benchmarks for Evaluating Temporal Logic Reasoning in Large
+This is the source code for the paper **_LTLBench: Towards Benchmarks for Evaluating Temporal Reasoning in Large
 Language Models_**.
 
 It consists of both the code of the **Dataset Construction Pipeline** and the code of **the Experiments and Analyses**.
